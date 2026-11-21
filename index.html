@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>unixchad 的 B站视频 RSS</title>
+<style>
+  body { max-width: 760px; margin: 48px auto; padding: 0 20px; font-family: -apple-system, "Microsoft YaHei", sans-serif; color: #18191c; line-height: 1.7; }
+  h1 { font-size: 26px; margin-bottom: 8px; }
+  .sub { color: #61666d; margin-bottom: 32px; }
+  .box { background: #f5f6f8; border: 1px solid #e3e5e7; border-radius: 10px; padding: 18px 22px; margin: 16px 0; }
+  code { background: #fff; border: 1px solid #e3e5e7; border-radius: 4px; padding: 2px 6px; word-break: break-all; }
+  a { color: #00a1d6; }
+  button { padding: 6px 16px; border: 1px solid #00a1d6; background: #fff; color: #00a1d6; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #00a1d6; color: #fff; }
+  .note { color: #909399; font-size: 13px; margin-top: 32px; }
+</style>
+</head>
+<body>
+  <h1>unixchad 的 B站视频 RSS</h1>
+  <p class="sub">B站 UP主 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> (UID 34569411) 的视频投稿订阅源</p>
+
+  <div class="box">
+    <strong>RSS 订阅地址</strong><br>
+    <code id="url">feed.xml</code><br>
+    <button onclick="copy()">复制</button>
+  </div>
+
+  <div class="box">
+    <strong>OPML 订阅列表</strong><br>
+    <a href="subscriptions.opml">下载 subscriptions.opml</a>（导入到 RSS 阅读器即可批量订阅）
+  </div>
+
+  <div class="box">
+    <strong>订阅方法</strong>
+    <ol>
+      <li>复制上面的订阅地址</li>
+      <li>粘贴到你的 RSS 阅读器（Feedly / Inoreader / Follow / NetNewsWire 等）</li>
+      <li>阅读器会自动定期拉取更新</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <strong>内容说明</strong>
+    <p>每条视频包含：封面大图、标题链接、播放/弹幕/评论/点赞/投币/收藏统计、时长、简介、观看链接。无乱七八糟的嵌入页面。</p>
+    <p>每天自动更新。</p>
+  </div>
+
+  <p class="note">本页面仅提供 RSS 订阅地址，视频版权归原作者所有。</p>
+
+  <script>
+    document.getElementById('url').textContent = location.href.replace(/[^/]*$/, '') + 'feed.xml';
+    function copy() {
+      navigator.clipboard.writeText(document.getElementById('url').textContent).then(() => alert('已复制订阅地址'));
+    }
+  </script>
+</body>
+</html>
