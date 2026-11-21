@@ -16,7 +16,7 @@
   --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,63%);
   --accent:hsl(31,28%,48%); --accent-deep:hsl(31,30%,40%);
   --pink:#fb7299; --pink-deep:#d8507a;
-  --glass:rgba(255,255,255,0.40); --glass-strong:rgba(255,255,255,0.58);
+  --glass:rgba(255,255,255,0.50); --glass-strong:rgba(255,255,255,0.66);
   --hair:rgba(255,255,255,0.82); --line:rgba(120,95,80,0.10);
   --shadow:0 6px 22px -12px rgba(70,45,35,0.28);
 }
@@ -42,12 +42,12 @@ body {
 }
 .bg::after {
   content:''; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.30) 55%, rgba(255,255,255,0.24));
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 55%, rgba(255,255,255,0.06));
 }
 .frame {
   position:relative; z-index:1; max-width:760px; margin:28px auto 40px;
   padding:14px 14px 10px; border-radius:30px;
-  background:linear-gradient(180deg,rgba(255,255,255,0.52),rgba(255,255,255,0.34));
+  background:linear-gradient(180deg,rgba(255,255,255,0.62),rgba(255,255,255,0.46));
   border:1px solid var(--hair);
   box-shadow:0 26px 64px -30px rgba(70,45,35,0.36), 0 2px 6px rgba(70,45,35,0.04);
   -webkit-backdrop-filter:blur(36px) saturate(1.25) brightness(1.04); backdrop-filter:blur(36px) saturate(1.25) brightness(1.04);

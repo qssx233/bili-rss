@@ -728,12 +728,12 @@ body {{
 }}
 .veil {{
   position:fixed; inset:0; z-index:0;
-  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.34) 50%,
-    rgba(255,255,255,0.26));
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.06));
 }}
 .page {{ position:relative; z-index:1; max-width:860px; margin:0 auto; padding:22px 16px 44px; }}
 .card {{
-  background:rgba(255,255,255,0.46); border:1px solid rgba(255,255,255,0.62);
+  background:rgba(255,255,255,0.58); border:1px solid rgba(255,255,255,0.7);
   border-radius:26px; padding:20px;
   box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
   -webkit-backdrop-filter:blur(30px) saturate(1.2); backdrop-filter:blur(30px) saturate(1.2);
