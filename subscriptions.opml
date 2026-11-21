@@ -3,13 +3,13 @@
   <head>
     <title>我的 RSS 订阅</title>
     <dateCreated>Sat, 21 Nov 2026 18:40:00 +0800</dateCreated>
-    <dateModified>Sat, 21 Nov 2026 18:40:00 +0800</dateModified>
+    <dateModified>Sat, 21 Nov 2026 19:15:00 +0800</dateModified>
     <ownerName>杂口</ownerName>
   </head>
   <body>
     <!-- B站 UP主视频投稿（公网富媒体 feed，无 iframe，任何阅读器都能显示） -->
     <outline text="B站" title="B站">
-      <outline text="unixchad 的 bilibili 投稿" title="unixchad 的 bilibili 投稿" type="rss" xmlUrl="https://wbapp-ozj8vk6wjaum2d7vqm6u68.apps.workbuddy.host/feed.xml?sharecode=JBJCKWJ7PR" htmlUrl="https://space.bilibili.com/34569411/upload/video"/>
+      <outline text="unixchad 的 bilibili 投稿" title="unixchad 的 bilibili 投稿" type="rss" xmlUrl="https://qssx233.github.io/bili-rss/feed.xml" htmlUrl="https://space.bilibili.com/34569411/upload/video"/>
       <!-- 在线镜像备份（无富媒体，仅当公网 feed 不可用时导入）：
       <outline text="unixchad（镜像）" title="unixchad（镜像）" type="rss" xmlUrl="https://rss.injahow.cn/bilibili/user/video/34569411" htmlUrl="https://space.bilibili.com/34569411/upload/video"/>
       -->
