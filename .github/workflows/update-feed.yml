@@ -33,7 +33,7 @@ jobs:
           fi
           printf '%s' "$BILI_COOKIES" > "$RUNNER_TEMP/bili_cookies.json"
 
-      - name: Generate feed and post pages
+      - name: Generate uploads feed and post pages
         run: |
           python scripts/bilibili_rss.py 34569411 \
             --name unixchad \
@@ -43,34 +43,45 @@ jobs:
             --base-url "https://qssx233.github.io/bili-rss/" \
             --posts-dir posts
 
-      - name: Verify feed
+      - name: Generate watch later feed and post pages
+        run: |
+          python scripts/bilibili_watchlater_rss.py \
+            --cookie "$RUNNER_TEMP/bili_cookies.json" \
+            --output feed_watchlater.xml \
+            --count 50 \
+            --base-url "https://qssx233.github.io/bili-rss/" \
+            --posts-dir posts
+
+      - name: Verify feeds
         run: |
           python - <<'PY'
           import xml.etree.ElementTree as ET
-          text = open('feed.xml', encoding='utf-8').read()
-          root = ET.fromstring(text)
-          items = root.findall('.//item')
-          print('items:', len(items))
-          print('official player iframes:', text.count('player.bilibili.com/player.html'))
-          print('mobile player (should be 0):', text.count('html5mobileplayer'))
-          print('credential leak (should be 0):', text.count('SESSDATA') + text.count('bili_jct'))
-          print('post page links:', text.count('/bili-rss/posts/'))
-          if len(items) == 0:
-              raise SystemExit('feed 没有条目')
-          if text.count('html5mobileplayer') != 0:
-              raise SystemExit('发现移动端播放器，会渲染成乱页面，中止发布')
-          if text.count('SESSDATA') + text.count('bili_jct') != 0:
-              raise SystemExit('feed 含登录凭证，中止发布')
+
+          for name in ('feed.xml', 'feed_watchlater.xml'):
+              text = open(name, encoding='utf-8').read()
+              root = ET.fromstring(text)
+              items = root.findall('.//item')
+              print(f'[{name}] items: {len(items)}')
+              print(f'[{name}] official player iframes:', text.count('player.bilibili.com/player.html'))
+              print(f'[{name}] mobile player (should be 0):', text.count('html5mobileplayer'))
+              print(f'[{name}] credential leak (should be 0):', text.count('SESSDATA') + text.count('bili_jct'))
+              print(f'[{name}] post page links:', text.count('/bili-rss/posts/'))
+              if len(items) == 0:
+                  raise SystemExit(f'{name} 没有条目')
+              if text.count('html5mobileplayer') != 0:
+                  raise SystemExit(f'{name} 发现移动端播放器，会渲染成乱页面，中止发布')
+              if text.count('SESSDATA') + text.count('bili_jct') != 0:
+                  raise SystemExit(f'{name} 含登录凭证，中止发布')
           PY
 
       - name: Commit and push
         run: |
           git config user.name "bili-rss-bot"
           git config user.email "qssx@aliyun.com"
-          git add feed.xml posts
+          git add feed.xml feed_watchlater.xml posts
           if git diff --cached --quiet; then
             echo "feed 无变化，跳过提交"
             exit 0
           fi
-          git commit -m "Update feed $(date -u +%Y-%m-%d)"
+          git commit -m "Update feeds $(date -u +%Y-%m-%d)"
           git push

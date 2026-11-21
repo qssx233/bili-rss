@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【熟肉】接受被误解的勇气 - 卡尔·荣格 - ocul</title>
+<link rel="icon" type="image/svg+xml" href="../assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<meta name="referrer" content="no-referrer">
+<style>
+@font-face {
+  font-family:'ChillRound';
+  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+:root {
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
+body {
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+    "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
+}
+.bg {
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  background-image:url('../assets/portrait.jpg');
+  filter:blur(16px) saturate(1.22) brightness(1.03); opacity:0.92;
+}
+.veil {
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.06));
+}
+.page { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:22px 16px 44px; }
+.card {
+  background:rgba(255,255,255,0.58); border:1px solid rgba(255,255,255,0.7);
+  border-radius:26px; padding:20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(30px) saturate(1.2); backdrop-filter:blur(30px) saturate(1.2);
+  animation:rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .card { animation:none; } }
+.topbar {
+  display:flex; align-items:center; gap:10px; margin:0 0 16px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}
+.topbar .brand {
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--text-soft);
+}
+.topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
+.me {
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:72%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.me .quote {
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5;
+  flex:1 1 auto; min-width:0;
+}
+.me img {
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}
+a { color:var(--pink-deep); text-decoration:none; -webkit-tap-highlight-color:transparent; }
+a:active { opacity:0.7; }
+h3 { font-weight:400; }
+img { max-width:100%; height:auto; }
+@media (max-width:600px) {
+  .topbar { flex-wrap:wrap; row-gap:8px; }
+  .me { max-width:100%; margin-left:0; }
+  .bg { filter:blur(14px) saturate(1.12); opacity:0.9; }
+  .page { padding:12px 10px 30px; }
+  .card { padding:14px; border-radius:20px; }
+}
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div><div class="veil"></div>
+<div class="page"><div class="card">
+<div class="topbar">
+  <a class="brand" href="../index.html" title="返回订阅首页">
+    <img src="../assets/bili.svg" alt="bilibili">
+    <span>ocul · bilibili</span>
+  </a>
+  <div class="me">
+    <span class="quote" id="hk"></span>
+    <img src="../assets/portrait.jpg" alt="头像">
+  </div>
+</div>
+<div style="margin:0 0 14px;line-height:0;font-size:0;"><a href="https://www.bilibili.com/video/BV1hthN67EtW"><img src="https://i0.hdslb.com/bfs/archive/10ccf59758c6fdea84092069a7b94f60bd1fd866.jpg" alt="【熟肉】接受被误解的勇气 - 卡尔·荣格" referrerpolicy="no-referrer" style="display:block;width:100%;border-radius:18px;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);" /></a></div>
+<div style="margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px;"><a href="https://www.bilibili.com/video/BV1hthN67EtW" style="display:inline-block;padding:9px 22px;background:linear-gradient(135deg,#fc86a7,#e95f8a);color:#ffffff;text-decoration:none;border-radius:999px;font-size:13px;box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);">播放视频</a><a href="https://www.bilibili.com/video/BV1hthN67EtW" style="display:inline-block;padding:9px 20px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);color:hsl(28,18%,44%);text-decoration:none;border-radius:999px;font-size:13px;">在 B站打开</a></div>
+<div style="position:relative;width:100%;padding-top:56.25%;margin:0 0 16px;border-radius:18px;overflow:hidden;background:#0d0d0f;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1hthN67EtW&page=1&high_quality=1&danmaku=0&autoplay=0" scrolling="no" frameborder="0" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+<h3 style="margin:0 0 12px;font-size:18px;line-height:1.55;font-weight:400;letter-spacing:0.01em;"><a href="https://www.bilibili.com/video/BV1hthN67EtW" style="text-decoration:none;color:hsl(28,32%,25%);">【熟肉】接受被误解的勇气 - 卡尔·荣格</a></h3>
+<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;"><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">播放 2.4万</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">弹幕 8</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">评论 74</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">点赞 2905</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">投币 362</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">收藏 4775</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">时长 40:11</span></div>
+<div style="margin:0 0 4px;font-size:13.5px;color:hsl(28,25%,30%);line-height:1.9;">UP主：ocul<br>分区：动漫杂谈<br>加入时间：2026-09-13 11:10<br><br>原视频：https://www.youtube.com/watch?v=Ib1izyUjlZ8<br>原标题：The Courage To Be Misunderstood - Carl Jung<br>原作者：Queen<br>上传时间：2026-08-13T20:42:15+00:00<br><br>=====<br><br>卡尔·荣格指出，人们从未看见真实的你——只看见他们的心智所能容纳的人格面具与投射。我们大多数人活在从未选择过的角色里。试图被理解往往是徒劳的。真实会威胁那些角色。停止解释自己，接受被误解。</div>
+<div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;"><a href="https://www.bilibili.com/video/BV1hthN67EtW" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a><a href="https://space.bilibili.com/3312216" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(28,13%,62%);text-decoration:none;">UP主主页</a></div>
+</div></div>
+<script>
+(function(){
+  var bg=document.getElementById('bg');
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
+(function(){
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='「今天也要好好写代码呀」';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=l')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.hitokoto){
+        el.textContent='「'+d.hitokoto+'」';
+        el.title=d.hitokoto+(d.from?' —— '+d.from:'');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>

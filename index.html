@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>unixchad 的 B站视频 RSS</title>
+<title>qssx's RSS</title>
 <link rel="icon" type="image/svg+xml" href="assets/bili.svg">
 <meta name="theme-color" content="#faf5f0">
 <style>
@@ -150,6 +150,7 @@ a.dl {
 a.dl:hover { background:rgba(255,255,255,0.92); transform:translateY(-1px); }
 a.dl:active { opacity:0.8; }
 .card p { margin:6px 0; font-size:13.5px; color:var(--text-mid); line-height:1.8; }
+.card p.feed-sub { margin:-4px 0 12px; font-size:12.5px; color:var(--text-soft); line-height:1.7; }
 .steps { counter-reset:s; margin:2px 0 0; padding:0; list-style:none; }
 .steps li {
   counter-increment:s; position:relative; padding-left:32px; margin:9px 0;
@@ -212,21 +213,31 @@ a.dl:active { opacity:0.8; }
   </div>
 
   <div class="head">
-    <h1>unixchad 的 B站视频 RSS</h1>
-    <p>B站 UP主 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的视频投稿订阅源，含封面、完整简介与热门评论。</p>
+    <h1>qssx's RSS</h1>
+    <p>两个独立的 B站订阅源：UP主 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的视频投稿，以及我的「稍后再看」。都带封面、完整简介，点封面进干净播放页。</p>
   </div>
 
   <div class="card">
-    <h2>订阅地址</h2>
+    <h2>订阅源 · B站投稿</h2>
+    <p class="feed-sub">unixchad（UID 34569411）的新投稿，每天 08:00 自动更新，含 10 条热门评论。</p>
     <div class="url-row">
-      <div class="code" id="url">feed.xml</div>
-      <button onclick="copy()">复制地址</button>
+      <div class="code" data-feed="feed.xml">feed.xml</div>
+      <button data-copy>复制地址</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>订阅源 · 稍后再看</h2>
+    <p class="feed-sub">我的 B站「稍后再看」列表，按加入时间倒序，最多 50 条，随时可能变动。</p>
+    <div class="url-row">
+      <div class="code" data-feed="feed_watchlater.xml">feed_watchlater.xml</div>
+      <button data-copy>复制地址</button>
     </div>
   </div>
 
   <div class="card">
     <h2>OPML 订阅列表</h2>
-    <p>导入阅读器即可一键订阅，支持 Feedly / Inoreader / Follow / AgrReader。</p>
+    <p>导入阅读器即可一次订阅上面两个源，支持 Feedly / Inoreader / Follow / AgrReader。</p>
     <a class="dl" href="subscriptions.opml">下载 subscriptions.opml</a>
   </div>
 
@@ -242,8 +253,9 @@ a.dl:active { opacity:0.8; }
 
   <div class="card">
     <h2>内容说明</h2>
-    <p>每条视频包含：封面大图、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏统计、时长、10 条热门评论。点封面进入干净播放页，可直接内嵌播放。</p>
-    <p>每天由 GitHub Actions 自动更新，不依赖本机。</p>
+    <p>投稿源每条包含：封面大图、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏统计、时长、10 条热门评论。</p>
+    <p>稍后再看源每条包含：封面、UP主 / 分区 / 观看进度、完整简介与统计，没有评论区（省接口调用）。</p>
+    <p>两个源都由 GitHub Actions 每天自动更新，不依赖本机。</p>
   </div>
 
   <p class="note">本页面仅提供 RSS 订阅地址，视频版权归原作者所有。</p>
@@ -252,7 +264,7 @@ a.dl:active { opacity:0.8; }
 <div id="toast">已复制订阅地址</div>
 
 <script>
-document.getElementById('url').textContent = location.href.replace(/[^/]*$/, '') + 'feed.xml';
+var BASE = location.href.replace(/[^/]*$/, '');
 var toastEl = document.getElementById('toast'), toastTimer;
 function toast(msg) {
   toastEl.textContent = msg;
@@ -260,23 +272,31 @@ function toast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(function(){ toastEl.classList.remove('on'); }, 1800);
 }
-function copy() {
-  var t = document.getElementById('url').textContent;
-  if (navigator.clipboard && location.protocol !== 'file:') {
-    navigator.clipboard.writeText(t).then(function(){ toast('已复制订阅地址'); },
-      function(){ legacyCopy(t); });
-  } else {
-    legacyCopy(t);
-  }
-}
-function legacyCopy(t) {
+function legacyCopy(t, msg) {
   var ta = document.createElement('textarea');
   ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
   document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); toast('已复制订阅地址'); }
+  try { document.execCommand('copy'); toast(msg); }
   catch (e) { toast('复制失败，请手动选择地址'); }
   document.body.removeChild(ta);
 }
+function copyText(t, msg) {
+  if (navigator.clipboard && location.protocol !== 'file:') {
+    navigator.clipboard.writeText(t).then(function(){ toast(msg); },
+      function(){ legacyCopy(t, msg); });
+  } else {
+    legacyCopy(t, msg);
+  }
+}
+Array.prototype.forEach.call(document.querySelectorAll('.code[data-feed]'), function(el){
+  el.textContent = BASE + el.dataset.feed;
+});
+Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function(btn){
+  btn.addEventListener('click', function(){
+    var code = btn.parentElement.querySelector('.code');
+    copyText(code.textContent, '已复制 ' + code.dataset.feed);
+  });
+});
 (function(){
   var el = document.getElementById('hk');
   if (!el) return;
