@@ -7,6 +7,7 @@
   - 顺手加一个卡片列表页，和 B 站那两个源保持同一套视觉
 
 只输出摘要 + 首图 + 原文链接，不转载全文。
+两种格式都支持：RSS 2.0（<item>）和 Atom 1.0（<entry>，Bear Blog 用的这个）。
 
 用法：
   python blog_feed.py --output-feed ../feed_blog.xml --output-page ../blog.html
@@ -40,7 +41,10 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 BLOGS = [
     {"name": "狡猫三窝", "feed": "https://slykiten.com/feed/", "t2s": False},
     {"name": "只贏", "feed": "https://www.onlywin.work/feed", "t2s": True},
+    {"name": "So!azy", "feed": "https://blog.solazy.me/feed/", "t2s": False},
 ]
+
+ATOM = "{http://www.w3.org/2005/Atom}"
 
 EXTRA_CSS = """
 .item .thumb { aspect-ratio:16/10; }
@@ -91,12 +95,70 @@ def fetch(url: str, timeout: int = 30) -> str:
     return r.text
 
 
+def _iso_dt(raw: str):
+    try:
+        return datetime.fromisoformat((raw or "").replace("Z", "+00:00"))
+    except Exception:
+        return datetime.now(timezone.utc)
+
+
+def _finish(blog: dict, title: str, link: str, dt, cats: list[str],
+            summary: str, image: str) -> dict:
+    if blog["t2s"]:
+        title = t2s(title)
+        summary = t2s(summary)
+        cats = [t2s(c) for c in cats]
+    return {
+        "source": blog["name"],
+        "title": title,
+        "link": link,
+        "dt": dt,
+        "date": dt.astimezone(CST).strftime("%Y-%m-%d"),
+        "cats": cats[:2],
+        "summary": summary,
+        "image": image,
+    }
+
+
+def parse_atom(root, blog: dict, limit: int) -> list[dict]:
+    """Atom 1.0（Bear Blog、Hugo 默认等都是这个）：entry / link href / published。"""
+    out = []
+    for e in root.findall(ATOM + "entry"):
+        title = (e.findtext(ATOM + "title") or "").strip()
+        link = ""
+        for l in e.findall(ATOM + "link"):
+            if l.get("rel") in (None, "alternate"):
+                link = (l.get("href") or "").strip()
+                if link:
+                    break
+        if not title or not link:
+            continue
+
+        summary_html = e.findtext(ATOM + "summary") or ""
+        content_html = e.findtext(ATOM + "content") or ""
+        summary = strip_tags(summary_html) or strip_tags(content_html)[:180]
+        image = first_image(content_html, summary_html)
+        cats = [c.get("term").strip() for c in e.findall(ATOM + "category")
+                if (c.get("term") or "").strip()]
+        dt = _iso_dt(e.findtext(ATOM + "published") or e.findtext(ATOM + "updated") or "")
+
+        out.append(_finish(blog, title, link, dt, cats, summary, image))
+        if len(out) >= limit:
+            break
+    return out
+
+
 def parse_blog(blog: dict, limit: int) -> list[dict]:
     raw = fetch(blog["feed"])
     root = ET.fromstring(raw)
+
+    # Atom 的根是 <feed>，RSS 的根是 <rss>
+    if root.tag.lower().endswith("feed"):
+        return parse_atom(root, blog, limit)
+
     ch = root.find("channel")
     if ch is None:
-        raise ValueError("找不到 <channel>")
+        raise ValueError("既不是 RSS 也不是 Atom，找不到 <channel>/<feed>")
 
     out = []
     for it in ch.findall("item"):
@@ -112,26 +174,12 @@ def parse_blog(blog: dict, limit: int) -> list[dict]:
         image = first_image(content_html, desc_html)
         cats = [c.text.strip() for c in it.findall("category") if (c.text or "").strip()]
 
-        if blog["t2s"]:
-            title = t2s(title)
-            summary = t2s(summary)
-            cats = [t2s(c) for c in cats]
-
         try:
             dt = parsedate_to_datetime(it.findtext("pubDate") or "")
         except Exception:
             dt = datetime.now(timezone.utc)
 
-        out.append({
-            "source": blog["name"],
-            "title": title,
-            "link": link,
-            "dt": dt,
-            "date": dt.astimezone(CST).strftime("%Y-%m-%d"),
-            "cats": cats[:2],
-            "summary": summary,
-            "image": image,
-        })
+        out.append(_finish(blog, title, link, dt, cats, summary, image))
         if len(out) >= limit:
             break
     return out

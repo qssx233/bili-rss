@@ -187,12 +187,9 @@ a.dl:active { opacity:0.8; }
   -webkit-backdrop-filter:blur(16px) saturate(1.12); backdrop-filter:blur(16px) saturate(1.12);
 }
 .banner p { flex:1 1 280px; margin:0; font-size:13px; color:var(--text-mid); }
-.cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 6px; align-items:start; }
-.cols > .card { margin:0; }
 @media (max-width:720px) {
   .sources { grid-template-columns:1fr; }
   .sources > .card.wide { grid-column:auto; }
-  .cols { grid-template-columns:1fr; }
 }
 .note {
   text-align:center; font-size:11.5px; color:var(--text-soft);
@@ -277,7 +274,7 @@ a.dl:active { opacity:0.8; }
 
     <div class="card wide">
       <h2>博客</h2>
-      <p class="feed-sub">两个我在读的博客。「狡猫三窝」写日本的生活杂记，「只贏」原本用繁体写，我替它转成了简体，省得你逐字去猜。它们不是视频，没有播放器，点开就是原站的文章——我只放了摘要和一张首图，剩下的交给作者本人。</p>
+      <p class="feed-sub">三个我在读的博客。「狡猫三窝」写日本的生活杂记；「只贏」原本用繁体写，我替它转成了简体，省得你逐字去猜；「So!azy」更新很勤，几乎天天有新东西。它们不是视频，没有播放器，点开就是原站的文章——我只放了摘要和一张首图，剩下的交给作者本人。</p>
       <div class="url-row">
         <div class="code" data-feed="feed_blog.xml">feed_blog.xml</div>
         <button data-copy>复制</button>
@@ -291,22 +288,14 @@ a.dl:active { opacity:0.8; }
     <a class="dl" href="subscriptions.opml">下载 OPML</a>
   </div>
 
-  <div class="cols">
-    <div class="card">
-      <h2>怎么用</h2>
-      <ol class="steps">
-        <li>上面随便挑一个地址复制。想要全部，就全部复制。</li>
-        <li>粘进你常用的阅读器，AgrReader、Feedly、Inoreader、Follow 都行。</li>
-        <li>剩下的事交给它。更新是自动的，你不用天天回来确认我还活着。</li>
-        <li>用 AgrReader 的注意：「打开方式」得设成「内容摘要」，否则点封面进不了播放页。这个坑我踩过，不必再踩一次。</li>
-      </ol>
-    </div>
-
-    <div class="card">
-      <h2>每条里有什么</h2>
-      <p>投稿源每条都带封面、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏、时长，还有十条热门评论，正文里嵌着官方播放器。稍再看源轻一些：封面、UP主、分区、看到第几秒的进度和简介，评论区没带——一个待看清单，要那么全干嘛。</p>
-      <p>博客源只有摘要和一张首图，想看全篇得点进原站。两个视频源跑在 GitHub Actions 上，每天早上自动跑一次，我哪怕一直不开电脑，它们也照常工作——这一点比我可靠多了。</p>
-    </div>
+  <div class="card">
+    <h2>怎么用</h2>
+    <ol class="steps">
+      <li>上面随便挑一个地址复制。想要全部，就全部复制。</li>
+      <li>粘进你常用的阅读器，AgrReader、Feedly、Inoreader、Follow 都行。</li>
+      <li>剩下的事交给它。更新是自动的，你不用天天回来确认我还活着。</li>
+      <li>用 AgrReader 的注意：「打开方式」得设成「内容摘要」，否则点封面进不了播放页。这个坑我踩过，不必再踩一次。</li>
+    </ol>
   </div>
 
   <p class="note">视频与文字版权归原作者所有。这个站干的事，只是把地址整理好，顺便省下你几次点击。</p>
