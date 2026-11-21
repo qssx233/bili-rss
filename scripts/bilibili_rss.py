@@ -804,7 +804,7 @@ img {{ max-width:100%; height:auto; }}
   var el=document.getElementById('hk');
   if(!el) return;
   el.textContent='\u300c\u4eca\u5929\u4e5f\u8981\u597d\u597d\u5199\u4ee3\u7801\u5440\u300d';
-  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=k&c=l')
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=l')
     .then(function(r){{ return r.json(); }})
     .then(function(d){{
       if(d && d.hitokoto){{

@@ -120,7 +120,7 @@ img { max-width:100%; height:auto; }
   var el=document.getElementById('hk');
   if(!el) return;
   el.textContent='「今天也要好好写代码呀」';
-  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=k&c=l')
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=l')
     .then(function(r){ return r.json(); })
     .then(function(d){
       if(d && d.hitokoto){
