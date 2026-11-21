@@ -14,10 +14,10 @@
   font-weight:400; font-style:normal; font-display:swap;
 }
 :root {
-  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,63%);
+  --text:hsl(28,34%,22%); --text-mid:hsl(28,24%,34%); --text-soft:hsl(28,16%,50%);
   --accent:hsl(31,28%,48%); --accent-deep:hsl(31,30%,40%);
   --pink:#fb7299; --pink-deep:#d8507a;
-  --glass:rgba(255,255,255,0.50); --glass-strong:rgba(255,255,255,0.66);
+  --glass:rgba(255,255,255,0.58); --glass-strong:rgba(255,255,255,0.72);
   --hair:rgba(255,255,255,0.82); --line:rgba(120,95,80,0.10);
   --shadow:0 6px 22px -12px rgba(70,45,35,0.28);
 }
@@ -221,12 +221,12 @@ a.dl:active { opacity:0.8; }
 
   <div class="head">
     <h1>qssx's RSS</h1>
-    <p>「这里是我在互联网上租下的一间小屋。」——两个订阅源，一个是 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的新投稿，一个是我永远追不完的稍后再看。封面、简介、评论都替你收好了，点开就能看。</p>
+    <p>这个站只做一件事，就是把 B 站的视频搬进 RSS 阅读器。现在有两个订阅源，一个是 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的投稿，只要他发了新视频，你的阅读列表里就会多出一条；另一个是我自己的稍后再看，一个我大概永远清不完的清单。封面、简介、评论区都跟着一起搬了过来，点开封面就是干净的播放页，不用再回 B 站首页一页页往下翻。</p>
   </div>
 
   <div class="card">
-    <h2>其一 · 投稿</h2>
-    <p class="feed-sub">他更新得不算勤，所以每次推送亮起来，我都会小小期待一下。每天早上八点，这里会自己去把最新三十条搬回来，连热门评论一起。</p>
+    <h2>投稿源</h2>
+    <p class="feed-sub">他的投稿单独占一个源，因为更新不算频繁，漏掉一条就挺可惜。每天早晨八点抓一次，取最近三十条，简介是完整的而不是被折叠的那种，另外附上十条热门评论，够你在打开视频之前先大致了解内容。</p>
     <div class="url-row">
       <div class="code" data-feed="feed.xml">feed.xml</div>
       <button data-copy>复制地址</button>
@@ -235,8 +235,8 @@ a.dl:active { opacity:0.8; }
   </div>
 
   <div class="card">
-    <h2>其二 · 稍后再看</h2>
-    <p class="feed-sub">「等会儿再看」——这句话我大概说过一百次。五十条按放进来的顺序排着，什么时候清空……谁知道呢。</p>
+    <h2>稍后再看源</h2>
+    <p class="feed-sub">「稍后再看」这个名字本身就是个善意的谎言，我几乎从没回头看过，它却照旧一天天往上堆。所以干脆也让它变成一个源：取最近五十条，按加入的时间倒序排好，偶尔真能从里面翻出几条当初想看却没看的。</p>
     <div class="url-row">
       <div class="code" data-feed="feed_watchlater.xml">feed_watchlater.xml</div>
       <button data-copy>复制地址</button>
@@ -245,34 +245,48 @@ a.dl:active { opacity:0.8; }
   </div>
 
   <div class="card">
-    <h2>OPML 订阅列表</h2>
-    <p>懒得一条条加的话，把这份清单丢进阅读器就行。Feedly、Inoreader、Follow，还有 AgrReader，都认得它。</p>
-    <a class="dl" href="subscriptions.opml">拿走 subscriptions.opml</a>
+    <h2>OPML</h2>
+    <p>如果懒得一条一条地加，这里还有一份 OPML，两个源都打包在里面了。把它导进阅读器——Feedly、Inoreader、Follow 和 AgrReader 都认这个格式——一次就能订完，不用来回复制地址。</p>
+    <a class="dl" href="subscriptions.opml">下载 subscriptions.opml</a>
   </div>
 
   <div class="card">
     <h2>订阅方法</h2>
     <ol class="steps">
-      <li>挑一个地址复制走</li>
-      <li>塞进你的阅读器（AgrReader / Feedly / Inoreader / Follow 都行）</li>
-      <li>剩下的交给它，更新会自己找上门</li>
-      <li>用 AgrReader 的话，打开方式选「内容摘要」，点一下封面就能看</li>
+      <li>复制上面任意一个订阅地址，两个都想看就两个都复制。</li>
+      <li>粘进你正在用的阅读器，AgrReader、Feedly、Inoreader、Follow 都可以。</li>
+      <li>之后就不用管它了，阅读器会按自己的节奏去拉更新。</li>
+      <li>用 AgrReader 的话，记得把「打开方式」设成内容摘要，这样点一下封面就能进播放页看视频。</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>内容说明</h2>
-    <p>投稿源：封面、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏和时长，再加十条热门评论。</p>
-    <p>稍再看源：封面、UP主、分区、看到哪儿了，还有简介——评论区不带，它只是个待看清单。</p>
-    <p>两个源都由 GitHub Actions 每天清晨更新一次。所以就算这台电脑关着，它们也照常运转。</p>
+    <p>投稿源里每条都带着封面大图、完整的视频简介，播放、弹幕、评论、点赞、投币、收藏这几项统计和时长，以及十条热门评论，正文里还嵌着官方播放器。稍再看源稍微轻一些，有封面、UP主、所属分区、看到第几秒的观看进度和简介，评论区没有带——它只是一个待看清单，不需要那么重。</p>
+    <p>两个源都由 GitHub Actions 每天早晨跑一次，所以哪怕这台电脑一直关着，更新也照常进行。</p>
   </div>
 
-  <p class="note">内容版权归原作者所有。这里只是一串地址，和一点点私心。</p>
+  <p class="note">视频版权归原作者所有。这个站做的，只是把地址整理好，省下你几次点击。</p>
 </main>
 
 <div id="toast">已复制订阅地址</div>
 
 <script>
+(function(){
+  var bg=document.getElementById('bg');
+  if(!bg) return;
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
 var BASE = location.href.replace(/[^/]*$/, '');
 var toastEl = document.getElementById('toast'), toastTimer;
 function toast(msg) {

@@ -148,6 +148,21 @@ body {
 
 SCRIPT = """<script>
 (function(){
+  var bg=document.getElementById('bg');
+  if(!bg) return;
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
+(function(){
   var el=document.getElementById('hk');
   if(!el) return;
   el.textContent='\\u300c\\u4eca\\u5929\\u4e5f\\u8981\\u597d\\u597d\\u5199\\u4ee3\\u7801\\u5440\\u300d';
