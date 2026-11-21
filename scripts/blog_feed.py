@@ -57,6 +57,24 @@ EXTRA_CSS = """
   color:var(--pink-deep); background:hsla(340,80%,93%,0.95);
   border:1px solid hsla(340,70%,80%,0.55);
 }
+.thumb .noimg {
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  font-size:12px; letter-spacing:0.08em; color:var(--text-soft);
+  background:linear-gradient(135deg, hsla(340,72%,95%,0.95), hsla(200,62%,95%,0.95) 55%,
+    hsla(38,78%,94%,0.95));
+}
+.filters { display:flex; gap:8px; flex-wrap:wrap; margin:0 2px 12px; }
+.filters button {
+  padding:6px 15px; border-radius:999px; font-size:12px; font-family:inherit;
+  cursor:pointer; color:var(--accent-deep); background:rgba(255,255,255,0.72);
+  border:1px solid rgba(152,120,103,0.15); box-shadow:none; font-weight:400;
+}
+.filters button.on {
+  color:#fff; border-color:transparent;
+  background:linear-gradient(135deg,#fc86a7,#e95f8a);
+  box-shadow:0 8px 18px -12px rgba(233,95,138,0.9);
+}
+.filters button:hover { transform:none; }
 """
 
 TAG_RE = re.compile(r"<[^>]+>")
@@ -225,9 +243,10 @@ def card_html(p: dict) -> str:
     meta += "".join(f"<span>{html.escape(c)}</span>" for c in p["cats"])
     meta += f"<span>{p['date']}</span>"
     thumb = (f'<img src="{html.escape(p["image"])}" alt="{title}" '
-             f'referrerpolicy="no-referrer" loading="lazy">') if p["image"] else ""
+             f'referrerpolicy="no-referrer" loading="lazy">') if p["image"] \
+        else f'<div class="noimg">{html.escape(p["source"])}</div>'
     excerpt = f'<p class="excerpt">{html.escape(p["summary"])}</p>' if p["summary"] else ""
-    return f"""      <a class="item" href="{html.escape(p['link'])}" target="_blank" rel="noopener noreferrer">
+    return f"""      <a class="item" data-source="{html.escape(p['source'])}" href="{html.escape(p['link'])}" target="_blank" rel="noopener noreferrer">
         <div class="thumb">{thumb}</div>
         <div class="body">
           <h3>{title}</h3>
@@ -240,6 +259,10 @@ def card_html(p: dict) -> str:
 def build_page(items: list[dict], feed_file: str, home_file: str = "index.html") -> str:
     grid = "\n".join(card_html(p) for p in items)
     sources = sorted({p["source"] for p in items})
+    counts = {s: sum(1 for p in items if p["source"] == s) for s in sources}
+    filter_buttons = "\n".join(
+        f'    <button data-src="{html.escape(s)}">{html.escape(s)} {counts[s]}</button>'
+        for s in sources)
     sub = (f"{'、'.join(sources)}　·　共 {len(items)} 篇　·　繁体已自动转为简体，"
            f"点卡片跳原站阅读")
     return f"""<!DOCTYPE html>
@@ -281,6 +304,11 @@ def build_page(items: list[dict], feed_file: str, home_file: str = "index.html")
     </div>
   </div>
 
+  <div class="filters">
+    <button class="on" data-src="all">全部 {len(items)}</button>
+{filter_buttons}
+  </div>
+
   <div class="grid">
 {grid}
   </div>
@@ -288,6 +316,21 @@ def build_page(items: list[dict], feed_file: str, home_file: str = "index.html")
   <p class="note">文字与图片版权归原作者所有 · 本页只做聚合，不转载全文</p>
 </div>
 {SCRIPT}
+<script>
+(function(){{
+  var btns=document.querySelectorAll('.filters button');
+  Array.prototype.forEach.call(btns, function(b){{
+    b.addEventListener('click', function(){{
+      Array.prototype.forEach.call(btns, function(x){{ x.classList.remove('on'); }});
+      b.classList.add('on');
+      var want=b.dataset.src;
+      Array.prototype.forEach.call(document.querySelectorAll('.grid .item'), function(it){{
+        it.style.display = (want==='all' || it.dataset.source===want) ? '' : 'none';
+      }});
+    }});
+  }});
+}})();
+</script>
 </body>
 </html>"""
 

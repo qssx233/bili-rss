@@ -148,6 +148,24 @@ body {
   color:var(--pink-deep); background:hsla(340,80%,93%,0.95);
   border:1px solid hsla(340,70%,80%,0.55);
 }
+.thumb .noimg {
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  font-size:12px; letter-spacing:0.08em; color:var(--text-soft);
+  background:linear-gradient(135deg, hsla(340,72%,95%,0.95), hsla(200,62%,95%,0.95) 55%,
+    hsla(38,78%,94%,0.95));
+}
+.filters { display:flex; gap:8px; flex-wrap:wrap; margin:0 2px 12px; }
+.filters button {
+  padding:6px 15px; border-radius:999px; font-size:12px; font-family:inherit;
+  cursor:pointer; color:var(--accent-deep); background:rgba(255,255,255,0.72);
+  border:1px solid rgba(152,120,103,0.15); box-shadow:none; font-weight:400;
+}
+.filters button.on {
+  color:#fff; border-color:transparent;
+  background:linear-gradient(135deg,#fc86a7,#e95f8a);
+  box-shadow:0 8px 18px -12px rgba(233,95,138,0.9);
+}
+.filters button:hover { transform:none; }
 
 </style>
 </head>
@@ -176,8 +194,15 @@ body {
     </div>
   </div>
 
+  <div class="filters">
+    <button class="on" data-src="all">全部 30</button>
+    <button data-src="So!azy">So!azy 10</button>
+    <button data-src="只贏">只贏 10</button>
+    <button data-src="狡猫三窝">狡猫三窝 10</button>
+  </div>
+
   <div class="grid">
-      <a class="item" href="https://blog.solazy.me/20261120/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261120/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/aaron-burden-y02jex_b0o0-unsplash-1.webp" alt="今天你骂 AI 味博客了吗？" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>今天你骂 AI 味博客了吗？</h3>
@@ -185,7 +210,7 @@ body {
           <p class="excerpt">今天讨论一个近期热象</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261119/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261119/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/jakub-zerdzicki-heiygqp0tsk-unsplash-1.webp" alt="记假帐" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>记假帐</h3>
@@ -193,7 +218,7 @@ body {
           <p class="excerpt">今天聊个有意思的话题</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261118/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261118/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://photo.lily.lat/file/AgACAgQAAyEGAASLgSpZAAIXYWr79oC-K2gRFPGC9bU2ufAxlOAgAAL8EmsbOqrhU4XhYBLqldvNAQADAgADeAADPQQ.png" alt="多就是好吗？" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>多就是好吗？</h3>
@@ -201,7 +226,7 @@ body {
           <p class="excerpt">观朋友圈有感</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261117/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261117/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/steve-a-johnson-kr8tc8rugdk-unsplash.webp" alt="学会像呼吸一样拒绝别人" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>学会像呼吸一样拒绝别人</h3>
@@ -209,15 +234,15 @@ body {
           <p class="excerpt">昨晚一件小事儿引发的思考</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/bearblog-api-open-source-skill/" target="_blank" rel="noopener noreferrer">
-        <div class="thumb"></div>
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/bearblog-api-open-source-skill/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><div class="noimg">So!azy</div></div>
         <div class="body">
           <h3>Bear Blog 的新 API  / A new Bear Blog API</h3>
           <div class="meta"><span class="src">So!azy</span><span>daily</span><span>2026-11-16</span></div>
           <p class="excerpt">今天（2026 年 11 月 16 日），Bear Blog 推出了 官方 API 。文章、页面和博客设置，现在都可以通过 API 管理了。 我把这组接口封装成了 🍯 Bear Blog Skill ，并开源在 GitHub 。装进 Codex、Claude Code 等支持 Agent Skills 的工具后，就能用自然语言安排博客操作，例如： $bear</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261115/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261115/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/sam-9zbujwvkafi-unsplash.webp" alt="最近准备系统学习下《道德经》" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>最近准备系统学习下《道德经》</h3>
@@ -225,7 +250,7 @@ body {
           <p class="excerpt">该看看书了！</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261114/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261114/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://photo.lily.lat/file/AgACAgQAAyEGAASLgSpZAAIXJGr5Yb3ZIGjLxVDA3Y6slVK4awznAAJ8E2sb4gLJU5PlBIsqLAaFAQADAgADeQADPQQ.jpeg" alt="常州流水账 1114" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>常州流水账 1114</h3>
@@ -233,7 +258,7 @@ body {
           <p class="excerpt">今天是常州特种兵</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261113/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261113/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/saad-chaudhry-ynm4kstg78i-unsplash.webp" alt="别把「期待」想得太好" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>别把「期待」想得太好</h3>
@@ -241,7 +266,7 @@ body {
           <p class="excerpt">感觉很多时候，我们都认为「期待」是个好事儿</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261112/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261112/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/aaron-greenwood-xzdweems3sa-unsplash.webp" alt="那些靠人命堆出来的奇观" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>那些靠人命堆出来的奇观</h3>
@@ -249,7 +274,7 @@ body {
           <p class="excerpt">今天应该又是一篇暴论，又是一篇可能会迎来骂声的文章</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/622" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/622" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!PCBn!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2b968621-8610-4ddf-bb52-8b2c8c6300e5_4032x2268.jpeg" alt="背后的闲话" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>背后的闲话</h3>
@@ -257,7 +282,7 @@ body {
           <p class="excerpt">我没听到，那就是没有</p>
         </div>
       </a>
-      <a class="item" href="https://blog.solazy.me/20261111/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="So!azy" href="https://blog.solazy.me/20261111/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/the-blowup-swdeadset6y-unsplash.webp" alt="并不好笑的玩笑" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>并不好笑的玩笑</h3>
@@ -265,7 +290,7 @@ body {
           <p class="excerpt">今天的文章起因是室友的一句玩笑话</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/42a" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/42a" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!M5s-!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff6e9e62a-6cfa-40f8-9d67-2ff5607dfcfd_1477x1108.jpeg" alt="幸福是什么？" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>幸福是什么？</h3>
@@ -273,7 +298,7 @@ body {
           <p class="excerpt">这一次，大家都在，我也在</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/shirahama-out-of-seasson/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/shirahama-out-of-seasson/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/shirahama-3-scaled.jpg" alt="季节之外的白滨" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>季节之外的白滨</h3>
@@ -281,7 +306,7 @@ body {
           <p class="excerpt">十月中旬去白滨玩了一下，印象中海边沙滩应该是夏天去，秋天的白滨有点超出常识了。不过我也没去过，欣然前往。 坐车快到一半行程的时候，在黑潮市场停下，观看了金枪鱼的...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/pink-expo-city-fall/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/pink-expo-city-fall/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/expo-20206-fall-6-scaled.jpg" alt="粉色的万博之秋" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>粉色的万博之秋</h3>
@@ -289,7 +314,7 @@ body {
           <p class="excerpt">十月中旬的时候去万博公园转了转，正好碰上粉黛子和扫帚花的季节。虽然波斯菊也在宣传册子上，还没怎么开。 我还是第一次见粉黛子，前两年我妈在国内去了，而且这几年都挺...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/%e6%9b%bc%e8%b0%b7%e5%87%ba%e5%b7%ae/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/%e6%9b%bc%e8%b0%b7%e5%87%ba%e5%b7%ae/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/Thai-sep-2026-6-scaled.jpg" alt="曼谷出差" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>曼谷出差</h3>
@@ -297,7 +322,7 @@ body {
           <p class="excerpt">迟到了一个月的出差记录，实在太忙了，最近才有时间写。九月末的时候我去曼谷出差了，这是我第一次去泰国，正好遇上了洪水。但幸运的是，抵达以后洪水的情况逐渐没有那么糟...</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/f63" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/f63" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!n_1r!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F99e4c888-2c76-4f5b-9a7f-84703d29d2b0_5712x3213.jpeg" alt="你给我一整天，我回你一份礼" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>你给我一整天，我回你一份礼</h3>
@@ -305,7 +330,7 @@ body {
           <p class="excerpt">关于时间、送礼，以及没登场的果昔</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/325" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/325" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!-rRf!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F82adc44a-9e9b-4074-ae9d-4ff8c2a97891_2896x1936.jpeg" alt="按摩按到睡着，是浪费还是享受？" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>按摩按到睡着，是浪费还是享受？</h3>
@@ -313,7 +338,7 @@ body {
           <p class="excerpt">我花了一千五百元睡觉。</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/rss" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/rss" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!zr5a!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F97e8baee-d5f3-4f0e-8c40-32cec1c2c21c_4032x2268.jpeg" alt="我有 RSS 订阅了，我很潮吧！" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>我有 RSS 订阅了，我很潮吧！</h3>
@@ -321,7 +346,7 @@ body {
           <p class="excerpt">27 年前就有的东西，我现在才开始用</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/fb9" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/fb9" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!FCBP!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F238b4799-850c-403a-bec7-961dc285f4d9_4032x2268.jpeg" alt="抽了好几年才中的国庆观礼" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>抽了好几年才中的国庆观礼</h3>
@@ -329,7 +354,7 @@ body {
           <p class="excerpt">没有我想要看到的名场面（？）</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/814" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/814" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!PH_e!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd4e52a13-b1de-4fb2-9d0a-a44be9edb519_4032x2268.jpeg" alt="我是喜欢送礼，还是期待别人给我回应？" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>我是喜欢送礼，还是期待别人给我回应？</h3>
@@ -337,7 +362,7 @@ body {
           <p class="excerpt">心意递出去的那一刻，就已经完成了</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/cdb" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/cdb" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!MwPQ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F731d46a0-6df1-4d47-8785-2e378d56c135_4032x2268.jpeg" alt="既得利益者" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>既得利益者</h3>
@@ -345,7 +370,7 @@ body {
           <p class="excerpt">凭什么是她？因为我也曾经是那个「她」</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/tarumi/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/tarumi/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/09/kobe-2026.9.20.5-scaled.jpg" alt="山阳垂水" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>山阳垂水</h3>
@@ -353,7 +378,7 @@ body {
           <p class="excerpt">单纯想分享一下绝美的夕阳和火烧云。 最近正逢日本白银周，五连休。每天都泡在商场里面，一直买到商场关门才回家。主要是买了个床。 出差的时候睡到了人生床垫，没错，就...</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/57f" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/57f" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!uc9U!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0dca25e3-6335-4b21-ad4b-2dbd02853a97_4032x2268.jpeg" alt="老本不够吃" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>老本不够吃</h3>
@@ -361,7 +386,7 @@ body {
           <p class="excerpt">（本篇内容可能会让人拳头硬，请先深呼吸，松开拳头后继续看下去。）</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/kumamoto%ef%bc%81/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/kumamoto%ef%bc%81/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/09/kumamoto-2-1-scaled.jpg" alt="熊本！" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>熊本！</h3>
@@ -369,7 +394,7 @@ body {
           <p class="excerpt">姗姗来迟的熊本游记。前段时间回国一趟，结果得了新冠，一直躺在床上，也没什么好记录的。回到日本，身体刚好起来，就有了去熊本出差的放风机会。非常棒的单人旅行。起飞时...</p>
         </div>
       </a>
-      <a class="item" href="https://www.onlywin.work/p/0eb" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="只贏" href="https://www.onlywin.work/p/0eb" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!liul!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5470c02f-2198-4cca-b4bd-ec864e6e4e5f_4743x3557.heic" alt="快闪北九州" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>快闪北九州</h3>
@@ -377,7 +402,7 @@ body {
           <p class="excerpt">肝不烧，怎有资格称作快闪呢（？）</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/fireworks/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/fireworks/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/08/fireworks-20260808.jpg" alt="花火大会" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>花火大会</h3>
@@ -385,7 +410,7 @@ body {
           <p class="excerpt">周末在家的时候念叨着这个夏天还没去看过花火大会。 最近真的很热，一想到要在外面走，还有那么多人，就提不起劲来去看烟花。 周六晚上，去吃了一顿烤肉。...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/troubleshooting_for_tem_at_hydrangea_season/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/troubleshooting_for_tem_at_hydrangea_season/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/06/hydrangea_season-3-scaled.jpg" alt="在紫阳花开的季节修TEM" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>在紫阳花开的季节修TEM</h3>
@@ -393,15 +418,15 @@ body {
           <p class="excerpt">上周一番周旋，最后找到了在日立工作过的人来给TEM检查。他打开了TEM的外壳，带着这台TEM厚厚的电路图来了。 这还是我第一次看到TEM的内部，坏了也很值了&amp;#...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/research/tem%e6%95%85%e9%9a%9c/" target="_blank" rel="noopener noreferrer">
-        <div class="thumb"></div>
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/research/tem%e6%95%85%e9%9a%9c/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><div class="noimg">狡猫三窝</div></div>
         <div class="body">
           <h3>TEM故障</h3>
           <div class="meta"><span class="src">狡猫三窝</span><span>科研</span><span>2026-06-18</span></div>
           <p class="excerpt">最近实验室的TEM光轴偏了，找不到原因。 这两天我几乎没怎么睡着，实在有些担心。一是贵重仪器责任重大，二是坏在我手上，我拿不出经费修，最后多半要博士时期的导师K...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/suzhou-trip/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/suzhou-trip/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/04/suzhou-20260425-3.jpg" alt="苏州游" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>苏州游</h3>
@@ -409,7 +434,7 @@ body {
           <p class="excerpt">非常迟来的苏州游记，一个月前因为要从上海坐飞机，不想很早从镇江坐车过去，也不想住在上海，所以就选择了住在苏州，早上再去上海坐飞机。上次来苏州还是17年，一晃八九...</p>
         </div>
       </a>
-      <a class="item" href="https://slykiten.com/life-note/s-home/" target="_blank" rel="noopener noreferrer">
+      <a class="item" data-source="狡猫三窝" href="https://slykiten.com/life-note/s-home/" target="_blank" rel="noopener noreferrer">
         <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/03/rice-scaled.jpg" alt="S的家" referrerpolicy="no-referrer" loading="lazy"></div>
         <div class="body">
           <h3>S的家</h3>
@@ -450,6 +475,21 @@ body {
       }
     })
     .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  Array.prototype.forEach.call(btns, function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(btns, function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var want=b.dataset.src;
+      Array.prototype.forEach.call(document.querySelectorAll('.grid .item'), function(it){
+        it.style.display = (want==='all' || it.dataset.source===want) ? '' : 'none';
+      });
+    });
+  });
 })();
 </script>
 </body>
