@@ -85,7 +85,7 @@ body {
   display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
 }
 .head { padding:6px 6px 18px; }
-.head h1 { margin:0 0 8px; font-size:24px; font-weight:400; letter-spacing:0.01em; line-height:1.4; }
+.head h1 { margin:0 0 9px; font-size:26px; font-weight:400; letter-spacing:0.02em; line-height:1.35; }
 .head p { margin:0; font-size:13px; color:var(--text-mid); }
 .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
 .btn {
@@ -125,12 +125,18 @@ body {
 }
 .body { padding:11px 13px 13px; }
 .body h3 {
-  margin:0 0 6px; font-size:13.5px; font-weight:400; line-height:1.55; color:var(--text);
+  margin:0 0 7px; font-size:14px; font-weight:400; line-height:1.58; color:var(--text);
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
 }
-.meta { font-size:11.5px; color:var(--text-soft); display:flex; flex-wrap:wrap; gap:6px; }
+.meta { font-size:12px; color:hsl(28,20%,46%); display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
 .meta span { white-space:nowrap; }
-.note { text-align:center; font-size:11.5px; color:var(--text-soft); margin:22px 0 0; }
+.note {
+  text-align:center; font-size:11.5px; color:hsl(28,26%,28%);
+  margin:24px 0 0; letter-spacing:0.04em;
+  -webkit-text-stroke:2.4px rgba(255,255,255,0.96);
+  paint-order:stroke fill;
+  text-shadow:0 1px 2px rgba(255,255,255,0.55);
+}
 @media (max-width:600px) {
   .page { padding:12px 10px 32px; }
   .card { padding:14px; border-radius:20px; }
