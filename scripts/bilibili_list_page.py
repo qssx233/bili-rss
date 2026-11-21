@@ -51,7 +51,7 @@ body {
 }
 .page { position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:22px 16px 48px; }
 .card {
-  background:rgba(255,255,255,0.56); border:1px solid rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.62); border:1px solid rgba(255,255,255,0.72);
   border-radius:26px; padding:18px 20px;
   box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
   -webkit-backdrop-filter:blur(30px) saturate(1.2); backdrop-filter:blur(30px) saturate(1.2);
@@ -62,7 +62,11 @@ body {
 }
 .topbar .brand {
   display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
-  text-decoration:none; color:var(--text-soft);
+  text-decoration:none; color:var(--accent-deep); font-size:12px;
+  padding:4px 13px 4px 5px; border-radius:999px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 4px 14px -10px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
 }
 .topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
 .me {
@@ -131,7 +135,8 @@ body {
   .page { padding:12px 10px 32px; }
   .card { padding:14px; border-radius:20px; }
   .topbar { flex-wrap:wrap; row-gap:8px; }
-  .me { max-width:100%; margin-left:0; }
+  .topbar .brand { position:relative; z-index:2; }
+  .topbar .me { flex:0 0 100%; max-width:100%; margin-left:0; }
   .head { padding:2px 4px 14px; }
   .head h1 { font-size:20px; }
   .grid { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px; }
@@ -142,6 +147,21 @@ body {
 """
 
 SCRIPT = """<script>
+(function(){
+  var bg=document.getElementById('bg');
+  if(!bg) return;
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
 (function(){
   var el=document.getElementById('hk');
   if(!el) return;
@@ -220,7 +240,7 @@ def generate_list_page(items: list[dict], *, page_title: str, page_sub: str,
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="veil"></div>
+<div class="bg" id="bg"></div><div class="veil"></div>
 <div class="page">
   <div class="topbar">
     <a class="brand" href="{home_file}" title="返回首页">

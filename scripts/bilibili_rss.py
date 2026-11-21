@@ -748,7 +748,11 @@ body {{
 }}
 .topbar .brand {{
   display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
-  text-decoration:none; color:var(--text-soft);
+  text-decoration:none; color:var(--accent-deep); font-size:12px;
+  padding:4px 13px 4px 5px; border-radius:999px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 4px 14px -10px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
 }}
 .topbar .brand img {{ width:24px; height:24px; border-radius:8px; display:block; }}
 .me {{

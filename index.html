@@ -194,7 +194,7 @@ a.dl:active { opacity:0.8; }
 </style>
 </head>
 <body>
-<div class="bg"></div>
+<div class="bg" id="bg"></div>
 
 <main class="frame">
   <div class="topbar">
@@ -268,6 +268,21 @@ a.dl:active { opacity:0.8; }
 <div id="toast">已复制订阅地址</div>
 
 <script>
+(function(){
+  var bg=document.getElementById('bg');
+  if(!bg) return;
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
 var BASE = location.href.replace(/[^/]*$/, '');
 var toastEl = document.getElementById('toast'), toastTimer;
 function toast(msg) {
