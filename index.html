@@ -37,7 +37,7 @@ body {
 }
 .bg {
   position:fixed; inset:-46px; z-index:0; pointer-events:none;
-  background-image:url('assets/bg.jpg');
+  background-color:hsl(35,32%,94%);
   background-size:cover; background-position:center 32%;
   filter:saturate(1.06) brightness(1.03); opacity:0.95;
 }
@@ -311,7 +311,7 @@ a.dl:active { opacity:0.8; }
             'https://t.alcy.cc/moe?t='+Date.now()];
   var i=0;
   function tryNext(){
-    if(i>=urls.length) return;
+    if(i>=urls.length){ bg.style.backgroundImage="url('assets/bg.jpg')"; return; }
     var img=new Image(), u=urls[i++];
     img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
     img.onerror=tryNext;
