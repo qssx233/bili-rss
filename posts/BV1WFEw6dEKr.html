@@ -33,7 +33,7 @@ body {
 }
 .bg {
   position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
-  background-image:url('../assets/portrait.jpg');
+  background-image:url('../assets/bg.jpg');
   filter:saturate(1.06) brightness(1.02); opacity:0.94;
 }
 .veil {
@@ -115,20 +115,6 @@ img { max-width:100%; height:auto; }
 <div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;"><a href="https://www.bilibili.com/video/BV1WFEw6dEKr" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a><a href="https://space.bilibili.com/31341757" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(28,13%,62%);text-decoration:none;">UP主主页</a></div>
 </div></div>
 <script>
-(function(){
-  var bg=document.getElementById('bg');
-  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
-            'https://t.alcy.cc/moe?t='+Date.now()];
-  var i=0;
-  function tryNext(){
-    if(i>=urls.length) return;
-    var img=new Image(), u=urls[i++];
-    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
-    img.onerror=tryNext;
-    img.src=u;
-  }
-  tryNext();
-})();
 (function(){
   var el=document.getElementById('hk');
   if(!el) return;

@@ -724,7 +724,7 @@ body {{
 }}
 .bg {{
   position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
-  background-image:url('../assets/portrait.jpg');
+  background-image:url('../assets/bg.jpg');
   filter:saturate(1.06) brightness(1.02); opacity:0.94;
 }}
 .veil {{
@@ -800,20 +800,6 @@ img {{ max-width:100%; height:auto; }}
 {body}
 </div></div>
 <script>
-(function(){{
-  var bg=document.getElementById('bg');
-  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
-            'https://t.alcy.cc/moe?t='+Date.now()];
-  var i=0;
-  function tryNext(){{
-    if(i>=urls.length) return;
-    var img=new Image(), u=urls[i++];
-    img.onload=function(){{ bg.style.backgroundImage="url('"+u+"')"; }};
-    img.onerror=tryNext;
-    img.src=u;
-  }}
-  tryNext();
-}})();
 (function(){{
   var el=document.getElementById('hk');
   if(!el) return;
