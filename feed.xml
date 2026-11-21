@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title><![CDATA[unixchad 的 bilibili 投稿]]></title>
+    <link>https://space.bilibili.com/34569411</link>
+    <atom:link href="https://space.bilibili.com/34569411" rel="self" type="application/rss+xml" />
+    <description><![CDATA[B站UP主 unixchad (UID:34569411) 的视频投稿 RSS 订阅]]></description>
+    <generator>bilibili_rss.py v2</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Nov 2026 18:50:17 +0800</lastBuildDate>
+    <ttl>60</ttl>
+    <item>
+      <title><![CDATA[实机安装 Arch Linux: 命令行 全盘加密 安全启动]]></title>
+      <link>https://www.bilibili.com/video/BV1LhfVB1EHE</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1LhfVB1EHE</guid>
+      <pubDate>Sat, 21 Feb 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1LhfVB1EHE"><img src="http://i0.hdslb.com/bfs/archive/724edf81f0a67f1b6b1524af4cc107df3dca646c.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="实机安装 Arch Linux: 命令行 全盘加密 安全启动" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1LhfVB1EHE" style="text-decoration:none;color:#00a1d6;">实机安装 Arch Linux: 命令行 全盘加密 安全启动</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1.2万 · 💬 6 · ↩ 147 · 👍 472 · 🪙 225 · ⭐ 538 · ⏱ 22:25</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">实机安装 Arch Linux: 命令行 全盘加密 安全启动<br>            这个视频展示了如何在 Thinkpad T14 笔记本电脑上手动安装 Arch Linux，使用 LVM on LUKS 的全盘加密和安全启动，休眠到加密的 swap 分区，以及 systemd-boot bootloader 和 systemd-based initramfs，最后安装了一个简单的 Wayland 合成器。<br><br>00:00 网络连接 iwctl<br>01:26 硬盘分区 fdisk<br>03:04 文件系统 mkfs lvm on luks<br>07:24 安装组件 pacstrap<br>09:24 配置</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1LhfVB1EHE" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/724edf81f0a67f1b6b1524af4cc107df3dca646c.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv]]></title>
+      <link>https://www.bilibili.com/video/BV1KVctzGEV8</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1KVctzGEV8</guid>
+      <pubDate>Thu, 12 Feb 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1KVctzGEV8"><img src="http://i1.hdslb.com/bfs/archive/bd441b3737cd4e29b6181f5159ba140cd8315138.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1KVctzGEV8" style="text-decoration:none;color:#00a1d6;">从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 8179 · 💬 100 · ↩ 63 · 👍 207 · 🪙 78 · ⭐ 134 · ⏱ 11:58</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv<br>            如何从 Wayland 迁移到 Xorg，或者，反之亦然？如何编写支持不同显示协议的 shell 脚本？如何实现完全的 suckless 体验？<br><br>00:00 从Wayland到Xorg<br>00:43 dwm<br>01:38 dwl<br>02:19 startx &amp; xinitrc<br>03:19 状态栏<br>04:55 自动启动<br>08:13 st<br>08:45 dmenu<br>09:39 nsxiv<br>10:14 给shell脚本添加x11支持<br><br>代码仓库：<br>codeberg.org/unixchad<br>github.com/gn</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1KVctzGEV8" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/bd441b3737cd4e29b6181f5159ba140cd8315138.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[用 zig 给 river 的 kwm 窗口管理器写一些新功能！]]></title>
+      <link>https://www.bilibili.com/video/BV1uQ63BUEEL</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1uQ63BUEEL</guid>
+      <pubDate>Wed, 28 Jan 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1uQ63BUEEL"><img src="http://i1.hdslb.com/bfs/archive/899f79799cd4313b209ed22972debfaa32b8709d.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="用 zig 给 river 的 kwm 窗口管理器写一些新功能！" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1uQ63BUEEL" style="text-decoration:none;color:#00a1d6;">用 zig 给 river 的 kwm 窗口管理器写一些新功能！</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 5571 · 💬 4 · ↩ 27 · 👍 186 · 🪙 62 · ⭐ 92 · ⏱ 14:08</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">用 zig 给 river 的 kwm 窗口管理器写一些新功能！<br>            本视频我使用 zig 给 kwm 的源代码添加了 sticky (粘滞窗口)的功能，最后提交了 pull request 。kwm 是 river wayland 合成器的一个窗口管理器，支持动态平铺(Dynamic tilling)和滚动平铺(Scrolling-tilling)等众多功能，kwm 的工作流程和配置方式类似于 suckless dwm。<br><br>00:00 sticky<br>00:36 新建 git branch<br>01:15 config.def.zig (添加快捷键)<br>01:45 binding</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1uQ63BUEEL" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/899f79799cd4313b209ed22972debfaa32b8709d.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[KWM + River: 真正的 suckless wayland 窗口管理器]]></title>
+      <link>https://www.bilibili.com/video/BV1qfzKByEA5</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1qfzKByEA5</guid>
+      <pubDate>Sun, 25 Jan 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1qfzKByEA5"><img src="http://i2.hdslb.com/bfs/archive/17f71f0358cd02eed46724d871f2fc8cc1cb2d6c.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="KWM + River: 真正的 suckless wayland 窗口管理器" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1qfzKByEA5" style="text-decoration:none;color:#00a1d6;">KWM + River: 真正的 suckless wayland 窗口管理器</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 8622 · 💬 1 · ↩ 34 · 👍 191 · 🪙 73 · ⭐ 156 · ⏱ 12:58</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">KWM + River: 真正的 suckless wayland 窗口管理器<br>            kwm 是 river wayland 合成器的一个窗口管理器，使用 zig 和 river-window-management 协议开发。默认包含了类似 DWM 的动态平铺布局(Dynamic Tilling)和类似 Niri 的滚动平铺布局(Scrolling-Tilling)。你需要通过修改源代码的方式来配置软件，kwm 是在 dwl 停止维护之后最好的 suckless Wayland 体验(不像 dwl，你可以在 kwm 中使用 fctix5 和 ibus 输入中文)。<br><br>00:00 kwm 窗</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1qfzKByEA5" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/17f71f0358cd02eed46724d871f2fc8cc1cb2d6c.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[River 不(再)是我的窗口管理器！River 0.4.0 变动]]></title>
+      <link>https://www.bilibili.com/video/BV1SRzTBKE18</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1SRzTBKE18</guid>
+      <pubDate>Sat, 24 Jan 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1SRzTBKE18"><img src="http://i0.hdslb.com/bfs/archive/db975abbab5c6a29b46b7d13784578059ace3cb8.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="River 不(再)是我的窗口管理器！River 0.4.0 变动" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1SRzTBKE18" style="text-decoration:none;color:#00a1d6;">River 不(再)是我的窗口管理器！River 0.4.0 变动</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 8301 · 💬 3 · ↩ 52 · 👍 195 · 🪙 71 · ⭐ 111 · ⏱ 15:44</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">River 不(再)是我的窗口管理器！River 0.4.0 变动<br>            river 展示了 Wayland 合成器的另外一种可能性，任何人都可以使用 river-window-management-v1 协议开发自己的窗口管理器，不需要关心 Wayland 的底层工作方式。这个视频我解释了 river 0.4.0 的巨大改变，以及现在已经出现的一些基于 river 合成器的窗口管理器(TL;DR: 你应该用 kwm)。<br><br>更正：<br>1. 11:00 rijan 使用 janet 而非 zig<br>2. 06:50 niri 使用 Smithay 而非 wlroots<br><br>00:00</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1SRzTBKE18" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/db975abbab5c6a29b46b7d13784578059ace3cb8.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[给你的shell脚本添加自动补全：bash & zsh]]></title>
+      <link>https://www.bilibili.com/video/BV1GfvXB4EAj</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1GfvXB4EAj</guid>
+      <pubDate>Fri, 02 Jan 2026 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1GfvXB4EAj"><img src="http://i1.hdslb.com/bfs/archive/67fd5391148d48d83d4f92787409fc4060340f1d.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="给你的shell脚本添加自动补全：bash &amp; zsh" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1GfvXB4EAj" style="text-decoration:none;color:#00a1d6;">给你的shell脚本添加自动补全：bash &amp; zsh</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 5602 · 💬 1 · ↩ 23 · 👍 220 · 🪙 74 · ⭐ 251 · ⏱ 13:02</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">给你的shell脚本添加自动补全：bash &amp; zsh<br>            这个视频我展示了如何给 shell 脚本或者任何命令添加 zsh 和 bash 的 Tab 键自动补全功能。<br><br>00:00 TAB Completion<br>01:06 zsh的补全函数<br>04:12 bash的补全函数<br>07:30 source 补全文件<br>08:08 补全 shell functions<br>10:24 补全特定位置参数<br>11:36 补全任意命令<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1GfvXB4EAj" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/67fd5391148d48d83d4f92787409fc4060340f1d.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划07】补完]]></title>
+      <link>https://www.bilibili.com/video/BV1dAq6BAERi</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1dAq6BAERi</guid>
+      <pubDate>Sun, 28 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1dAq6BAERi"><img src="http://i1.hdslb.com/bfs/archive/c71618ee4ebafe9e863d5d867d6e9d9e02e0f8ba.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划07】补完" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1dAq6BAERi" style="text-decoration:none;color:#00a1d6;">【WM补完计划07】补完</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1960 · ↩ 12 · 👍 104 · 🪙 40 · ⭐ 19 · ⏱ 9:45</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划07】补完<br>            窗口管理器补完计划 Ep. 7/7<br><br>00:21 foot<br>02:27 dvtm<br>03:14 fzf<br>04:10 git<br>04:41 mpd<br>05:07 mpv<br>06:16 neomutt<br>07:50 ncmpcpp<br>08:40 swayimg<br>09:22 zathura<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + s</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1dAq6BAERi" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/c71618ee4ebafe9e863d5d867d6e9d9e02e0f8ba.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划06】vim & neovim]]></title>
+      <link>https://www.bilibili.com/video/BV1y1qzB1EqF</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1y1qzB1EqF</guid>
+      <pubDate>Sat, 27 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1y1qzB1EqF"><img src="http://i1.hdslb.com/bfs/archive/3d8e29553e935277910a4a24e20ba986162eed6f.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划06】vim &amp; neovim" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1y1qzB1EqF" style="text-decoration:none;color:#00a1d6;">【WM补完计划06】vim &amp; neovim</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 3836 · 💬 4 · ↩ 36 · 👍 163 · 🪙 64 · ⭐ 72 · ⏱ 9:55</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划06】vim &amp; neovim<br>            窗口管理器补完计划 Ep. 6/7<br><br>00:20 init.lua<br>01:23 vimrc<br>02:15 bindings.lua<br>03:16 slpit<br>04:54 lf.vim<br>05:10 autocmd.vim<br>06:53 qutebrowser-editor<br>07:32 dvtm-editor<br>08:33 colors.lua<br>08:47 plugins<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1y1qzB1EqF" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/3d8e29553e935277910a4a24e20ba986162eed6f.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划05】newsboat RSS 阅读器]]></title>
+      <link>https://www.bilibili.com/video/BV1WmqzB5Ese</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1WmqzB5Ese</guid>
+      <pubDate>Fri, 26 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1WmqzB5Ese"><img src="http://i1.hdslb.com/bfs/archive/a168f55bd9e559a9ada8bb2e8dfaafc2073de353.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划05】newsboat RSS 阅读器" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1WmqzB5Ese" style="text-decoration:none;color:#00a1d6;">【WM补完计划05】newsboat RSS 阅读器</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1483 · ↩ 15 · 👍 83 · 🪙 36 · ⭐ 20 · ⏱ 9:11</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划05】newsboat RSS 阅读器<br>            窗口管理器补完计划 Ep. 5/7<br><br>00:18 RSS<br>01:29 urls<br>02:10 url-rifle<br>05:50 tags<br>07:41 bindings<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kd</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1WmqzB5Ese" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/a168f55bd9e559a9ada8bb2e8dfaafc2073de353.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划04】qutebrowser 浏览器]]></title>
+      <link>https://www.bilibili.com/video/BV1KkqzBmEvD</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1KkqzBmEvD</guid>
+      <pubDate>Thu, 25 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD"><img src="http://i0.hdslb.com/bfs/archive/61497e255220ba0c270b386773b3b6740df808aa.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划04】qutebrowser 浏览器" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="text-decoration:none;color:#00a1d6;">【WM补完计划04】qutebrowser 浏览器</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 2515 · ↩ 22 · 👍 119 · 🪙 54 · ⭐ 39 · ⏱ 9:54</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划04】qutebrowser 浏览器<br>            窗口管理器补完计划 Ep. 4/7<br><br>00:50 lf filechooser<br>04:08 tabs<br>06:00 python-adblock<br>06:25 userscripts<br>06:45 URL二维码<br>07:41 离线字典<br>09:21 收藏夹<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-r</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/61497e255220ba0c270b386773b3b6740df808aa.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划03】lf 文件管理器]]></title>
+      <link>https://www.bilibili.com/video/BV1WmqzB5EJV</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1WmqzB5EJV</guid>
+      <pubDate>Wed, 24 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1WmqzB5EJV"><img src="http://i2.hdslb.com/bfs/archive/a7e5743d3e8f8cd9a52160b961c65ff5dc6bc0fd.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划03】lf 文件管理器" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1WmqzB5EJV" style="text-decoration:none;color:#00a1d6;">【WM补完计划03】lf 文件管理器</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1831 · ↩ 11 · 👍 90 · 🪙 34 · ⭐ 27 · ⏱ 12:56</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划03】lf 文件管理器<br>            窗口管理器补完计划 Ep. 3/7<br><br>00:31 保留排序打开文件<br>03:12 ruler<br>05:05 on-cd<br>05:38 on-redraw<br>06:52 文件权限<br>08:12 解压缩<br>10:35 加密解密<br>10:58 预览<br>12:03 配置文件结构<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音:</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1WmqzB5EJV" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/a7e5743d3e8f8cd9a52160b961c65ff5dc6bc0fd.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划02】shell 脚本]]></title>
+      <link>https://www.bilibili.com/video/BV1Pbq6BjEw4</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1Pbq6BjEw4</guid>
+      <pubDate>Tue, 23 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1Pbq6BjEw4"><img src="http://i1.hdslb.com/bfs/archive/de7bcd88492fab755299dae1765e16b7111efe78.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划02】shell 脚本" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1Pbq6BjEw4" style="text-decoration:none;color:#00a1d6;">【WM补完计划02】shell 脚本</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 2140 · 💬 1 · ↩ 16 · 👍 136 · 🪙 75 · ⭐ 43 · ⏱ 15:25</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划02】shell 脚本<br>            窗口管理器补完计划 Ep. 2/7<br><br>00:31 状态栏<br>02:14 截图<br>03:36 录屏<br>05:25 录音<br>05:42 扬声器<br>06:45 亮度<br>08:14 音量<br>08:30 收藏夹<br>09:36 U盘<br>12:23 加密<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + nois</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1Pbq6BjEw4" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/de7bcd88492fab755299dae1765e16b7111efe78.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【WM补完计划01】river 窗口管理器]]></title>
+      <link>https://www.bilibili.com/video/BV18hqqB7E2W</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV18hqqB7E2W</guid>
+      <pubDate>Mon, 22 Dec 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV18hqqB7E2W"><img src="http://i1.hdslb.com/bfs/archive/ca31a603f3e0feb44e4adef647eec1dc93418315.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【WM补完计划01】river 窗口管理器" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV18hqqB7E2W" style="text-decoration:none;color:#00a1d6;">【WM补完计划01】river 窗口管理器</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4760 · 💬 2 · ↩ 71 · 👍 210 · 🪙 95 · ⭐ 87 · ⏱ 16:33</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【WM补完计划01】river 窗口管理器<br>            窗口管理器补完计划 Ep. 1/7<br><br>00:21 windows<br>04:36 layouts<br>06:08 tags<br>10:45 config<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ff</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV18hqqB7E2W" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/ca31a603f3e0feb44e4adef647eec1dc93418315.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[Thinkpad T14 笔记本装机]]></title>
+      <link>https://www.bilibili.com/video/BV16TUTBrENh</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV16TUTBrENh</guid>
+      <pubDate>Sun, 30 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV16TUTBrENh"><img src="http://i2.hdslb.com/bfs/archive/e492500464d80f4d5c84e374cfa173ed74c8409b.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="Thinkpad T14 笔记本装机" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV16TUTBrENh" style="text-decoration:none;color:#00a1d6;">Thinkpad T14 笔记本装机</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4896 · ↩ 28 · 👍 164 · 🪙 26 · ⭐ 33 · ⏱ 1:25</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">Thinkpad T14 笔记本装机<br>            Thinkpad Laptop Assembly<br><br>Impromptu op. 142 d. 935 no.3 in B-Flat Major - Franz Schubert<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV16TUTBrENh" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/e492500464d80f4d5c84e374cfa173ed74c8409b.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[Thinkpad T14 完全拆解]]></title>
+      <link>https://www.bilibili.com/video/BV1UUUKB9ErA</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1UUUKB9ErA</guid>
+      <pubDate>Sat, 29 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1UUUKB9ErA"><img src="http://i1.hdslb.com/bfs/archive/bd08e97c7988767c14ed5b151c858884a0de5563.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="Thinkpad T14 完全拆解" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1UUUKB9ErA" style="text-decoration:none;color:#00a1d6;">Thinkpad T14 完全拆解</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 9934 · 💬 9 · ↩ 50 · 👍 218 · 🪙 65 · ⭐ 140 · ⏱ 8:24</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">Thinkpad T14 完全拆解<br>            这个视频我展示了如何完全拆解 Thinkpad T14 Gen1 ，包含了主板、散热器、键盘、排线等组件的拆卸和装配，以及清灰、更换导热硅脂的方法。<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1UUUKB9ErA" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/bd08e97c7988767c14ed5b151c858884a0de5563.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[Thinkpad T14 更换屏幕]]></title>
+      <link>https://www.bilibili.com/video/BV13xUTBbEP7</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV13xUTBbEP7</guid>
+      <pubDate>Fri, 28 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV13xUTBbEP7"><img src="http://i2.hdslb.com/bfs/archive/c092f74a971710d3677c8ce415c2b9f016a802ba.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="Thinkpad T14 更换屏幕" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV13xUTBbEP7" style="text-decoration:none;color:#00a1d6;">Thinkpad T14 更换屏幕</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1.9万 · 💬 20 · ↩ 101 · 👍 340 · 🪙 120 · ⭐ 207 · ⏱ 5:34</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">Thinkpad T14 更换屏幕<br>            这个视频我展示了如何更换 Thinkpad T14 Gen1 的屏幕，使用高色域、高亮度屏幕替代原装屏。<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + sl</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV13xUTBbEP7" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/c092f74a971710d3677c8ce415c2b9f016a802ba.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[自体重训练]]></title>
+      <link>https://www.bilibili.com/video/BV1xiUTBQE8h</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1xiUTBQE8h</guid>
+      <pubDate>Thu, 27 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1xiUTBQE8h"><img src="http://i0.hdslb.com/bfs/archive/ca42a51f460fe44bc6e97159e518ee985a70683f.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="自体重训练" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1xiUTBQE8h" style="text-decoration:none;color:#00a1d6;">自体重训练</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 2596 · 💬 2 · ↩ 37 · 👍 140 · 🪙 20 · ⭐ 12 · ⏱ 0:20</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">自体重训练<br>            Body Weight Workout<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1xiUTBQE8h" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/ca42a51f460fe44bc6e97159e518ee985a70683f.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[晨间冷水澡]]></title>
+      <link>https://www.bilibili.com/video/BV1jVUTBqEzD</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1jVUTBqEzD</guid>
+      <pubDate>Wed, 26 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1jVUTBqEzD"><img src="http://i0.hdslb.com/bfs/archive/545443fe3196a273ee124e7ac012b757395d3349.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="晨间冷水澡" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1jVUTBqEzD" style="text-decoration:none;color:#00a1d6;">晨间冷水澡</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 3214 · 💬 1 · ↩ 64 · 👍 117 · 🪙 30 · ⭐ 11 · ⏱ 0:20</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">晨间冷水澡<br>            Morning Cold Shower<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1jVUTBqEzD" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/545443fe3196a273ee124e7ac012b757395d3349.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[低碳水沙拉]]></title>
+      <link>https://www.bilibili.com/video/BV1jLUTBKEPi</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1jLUTBKEPi</guid>
+      <pubDate>Tue, 25 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1jLUTBKEPi"><img src="http://i1.hdslb.com/bfs/archive/fccf28fd7dfcb9e7f843fe1af4c5418bc9802984.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="低碳水沙拉" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1jLUTBKEPi" style="text-decoration:none;color:#00a1d6;">低碳水沙拉</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1536 · ↩ 30 · 👍 96 · 🪙 12 · ⭐ 8 · ⏱ 0:20</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">低碳水沙拉<br>            Low- Carb Salad<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1jLUTBKEPi" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/fccf28fd7dfcb9e7f843fe1af4c5418bc9802984.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[莓果坚果麦片]]></title>
+      <link>https://www.bilibili.com/video/BV1YHUTBwEBH</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1YHUTBwEBH</guid>
+      <pubDate>Mon, 24 Nov 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH"><img src="http://i0.hdslb.com/bfs/archive/657cd0ace23f4932c4c38023032ddd9b0c29a340.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="莓果坚果麦片" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="text-decoration:none;color:#00a1d6;">莓果坚果麦片</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1963 · 💬 2 · ↩ 51 · 👍 151 · 🪙 44 · ⭐ 18 · ⏱ 0:20</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">莓果坚果麦片<br>            Berry Nut Oats<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/657cd0ace23f4932c4c38023032ddd9b0c29a340.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[频道更新一年了，这是我对内容创作者的看法]]></title>
+      <link>https://www.bilibili.com/video/BV1seH1zVEqA</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1seH1zVEqA</guid>
+      <pubDate>Fri, 12 Sep 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1seH1zVEqA"><img src="http://i1.hdslb.com/bfs/archive/c4ec81ff0c45e7c558acb467259887a97ec6744a.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="频道更新一年了，这是我对内容创作者的看法" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1seH1zVEqA" style="text-decoration:none;color:#00a1d6;">频道更新一年了，这是我对内容创作者的看法</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4772 · 💬 10 · ↩ 91 · 👍 463 · 🪙 322 · ⭐ 123 · ⏱ 7:38</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">频道更新一年了，这是我对内容创作者的看法<br>            unixchad 频道已经连续更新一年了，今天聊聊我对于内容创作的一些看法，同时感谢所有参与其中的观众！<br><br>00:00 回顾<br>00:41 超越自身：人人都该成为创作者<br>01:52 黑客文化：只是为了好玩<br>03:05 形而上者：创作的初心和方向<br>04:10 形而下者：视频创作工具与技巧<br>06:29 面对评价：批判性思维和放轻松<br>07:19 结语<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(F</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1seH1zVEqA" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/c4ec81ff0c45e7c558acb467259887a97ec6744a.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[用shell写一个窗口管理器状态栏脚本: damblocks]]></title>
+      <link>https://www.bilibili.com/video/BV19cYuzJEd5</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV19cYuzJEd5</guid>
+      <pubDate>Tue, 09 Sep 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV19cYuzJEd5"><img src="http://i1.hdslb.com/bfs/archive/a7b8f7ed4c4c0e2d53105d93388bb695de23d1c6.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="用shell写一个窗口管理器状态栏脚本: damblocks" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV19cYuzJEd5" style="text-decoration:none;color:#00a1d6;">用shell写一个窗口管理器状态栏脚本: damblocks</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4086 · 💬 2 · ↩ 58 · 👍 149 · 🪙 56 · ⭐ 86 · ⏱ 16:34</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">用shell写一个窗口管理器状态栏脚本: damblocks<br>            damblocks 是我在 sbar 的框架上写的一个 shell 脚本，它支持为不同的模组设置不同的刷新间隔，也能捕获各种信号来刷新特定模组。配合外部脚本的信号捕获(trap)与发送(kill)和 udev rules 规则，不仅能及时刷新状态信息，也减少了不必要资源占用。任何接受纯文本的基本输入流的软件都可以使用 damblocks，比如 dwm, dwl, river，dvtm...<br><br>纠正：<br>01:14 `local` 是 POSIX 不兼容的，但 dash 支持它<br><br>00:00 兼容的状态栏<br>0</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV19cYuzJEd5" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/a7b8f7ed4c4c0e2d53105d93388bb695de23d1c6.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[你有后安装脚本吗？(post-install script)]]></title>
+      <link>https://www.bilibili.com/video/BV13kaYz1E4P</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV13kaYz1E4P</guid>
+      <pubDate>Sat, 06 Sep 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV13kaYz1E4P"><img src="http://i0.hdslb.com/bfs/archive/5d8050b6cc29acb3b3e7ed8d444303ad96450fbb.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="你有后安装脚本吗？(post-install script)" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV13kaYz1E4P" style="text-decoration:none;color:#00a1d6;">你有后安装脚本吗？(post-install script)</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 5373 · 💬 4 · ↩ 54 · 👍 261 · 🪙 115 · ⭐ 180 · ⏱ 19:43</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">你有后安装脚本吗？(post-install script)<br>            后安装脚本/安装后脚本(post-install script)可以自动配置操作系统和用户软件，十分方便且节约时间，安装基础 Arch Linux 系统只需要几分钟的时间，哪怕你要配置全盘加密和安全启动，而安装后的绝大部分任务都可以通过 shell 脚本来自动化。今天我在 KVM 虚拟机中演示并解读了我写的两个 Arch Linux 后安装脚本。<br><br>00:00 重现系统的方法<br>01:03 基本 Arch 上的准备<br>03:36 复制 dotfiles<br>04:53 软件包列表 package list<br>06:</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV13kaYz1E4P" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/5d8050b6cc29acb3b3e7ed8d444303ad96450fbb.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[二手Thinkpad T14升级内存和硬盘(Arch Linux)]]></title>
+      <link>https://www.bilibili.com/video/BV1bAvKzMENB</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1bAvKzMENB</guid>
+      <pubDate>Mon, 01 Sep 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB"><img src="http://i1.hdslb.com/bfs/archive/52442d12f9bcb29453e8fc4a41539fd6bcf890eb.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="二手Thinkpad T14升级内存和硬盘(Arch Linux)" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="text-decoration:none;color:#00a1d6;">二手Thinkpad T14升级内存和硬盘(Arch Linux)</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 2.5万 · 💬 16 · ↩ 141 · 👍 446 · 🪙 119 · ⭐ 391 · ⏱ 10:55</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">二手Thinkpad T14升级内存和硬盘(Arch Linux)<br>            今天我升级了二手 Thinkpad T14 GEN 1 AMD R7 4750U 的内存和硬盘。我选择了海力士 DDR4 3200MHz 8G 内存和西部数据 SN520 m.2 NVMe 512G 固态硬盘。值得注意的是 T14 GEN1 AMD 是Thinkpad T 系列中最后一代可以在 4G 模块的 WWAN 接口使用 B-key 2242 规格、NVMe协议固态硬盘的。视频的后半部分记录了在 Arch Linux 中对新硬盘的一些分区、格式化、加密以及自动挂载的步骤。<br><br>00:00 禁用电池<br>0</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/52442d12f9bcb29453e8fc4a41539fd6bcf890eb.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[我为什么选择二手Thinkpad和GNU/Linux？]]></title>
+      <link>https://www.bilibili.com/video/BV1y3enzNEVQ</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1y3enzNEVQ</guid>
+      <pubDate>Fri, 29 Aug 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1y3enzNEVQ"><img src="http://i2.hdslb.com/bfs/archive/6be831c96df64a3dd4edfcb49eb2d708ee299f73.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="我为什么选择二手Thinkpad和GNU/Linux？" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1y3enzNEVQ" style="text-decoration:none;color:#00a1d6;">我为什么选择二手Thinkpad和GNU/Linux？</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 28.9万 · 💬 371 · ↩ 1852 · 👍 5193 · 🪙 1501 · ⭐ 5449 · ⏱ 8:38</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">我为什么选择二手Thinkpad和GNU/Linux？<br>            你可以在地球的每一个角落看到 Thinkpad，从会议室、咖啡厅到工厂、工地，它还去过珠峰、南极和空间站！它不仅防摔，而且防水！用料扎实，经得起时间的考验。二手 Thinkpad 的性价比极高，能运行百分之百自由的Libreboot/GNU/Linux-libre操作系统。今天聊聊我选择的一台二手 Thinkpad T14 GEN1 AMD R7 4750U 的使用体验。<br><br>00:00 为什么是Thinkpad？<br>02:15 谁适合二手Thinkpad？<br>02:43 我的选择<br>03:34 CPU、显卡<br>0</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1y3enzNEVQ" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/6be831c96df64a3dd4edfcb49eb2d708ee299f73.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[【unixchat mini 05】开源软件不等于自由软件]]></title>
+      <link>https://www.bilibili.com/video/BV1ufeMzyE5Y</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1ufeMzyE5Y</guid>
+      <pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y"><img src="http://i0.hdslb.com/bfs/archive/2d840128b0ea867da17b039586ea90b96d87a99f.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="【unixchat mini 05】开源软件不等于自由软件" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="text-decoration:none;color:#00a1d6;">【unixchat mini 05】开源软件不等于自由软件</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4376 · 💬 1 · ↩ 83 · 👍 252 · 🪙 109 · ⭐ 94 · ⏱ 13:38</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">【unixchat mini 05】开源软件不等于自由软件<br>            本期播客节目中我即兴谈论了专有软件 (Proprietary Software) 的潜在威胁，以及 Richard Stallman (rms) 是如何发起了自由软件运动和 GNU 项目、说服了 Linus Torvalds 通过 GNU 通用公共许可证在 1991 年释放了他的 Linux 内核，以及 Eric Raymond (esr) 的开放源代码运动是如何让大众遗忘了自由软件运动的。<br><br>“自由就是有权决定计算机可以做什么，而获得这种自由的唯一方法就是了解计算机正在做什么，自由就是计算机没有秘密可言</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/2d840128b0ea867da17b039586ea90b96d87a99f.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[你的 Arch Linux 安装多久了？]]></title>
+      <link>https://www.bilibili.com/video/BV1N6Y9zhEzv</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1N6Y9zhEzv</guid>
+      <pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1N6Y9zhEzv"><img src="http://i2.hdslb.com/bfs/archive/d2c455f2ba6984f273b8505df5ad5492520cbe12.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="你的 Arch Linux 安装多久了？" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1N6Y9zhEzv" style="text-decoration:none;color:#00a1d6;">你的 Arch Linux 安装多久了？</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 8488 · 💬 1 · ↩ 159 · 👍 307 · 🪙 44 · ⭐ 58 · ⏱ 0:31</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">你的 Arch Linux 安装多久了？</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1N6Y9zhEzv" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/d2c455f2ba6984f273b8505df5ad5492520cbe12.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[自由开源早餐 FOSS Breakfast]]></title>
+      <link>https://www.bilibili.com/video/BV1w8b8zjEhE</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1w8b8zjEhE</guid>
+      <pubDate>Sat, 16 Aug 2025 08:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1w8b8zjEhE"><img src="http://i2.hdslb.com/bfs/archive/e9b732fa1b8d2e45d7ad1d7657cc06041bc79248.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="自由开源早餐 FOSS Breakfast" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1w8b8zjEhE" style="text-decoration:none;color:#00a1d6;">自由开源早餐 FOSS Breakfast</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 8167 · 💬 12 · ↩ 105 · 👍 364 · 🪙 53 · ⭐ 97 · ⏱ 1:00</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">自由开源早餐 FOSS Breakfast</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1w8b8zjEhE" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i2.hdslb.com/bfs/archive/e9b732fa1b8d2e45d7ad1d7657cc06041bc79248.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[abduco + dvtm: 在tty中运行suckless dwm]]></title>
+      <link>https://www.bilibili.com/video/BV17jtRzMEaP</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV17jtRzMEaP</guid>
+      <pubDate>Tue, 12 Aug 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV17jtRzMEaP"><img src="http://i1.hdslb.com/bfs/archive/f210d8c561d7f310dc19c3fd95cd52e4ce84c2f6.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="abduco + dvtm: 在tty中运行suckless dwm" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV17jtRzMEaP" style="text-decoration:none;color:#00a1d6;">abduco + dvtm: 在tty中运行suckless dwm</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 4460 · 💬 2 · ↩ 30 · 👍 221 · 🪙 91 · ⭐ 145 · ⏱ 12:53</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">abduco + dvtm: 在tty中运行suckless dwm<br>            今天我介绍了在 tty 和终端模拟器中的、UNIX 哲学的“窗口管理器”。和 tmux 或 GNU screen 不同，dvtm 只是一个终端复用器(terminal multiplexer)，而 abduco 只是一个终端分离器(terminal detacher)，它们的按键逻辑和 dwm 十分相似，而配置方式又和 suckelss 的许多软件一样——修改源代码后重新编译。<br><br>00:00 终端复用器 (multiplexer)<br>00:42 终端分离器 (detacher)<br>01:11 GNU scre</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV17jtRzMEaP" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i1.hdslb.com/bfs/archive/f210d8c561d7f310dc19c3fd95cd52e4ce84c2f6.jpg" />
+    </item>
+    <item>
+      <title><![CDATA[Arch Linux安装KDE桌面环境、中文locale汉化]]></title>
+      <link>https://www.bilibili.com/video/BV1fZ8qzAERG</link>
+      <guid isPermaLink="false">https://www.bilibili.com/video/BV1fZ8qzAERG</guid>
+      <pubDate>Thu, 31 Jul 2025 18:00:00 +0800</pubDate>
+      <description><![CDATA[<div style="margin-bottom:12px;"><a href="https://www.bilibili.com/video/BV1fZ8qzAERG"><img src="http://i0.hdslb.com/bfs/archive/6ef665a0f0dcfc5fceb79a8dfc91037905a40f63.jpg" style="max-width:100%;border-radius:8px;border:1px solid #eee;" alt="Arch Linux安装KDE桌面环境、中文locale汉化" /></a></div>
+<h3><a href="https://www.bilibili.com/video/BV1fZ8qzAERG" style="text-decoration:none;color:#00a1d6;">Arch Linux安装KDE桌面环境、中文locale汉化</a></h3>
+<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;border-radius:6px;font-size:13px;color:#505050;">▶ 1.6万 · 💬 15 · ↩ 104 · 👍 317 · 🪙 117 · ⭐ 263 · ⏱ 20:28</div>
+<div style="margin:8px 0;color:#333;line-height:1.6;">Arch Linux安装KDE桌面环境、中文locale汉化<br>            如何在一个最小化的 Arch Linux 系统中安装了 KDE Plasma 6.4 桌面环境？如何配置 locale 本地化设置，让桌面环境和各种软件都显示中文？事情的起因是我帮别人配置了这样的系统，尽管我不用任何桌面环境，但我认为窗口管理器用户体验不同的桌面环境是有意义的。<br><br>00:58 最小化 Arch 系统<br>04:14 locale.gen<br>05:25 locale.conf<br>07:40 安装软件包<br>12:27 sddm 汉化<br>13:39 sddm.service<br>14:29 登陆 KDE Pla</div>
+<p style="margin-top:12px;"><a href="https://www.bilibili.com/video/BV1fZ8qzAERG" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>]]></description>
+
+      <media:thumbnail url="http://i0.hdslb.com/bfs/archive/6ef665a0f0dcfc5fceb79a8dfc91037905a40f63.jpg" />
+    </item>
+  </channel>
+</rss>
