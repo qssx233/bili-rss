@@ -16,7 +16,7 @@
   --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,63%);
   --accent:hsl(31,28%,48%); --accent-deep:hsl(31,30%,40%);
   --pink:#fb7299; --pink-deep:#d8507a;
-  --glass:rgba(255,255,255,0.54); --glass-strong:rgba(255,255,255,0.72);
+  --glass:rgba(255,255,255,0.40); --glass-strong:rgba(255,255,255,0.58);
   --hair:rgba(255,255,255,0.82); --line:rgba(120,95,80,0.10);
   --shadow:0 6px 22px -12px rgba(70,45,35,0.28);
 }
@@ -34,19 +34,23 @@ body {
   background-attachment:fixed;
   min-height:100vh;
 }
-.amb {
-  position:fixed; inset:-12%; z-index:0; pointer-events:none;
+.bg {
+  position:fixed; inset:-46px; z-index:0; pointer-events:none;
   background-image:url('assets/portrait.jpg');
-  background-size:cover; background-position:center;
-  filter:blur(46px) saturate(1.25); opacity:0.34;
+  background-size:cover; background-position:center 32%;
+  filter:blur(16px) saturate(1.22) brightness(1.04); opacity:0.92;
+}
+.bg::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.30) 55%, rgba(255,255,255,0.24));
 }
 .frame {
   position:relative; z-index:1; max-width:760px; margin:28px auto 40px;
   padding:14px 14px 10px; border-radius:30px;
-  background:linear-gradient(180deg,rgba(255,255,255,0.60),rgba(255,255,255,0.40));
+  background:linear-gradient(180deg,rgba(255,255,255,0.52),rgba(255,255,255,0.34));
   border:1px solid var(--hair);
   box-shadow:0 26px 64px -30px rgba(70,45,35,0.36), 0 2px 6px rgba(70,45,35,0.04);
-  -webkit-backdrop-filter:blur(22px) saturate(1.15); backdrop-filter:blur(22px) saturate(1.15);
+  -webkit-backdrop-filter:blur(36px) saturate(1.25) brightness(1.04); backdrop-filter:blur(36px) saturate(1.25) brightness(1.04);
   animation:rise 0.55s cubic-bezier(0.22,1,0.36,1) both;
 }
 @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
@@ -103,7 +107,7 @@ body {
 
 .card {
   margin:12px 6px; padding:16px 18px; border-radius:20px;
-  background:var(--glass); border:1px solid var(--hair);
+  background:var(--glass); border:1px solid rgba(255,255,255,0.74);
   box-shadow:var(--shadow);
   -webkit-backdrop-filter:blur(16px) saturate(1.12); backdrop-filter:blur(16px) saturate(1.12);
   transition:background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -172,7 +176,7 @@ a.dl:active { opacity:0.8; }
 }
 #toast.on { opacity:1; transform:translate(-50%,0); }
 @media (max-width:600px) {
-  .amb { filter:blur(38px); opacity:0.30; }
+  .bg { filter:blur(13px) saturate(1.15); opacity:0.9; }
   .frame { margin:14px 10px 26px; padding:10px 10px 6px; border-radius:24px; }
   .topbar { flex-wrap:wrap; gap:8px; padding:2px 2px 0; }
   .chip { font-size:11.5px; height:32px; padding:0 12px 0 5px; }
@@ -187,7 +191,7 @@ a.dl:active { opacity:0.8; }
 </style>
 </head>
 <body>
-<div class="amb"></div>
+<div class="bg"></div>
 
 <main class="frame">
   <div class="topbar">
