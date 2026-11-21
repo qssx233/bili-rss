@@ -422,6 +422,19 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
 
     parts = []
 
+    # 封面图放第一位（用户要求）
+    if pic_url:
+        parts.append(
+            f'<div style="margin:0 0 10px;line-height:0;">'
+            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:8px;" '
+            f'alt="{escape(title)}" /></a></div>'
+        )
+        parts.append(
+            f'<p style="margin:0 0 10px;">'
+            f'<a href="{link}" style="display:inline-block;padding:7px 16px;background:#00a1d6;'
+            f'color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>'
+        )
+
     # 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
     if embed and bvid:
         player_url = (
@@ -433,19 +446,6 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
             f'<iframe src="{player_url}" width="100%" height="480" scrolling="no" '
             f'frameborder="0" allowfullscreen="true" '
             f'style="border:0;display:block;max-width:100%;"></iframe></div>'
-        )
-
-    # 封面 + 播放按钮（紧凑）
-    if pic_url:
-        parts.append(
-            f'<div style="margin:0 0 10px;line-height:0;">'
-            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:8px;" '
-            f'alt="{escape(title)}" /></a></div>'
-        )
-        parts.append(
-            f'<p style="margin:0 0 10px;">'
-            f'<a href="{link}" style="display:inline-block;padding:7px 16px;background:#00a1d6;'
-            f'color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>'
         )
 
     # 标题
@@ -729,6 +729,9 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict,
             if detail:
                 if detail.get("aid"):
                     v["aid"] = detail["aid"]
+                # 用 API 的完整简介覆盖 RSSHub 的截断简介
+                if detail.get("desc"):
+                    v["description"] = detail["desc"]
                 for key in ("view", "danmaku", "reply", "like", "coin", "favorite", "duration"):
                     if detail.get(key):
                         v[key] = detail[key]
