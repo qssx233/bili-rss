@@ -24,6 +24,7 @@ from datetime import datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from bilibili_list_page import generate_list_page
 from bilibili_rss import (
     CST,
     HEADERS,
@@ -171,6 +172,7 @@ def main() -> None:
                     help="为前 N 条抓取热门评论（默认 0，不抓；会多花 N*0.3 秒）")
     ap.add_argument("--base-url", default="", help="站点根地址，用于生成播放页链接")
     ap.add_argument("--posts-dir", default="", help="播放页输出目录")
+    ap.add_argument("--list-output", default="", help="订阅二级页面（视频列表页）输出路径")
     ap.add_argument("--no-embed", dest="embed", action="store_false", help="不内嵌播放器")
     args = ap.parse_args()
     args.embed = getattr(args, "embed", True)
@@ -215,6 +217,17 @@ def main() -> None:
             (posts / f"{v['bvid']}.html").write_text(page, encoding="utf-8")
             made += 1
         print(f"   播放页: {made} 个 → {posts}")
+
+    if args.list_output:
+        page = generate_list_page(
+            items,
+            page_title="我的稍后再看",
+            page_sub=f"B站「稍后再看」最近 {len(items)} 条 · 按加入时间倒序",
+            feed_file=Path(args.output).name,
+        )
+        Path(args.list_output).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.list_output).write_text(page, encoding="utf-8")
+        print(f"   订阅列表页: {args.list_output}")
 
 
 if __name__ == "__main__":

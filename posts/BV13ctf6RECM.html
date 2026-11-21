@@ -10,7 +10,8 @@
 <style>
 @font-face {
   font-family:'ChillRound';
-  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  src:local('ChillRoundM'), local('寒蝉半圆体'), local('ChillRoundM Regular'),
+      url('../assets/ChillRoundF.woff2') format('woff2');
   font-weight:400; font-style:normal; font-display:swap;
 }
 :root {
@@ -33,7 +34,7 @@ body {
 .bg {
   position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
   background-image:url('../assets/portrait.jpg');
-  filter:blur(16px) saturate(1.22) brightness(1.03); opacity:0.92;
+  filter:saturate(1.06) brightness(1.02); opacity:0.94;
 }
 .veil {
   position:fixed; inset:0; z-index:0;
@@ -82,7 +83,7 @@ img { max-width:100%; height:auto; }
 @media (max-width:600px) {
   .topbar { flex-wrap:wrap; row-gap:8px; }
   .me { max-width:100%; margin-left:0; }
-  .bg { filter:blur(14px) saturate(1.12); opacity:0.9; }
+  .bg { filter:saturate(1.04); opacity:0.94; }
   .page { padding:12px 10px 30px; }
   .card { padding:14px; border-radius:20px; }
 }
@@ -105,7 +106,7 @@ img { max-width:100%; height:auto; }
 <div style="margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px;"><a href="https://www.bilibili.com/video/BV13ctf6RECM" style="display:inline-block;padding:9px 22px;background:linear-gradient(135deg,#fc86a7,#e95f8a);color:#ffffff;text-decoration:none;border-radius:999px;font-size:13px;box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);">播放视频</a><a href="https://www.bilibili.com/video/BV13ctf6RECM" style="display:inline-block;padding:9px 20px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);color:hsl(28,18%,44%);text-decoration:none;border-radius:999px;font-size:13px;">在 B站打开</a></div>
 <div style="position:relative;width:100%;padding-top:56.25%;margin:0 0 16px;border-radius:18px;overflow:hidden;background:#0d0d0f;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);"><iframe src="https://player.bilibili.com/player.html?bvid=BV13ctf6RECM&page=1&high_quality=1&danmaku=0&autoplay=0" scrolling="no" frameborder="0" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
 <h3 style="margin:0 0 12px;font-size:18px;line-height:1.55;font-weight:400;letter-spacing:0.01em;"><a href="https://www.bilibili.com/video/BV13ctf6RECM" style="text-decoration:none;color:hsl(28,32%,25%);">只学够用的 Linux：长度正好的零基础入门教程</a></h3>
-<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;"><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">播放 15.1万</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">弹幕 450</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">评论 310</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">点赞 8341</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">投币 5828</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">收藏 2.1万</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">时长 2:52:35</span></div>
+<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;"><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">播放 15.1万</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">弹幕 450</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">评论 310</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">点赞 8342</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">投币 5828</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">收藏 2.1万</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">时长 2:52:35</span></div>
 <div style="margin:0 0 4px;font-size:13.5px;color:hsl(28,25%,30%);line-height:1.9;">UP主：ChrisKim_ZHT<br>分区：计算机技术<br>加入时间：2026-09-14 13:34<br><br>本教程的撰写理念是构建一个既不教条、也不残缺的，长度正好的零基础 Linux 入门教程。教程全程约 3 小时。<br>本视频的预期是，零基础用户在学习完成后，能够独立使用 Linux，并具备继续自我探索和学习的能力。<br><br>文字版教程：https://www.zouht.com/4399.html<br>本教程使用：CC BY-NC-SA 4.0 许可</div>
 <div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;"><a href="https://www.bilibili.com/video/BV13ctf6RECM" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a><a href="https://space.bilibili.com/23986264" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(28,13%,62%);text-decoration:none;">UP主主页</a></div>
 </div></div>

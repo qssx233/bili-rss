@@ -41,7 +41,8 @@ jobs:
             --output feed.xml \
             --count 30 \
             --base-url "https://qssx233.github.io/bili-rss/" \
-            --posts-dir posts
+            --posts-dir posts \
+            --list-output uploads.html
 
       - name: Generate watch later feed and post pages
         run: |
@@ -50,7 +51,8 @@ jobs:
             --output feed_watchlater.xml \
             --count 50 \
             --base-url "https://qssx233.github.io/bili-rss/" \
-            --posts-dir posts
+            --posts-dir posts \
+            --list-output watchlater.html
 
       - name: Verify feeds
         run: |
@@ -78,7 +80,7 @@ jobs:
         run: |
           git config user.name "bili-rss-bot"
           git config user.email "qssx@aliyun.com"
-          git add feed.xml feed_watchlater.xml posts
+          git add feed.xml feed_watchlater.xml posts uploads.html watchlater.html
           if git diff --cached --quiet; then
             echo "feed 无变化，跳过提交"
             exit 0

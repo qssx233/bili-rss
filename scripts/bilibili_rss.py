@@ -701,7 +701,8 @@ def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) ->
 <style>
 @font-face {{
   font-family:'ChillRound';
-  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  src:local('ChillRoundM'), local('寒蝉半圆体'), local('ChillRoundM Regular'),
+      url('../assets/ChillRoundF.woff2') format('woff2');
   font-weight:400; font-style:normal; font-display:swap;
 }}
 :root {{
@@ -724,7 +725,7 @@ body {{
 .bg {{
   position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
   background-image:url('../assets/portrait.jpg');
-  filter:blur(16px) saturate(1.22) brightness(1.03); opacity:0.92;
+  filter:saturate(1.06) brightness(1.02); opacity:0.94;
 }}
 .veil {{
   position:fixed; inset:0; z-index:0;
@@ -773,7 +774,7 @@ img {{ max-width:100%; height:auto; }}
 @media (max-width:600px) {{
   .topbar {{ flex-wrap:wrap; row-gap:8px; }}
   .me {{ max-width:100%; margin-left:0; }}
-  .bg {{ filter:blur(14px) saturate(1.12); opacity:0.9; }}
+  .bg {{ filter:saturate(1.04); opacity:0.94; }}
   .page {{ padding:12px 10px 30px; }}
   .card {{ padding:14px; border-radius:20px; }}
 }}
@@ -829,7 +830,8 @@ img {{ max-width:100%; height:auto; }}
 
 
 def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict,
-        embed: bool = True, post_base_url: str = "", posts_dir: str = "") -> str | None:
+        embed: bool = True, post_base_url: str = "", posts_dir: str = "",
+        list_output: str = "") -> str | None:
     """执行获取 + 生成，返回 XML 内容"""
     space_url = f"https://space.bilibili.com/{uid}"
     has_cookie = bool(cookies)
@@ -965,6 +967,21 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict,
             made += 1
         print(f"   播放页: {made} 个 → {posts_path}")
 
+    # 二级页面：该订阅的视频列表（点卡片进 posts/<BV>.html）
+    if list_output:
+        from bilibili_list_page import generate_list_page  # 延迟导入，避免与 list_page 循环引用
+        for v in videos:
+            v.setdefault("owner_name", up_name)
+        page = generate_list_page(
+            videos,
+            page_title=f"{up_name} 的 B站投稿",
+            page_sub=f"UID {uid} · 共 {len(videos)} 条 · 每天 08:00 自动更新",
+            feed_file=Path(output_path).name,
+        )
+        Path(list_output).parent.mkdir(parents=True, exist_ok=True)
+        Path(list_output).write_text(page, encoding="utf-8")
+        print(f"   订阅列表页: {list_output}")
+
     print(f"\n✅ RSS feed 已生成: {output_path}")
     print(f"   UP主: {up_name}  |  共 {len(videos)} 条视频")
 
@@ -1008,6 +1025,8 @@ def main():
                         help="站点根地址（如 https://qssx233.github.io/bili-rss/），用于生成播放页链接")
     parser.add_argument("--posts-dir", type=str, default="",
                         help="播放页输出目录（如 L:/desktopfiles/RSS/github-pages/posts）")
+    parser.add_argument("--list-output", type=str, default="",
+                        help="订阅二级页面（视频列表页）输出路径，如 .../uploads.html")
 
     args = parser.parse_args()
     uid = args.uid
@@ -1026,7 +1045,8 @@ def main():
 
     # 执行
     xml_content = run(uid, up_name, output_path, args.count, cookies, embed=args.embed,
-                      post_base_url=args.base_url, posts_dir=args.posts_dir)
+                      post_base_url=args.base_url, posts_dir=args.posts_dir,
+                      list_output=args.list_output)
     if not xml_content:
         sys.exit(1)
 

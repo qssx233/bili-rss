@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>unixchad 的 B站投稿 · qssx's RSS</title>
+<link rel="icon" type="image/svg+xml" href="assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<style>
+@font-face {
+  font-family:'ChillRound';
+  src:local('ChillRoundM'), local('寒蝉半圆体'), local('ChillRoundM Regular'),
+      url('assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+:root {
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
+body {
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+    "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
+}
+.bg {
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  background-image:url('assets/portrait.jpg');
+  filter:saturate(1.06) brightness(1.02); opacity:0.94;
+}
+.veil {
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.06));
+}
+.page { position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:22px 16px 48px; }
+.card {
+  background:rgba(255,255,255,0.56); border:1px solid rgba(255,255,255,0.7);
+  border-radius:26px; padding:18px 20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(30px) saturate(1.2); backdrop-filter:blur(30px) saturate(1.2);
+}
+.topbar {
+  display:flex; align-items:center; gap:10px; margin:0 0 14px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}
+.topbar .brand {
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--text-soft);
+}
+.topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
+.me {
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:60%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.me .quote {
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5; flex:1 1 auto; min-width:0;
+}
+.me img {
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}
+.head { padding:6px 6px 18px; }
+.head h1 { margin:0 0 8px; font-size:24px; font-weight:400; letter-spacing:0.01em; line-height:1.4; }
+.head p { margin:0; font-size:13px; color:var(--text-mid); }
+.actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.btn {
+  display:inline-flex; align-items:center; gap:6px; padding:9px 20px; border-radius:999px;
+  font-size:13px; text-decoration:none; color:#fff;
+  background:linear-gradient(135deg,#fc86a7,#e95f8a);
+  box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);
+}
+.btn.ghost {
+  color:var(--accent-deep); background:rgba(255,255,255,0.72);
+  border:1px solid rgba(152,120,103,0.14); box-shadow:none;
+}
+.btn:active { opacity:0.85; }
+.grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(238px, 1fr)); gap:14px;
+  padding:2px 2px 8px;
+}
+.item {
+  display:flex; flex-direction:column; overflow:hidden; text-decoration:none; color:inherit;
+  border-radius:20px; background:rgba(255,255,255,0.56);
+  border:1px solid rgba(255,255,255,0.7);
+  box-shadow:0 10px 26px -20px rgba(70,45,35,0.5);
+  -webkit-backdrop-filter:blur(16px) saturate(1.15); backdrop-filter:blur(16px) saturate(1.15);
+  transition:transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+.item:hover {
+  transform:translateY(-3px); background:rgba(255,255,255,0.74);
+  box-shadow:0 18px 34px -22px rgba(70,45,35,0.55);
+}
+.item:active { opacity:0.9; }
+.thumb { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:rgba(255,255,255,0.4); }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.thumb .dur {
+  position:absolute; right:8px; bottom:8px; padding:2px 7px; border-radius:8px;
+  font-size:11px; color:#fff; background:rgba(30,22,18,0.6);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.body { padding:11px 13px 13px; }
+.body h3 {
+  margin:0 0 6px; font-size:13.5px; font-weight:400; line-height:1.55; color:var(--text);
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.meta { font-size:11.5px; color:var(--text-soft); display:flex; flex-wrap:wrap; gap:6px; }
+.meta span { white-space:nowrap; }
+.note { text-align:center; font-size:11.5px; color:var(--text-soft); margin:22px 0 0; }
+@media (max-width:600px) {
+  .page { padding:12px 10px 32px; }
+  .card { padding:14px; border-radius:20px; }
+  .topbar { flex-wrap:wrap; row-gap:8px; }
+  .me { max-width:100%; margin-left:0; }
+  .head { padding:2px 4px 14px; }
+  .head h1 { font-size:20px; }
+  .grid { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px; }
+  .item { border-radius:16px; }
+  .body { padding:9px 10px 11px; }
+  .body h3 { font-size:12.5px; }
+}
+
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="veil"></div>
+<div class="page">
+  <div class="topbar">
+    <a class="brand" href="index.html" title="返回首页">
+      <img src="assets/bili.svg" alt="bilibili">
+      <span>qssx's RSS</span>
+    </a>
+    <div class="me">
+      <span class="quote" id="hk"></span>
+      <img src="assets/portrait.jpg" alt="头像">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h1>unixchad 的 B站投稿</h1>
+      <p>UID 34569411 · 共 30 条 · 每天 08:00 自动更新</p>
+      <div class="actions">
+        <a class="btn" href="feed.xml">打开 feed</a>
+        <a class="btn ghost" href="index.html">返回首页</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+      <a class="item" href="posts/BV1LhfVB1EHE.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/724edf81f0a67f1b6b1524af4cc107df3dca646c.jpg" alt="实机安装 Arch Linux: 命令行 全盘加密 安全启动" referrerpolicy="no-referrer" loading="lazy"><span class="dur">22:25</span></div>
+        <div class="body">
+          <h3>实机安装 Arch Linux: 命令行 全盘加密 安全启动</h3>
+          <div class="meta"><span>unixchad</span><span>2026-02-21</span><span>播放 1.2万</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1KVctzGEV8.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/bd441b3737cd4e29b6181f5159ba140cd8315138.jpg" alt="从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv" referrerpolicy="no-referrer" loading="lazy"><span class="dur">11:58</span></div>
+        <div class="body">
+          <h3>从Wayland迁移到Xorg? suckless dwm st dmenu nsxiv</h3>
+          <div class="meta"><span>unixchad</span><span>2026-02-12</span><span>播放 8179</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1uQ63BUEEL.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/899f79799cd4313b209ed22972debfaa32b8709d.jpg" alt="用 zig 给 river 的 kwm 窗口管理器写一些新功能！" referrerpolicy="no-referrer" loading="lazy"><span class="dur">14:08</span></div>
+        <div class="body">
+          <h3>用 zig 给 river 的 kwm 窗口管理器写一些新功能！</h3>
+          <div class="meta"><span>unixchad</span><span>2026-01-28</span><span>播放 5571</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1qfzKByEA5.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/17f71f0358cd02eed46724d871f2fc8cc1cb2d6c.jpg" alt="KWM + River: 真正的 suckless wayland 窗口管理器" referrerpolicy="no-referrer" loading="lazy"><span class="dur">12:58</span></div>
+        <div class="body">
+          <h3>KWM + River: 真正的 suckless wayland 窗口管理器</h3>
+          <div class="meta"><span>unixchad</span><span>2026-01-25</span><span>播放 8625</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1SRzTBKE18.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/db975abbab5c6a29b46b7d13784578059ace3cb8.jpg" alt="River 不(再)是我的窗口管理器！River 0.4.0 变动" referrerpolicy="no-referrer" loading="lazy"><span class="dur">15:44</span></div>
+        <div class="body">
+          <h3>River 不(再)是我的窗口管理器！River 0.4.0 变动</h3>
+          <div class="meta"><span>unixchad</span><span>2026-01-24</span><span>播放 8302</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1GfvXB4EAj.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/67fd5391148d48d83d4f92787409fc4060340f1d.jpg" alt="给你的shell脚本添加自动补全：bash &amp; zsh" referrerpolicy="no-referrer" loading="lazy"><span class="dur">13:02</span></div>
+        <div class="body">
+          <h3>给你的shell脚本添加自动补全：bash &amp; zsh</h3>
+          <div class="meta"><span>unixchad</span><span>2026-01-02</span><span>播放 5602</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1dAq6BAERi.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/c71618ee4ebafe9e863d5d867d6e9d9e02e0f8ba.jpg" alt="【WM补完计划07】补完" referrerpolicy="no-referrer" loading="lazy"><span class="dur">9:45</span></div>
+        <div class="body">
+          <h3>【WM补完计划07】补完</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-28</span><span>播放 1960</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1y1qzB1EqF.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/3d8e29553e935277910a4a24e20ba986162eed6f.jpg" alt="【WM补完计划06】vim &amp; neovim" referrerpolicy="no-referrer" loading="lazy"><span class="dur">9:55</span></div>
+        <div class="body">
+          <h3>【WM补完计划06】vim &amp; neovim</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-27</span><span>播放 3837</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1WmqzB5Ese.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/a168f55bd9e559a9ada8bb2e8dfaafc2073de353.jpg" alt="【WM补完计划05】newsboat RSS 阅读器" referrerpolicy="no-referrer" loading="lazy"><span class="dur">9:11</span></div>
+        <div class="body">
+          <h3>【WM补完计划05】newsboat RSS 阅读器</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-26</span><span>播放 1484</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1KkqzBmEvD.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/61497e255220ba0c270b386773b3b6740df808aa.jpg" alt="【WM补完计划04】qutebrowser 浏览器" referrerpolicy="no-referrer" loading="lazy"><span class="dur">9:54</span></div>
+        <div class="body">
+          <h3>【WM补完计划04】qutebrowser 浏览器</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-25</span><span>播放 2515</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1WmqzB5EJV.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/a7e5743d3e8f8cd9a52160b961c65ff5dc6bc0fd.jpg" alt="【WM补完计划03】lf 文件管理器" referrerpolicy="no-referrer" loading="lazy"><span class="dur">12:56</span></div>
+        <div class="body">
+          <h3>【WM补完计划03】lf 文件管理器</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-24</span><span>播放 1831</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1Pbq6BjEw4.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/de7bcd88492fab755299dae1765e16b7111efe78.jpg" alt="【WM补完计划02】shell 脚本" referrerpolicy="no-referrer" loading="lazy"><span class="dur">15:25</span></div>
+        <div class="body">
+          <h3>【WM补完计划02】shell 脚本</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-23</span><span>播放 2140</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV18hqqB7E2W.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/ca31a603f3e0feb44e4adef647eec1dc93418315.jpg" alt="【WM补完计划01】river 窗口管理器" referrerpolicy="no-referrer" loading="lazy"><span class="dur">16:33</span></div>
+        <div class="body">
+          <h3>【WM补完计划01】river 窗口管理器</h3>
+          <div class="meta"><span>unixchad</span><span>2025-12-22</span><span>播放 4760</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV16TUTBrENh.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/e492500464d80f4d5c84e374cfa173ed74c8409b.jpg" alt="Thinkpad T14 笔记本装机" referrerpolicy="no-referrer" loading="lazy"><span class="dur">1:25</span></div>
+        <div class="body">
+          <h3>Thinkpad T14 笔记本装机</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-30</span><span>播放 4896</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1UUUKB9ErA.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/bd08e97c7988767c14ed5b151c858884a0de5563.jpg" alt="Thinkpad T14 完全拆解" referrerpolicy="no-referrer" loading="lazy"><span class="dur">8:24</span></div>
+        <div class="body">
+          <h3>Thinkpad T14 完全拆解</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-29</span><span>播放 9940</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV13xUTBbEP7.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/c092f74a971710d3677c8ce415c2b9f016a802ba.jpg" alt="Thinkpad T14 更换屏幕" referrerpolicy="no-referrer" loading="lazy"><span class="dur">5:34</span></div>
+        <div class="body">
+          <h3>Thinkpad T14 更换屏幕</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-28</span><span>播放 1.9万</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1xiUTBQE8h.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/ca42a51f460fe44bc6e97159e518ee985a70683f.jpg" alt="自体重训练" referrerpolicy="no-referrer" loading="lazy"><span class="dur">0:20</span></div>
+        <div class="body">
+          <h3>自体重训练</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-27</span><span>播放 2598</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1jVUTBqEzD.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/545443fe3196a273ee124e7ac012b757395d3349.jpg" alt="晨间冷水澡" referrerpolicy="no-referrer" loading="lazy"><span class="dur">0:20</span></div>
+        <div class="body">
+          <h3>晨间冷水澡</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-26</span><span>播放 3215</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1jLUTBKEPi.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/fccf28fd7dfcb9e7f843fe1af4c5418bc9802984.jpg" alt="低碳水沙拉" referrerpolicy="no-referrer" loading="lazy"><span class="dur">0:20</span></div>
+        <div class="body">
+          <h3>低碳水沙拉</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-25</span><span>播放 1536</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1YHUTBwEBH.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/657cd0ace23f4932c4c38023032ddd9b0c29a340.jpg" alt="莓果坚果麦片" referrerpolicy="no-referrer" loading="lazy"><span class="dur">0:20</span></div>
+        <div class="body">
+          <h3>莓果坚果麦片</h3>
+          <div class="meta"><span>unixchad</span><span>2025-11-24</span><span>播放 1963</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1seH1zVEqA.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/c4ec81ff0c45e7c558acb467259887a97ec6744a.jpg" alt="频道更新一年了，这是我对内容创作者的看法" referrerpolicy="no-referrer" loading="lazy"><span class="dur">7:38</span></div>
+        <div class="body">
+          <h3>频道更新一年了，这是我对内容创作者的看法</h3>
+          <div class="meta"><span>unixchad</span><span>2025-09-12</span><span>播放 4772</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV19cYuzJEd5.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/a7b8f7ed4c4c0e2d53105d93388bb695de23d1c6.jpg" alt="用shell写一个窗口管理器状态栏脚本: damblocks" referrerpolicy="no-referrer" loading="lazy"><span class="dur">16:34</span></div>
+        <div class="body">
+          <h3>用shell写一个窗口管理器状态栏脚本: damblocks</h3>
+          <div class="meta"><span>unixchad</span><span>2025-09-09</span><span>播放 4086</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV13kaYz1E4P.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/5d8050b6cc29acb3b3e7ed8d444303ad96450fbb.jpg" alt="你有后安装脚本吗？(post-install script)" referrerpolicy="no-referrer" loading="lazy"><span class="dur">19:43</span></div>
+        <div class="body">
+          <h3>你有后安装脚本吗？(post-install script)</h3>
+          <div class="meta"><span>unixchad</span><span>2025-09-06</span><span>播放 5373</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1bAvKzMENB.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/52442d12f9bcb29453e8fc4a41539fd6bcf890eb.jpg" alt="二手Thinkpad T14升级内存和硬盘(Arch Linux)" referrerpolicy="no-referrer" loading="lazy"><span class="dur">10:55</span></div>
+        <div class="body">
+          <h3>二手Thinkpad T14升级内存和硬盘(Arch Linux)</h3>
+          <div class="meta"><span>unixchad</span><span>2025-09-01</span><span>播放 2.5万</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1y3enzNEVQ.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/6be831c96df64a3dd4edfcb49eb2d708ee299f73.jpg" alt="我为什么选择二手Thinkpad和GNU/Linux？" referrerpolicy="no-referrer" loading="lazy"><span class="dur">8:38</span></div>
+        <div class="body">
+          <h3>我为什么选择二手Thinkpad和GNU/Linux？</h3>
+          <div class="meta"><span>unixchad</span><span>2025-08-29</span><span>播放 28.9万</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1ufeMzyE5Y.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/2d840128b0ea867da17b039586ea90b96d87a99f.jpg" alt="【unixchat mini 05】开源软件不等于自由软件" referrerpolicy="no-referrer" loading="lazy"><span class="dur">13:38</span></div>
+        <div class="body">
+          <h3>【unixchat mini 05】开源软件不等于自由软件</h3>
+          <div class="meta"><span>unixchad</span><span>2025-08-24</span><span>播放 4376</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1N6Y9zhEzv.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/d2c455f2ba6984f273b8505df5ad5492520cbe12.jpg" alt="你的 Arch Linux 安装多久了？" referrerpolicy="no-referrer" loading="lazy"><span class="dur">0:31</span></div>
+        <div class="body">
+          <h3>你的 Arch Linux 安装多久了？</h3>
+          <div class="meta"><span>unixchad</span><span>2025-08-22</span><span>播放 8488</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1w8b8zjEhE.html">
+        <div class="thumb"><img src="https://i2.hdslb.com/bfs/archive/e9b732fa1b8d2e45d7ad1d7657cc06041bc79248.jpg" alt="自由开源早餐 FOSS Breakfast" referrerpolicy="no-referrer" loading="lazy"><span class="dur">1:00</span></div>
+        <div class="body">
+          <h3>自由开源早餐 FOSS Breakfast</h3>
+          <div class="meta"><span>unixchad</span><span>2025-08-16</span><span>播放 8167</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV17jtRzMEaP.html">
+        <div class="thumb"><img src="https://i1.hdslb.com/bfs/archive/f210d8c561d7f310dc19c3fd95cd52e4ce84c2f6.jpg" alt="abduco + dvtm: 在tty中运行suckless dwm" referrerpolicy="no-referrer" loading="lazy"><span class="dur">12:53</span></div>
+        <div class="body">
+          <h3>abduco + dvtm: 在tty中运行suckless dwm</h3>
+          <div class="meta"><span>unixchad</span><span>2025-08-12</span><span>播放 4460</span></div>
+        </div>
+      </a>
+      <a class="item" href="posts/BV1fZ8qzAERG.html">
+        <div class="thumb"><img src="https://i0.hdslb.com/bfs/archive/6ef665a0f0dcfc5fceb79a8dfc91037905a40f63.jpg" alt="Arch Linux安装KDE桌面环境、中文locale汉化" referrerpolicy="no-referrer" loading="lazy"><span class="dur">20:28</span></div>
+        <div class="body">
+          <h3>Arch Linux安装KDE桌面环境、中文locale汉化</h3>
+          <div class="meta"><span>unixchad</span><span>2025-07-31</span><span>播放 1.6万</span></div>
+        </div>
+      </a>
+  </div>
+
+  <p class="note">共 30 条 · 点封面进单条播放页 · 视频版权归原作者所有</p>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='\u300c\u4eca\u5929\u4e5f\u8981\u597d\u597d\u5199\u4ee3\u7801\u5440\u300d';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=l')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.hitokoto){
+        el.textContent='\u300c'+d.hitokoto+'\u300d';
+        el.title=d.hitokoto+(d.from?' \u2014\u2014 '+d.from:'');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>
