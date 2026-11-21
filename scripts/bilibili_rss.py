@@ -62,6 +62,7 @@ BILI_INFO_API = "https://api.bilibili.com/x/space/acc/info"
 BILI_NAV_API = "https://api.bilibili.com/x/web-interface/nav"
 BILI_FINGER_API = "https://api.bilibili.com/x/frontend/finger/spi"
 BILI_VIEW_API = "https://api.bilibili.com/x/web-interface/view"
+BILI_REPLY_API = "https://api.bilibili.com/x/v2/reply/main"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -298,6 +299,37 @@ def get_video_detail(bvid: str, cookies: dict) -> dict:
     return {}
 
 
+def get_video_comments(aid, cookies: dict, limit: int = 3) -> list[dict]:
+    """获取视频热门评论（需 cookie）。返回 [{user, text, like}, ...]"""
+    if not aid:
+        return []
+    session = _build_session(cookies)
+    try:
+        resp = session.get(
+            BILI_REPLY_API,
+            params={"type": 1, "oid": aid, "mode": 3, "next": 0, "ps": limit},
+            headers=HEADERS,
+            timeout=10,
+        )
+        data = resp.json()
+        if data.get("code") != 0:
+            return []
+        replies = (data.get("data") or {}).get("replies") or []
+        result = []
+        for r in replies[:limit]:
+            text = (r.get("content") or {}).get("message", "").strip()
+            if not text:
+                continue
+            result.append({
+                "user": (r.get("member") or {}).get("uname", "网友"),
+                "text": text,
+                "like": r.get("like", 0),
+            })
+        return result
+    except Exception:
+        return []
+
+
 def get_videos_api(uid: int, count: int, cookies: dict) -> list[dict]:
     """从 B站 API 获取视频列表（带 cookie 绕过风控）"""
     session = _build_session(cookies)
@@ -363,7 +395,7 @@ def _format_count(n) -> str:
     return str(n)
 
 
-def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = "") -> str:
+def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = "", embed: bool = True) -> str:
     """生成优化的 RSS 2.0 XML"""
     now = datetime.now(CST).strftime("%a, %d %b %Y %H:%M:%S +0800")
     space_url = f"https://space.bilibili.com/{uid}"
@@ -421,6 +453,23 @@ def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = 
         # === 构造富 HTML 内容 ===
         content_parts = []
 
+        # 内嵌 B站官方 PC 播放器（默认开启）
+        # 用 player.bilibili.com 而非 html5mobileplayer.html：前者是干净的独立播放页，
+        # 后者是完整移动端 web app，塞进阅读器会得到一堆 data-v-xxx 乱 HTML。
+        if embed and bvid:
+            player_url = (
+                f"https://player.bilibili.com/player.html?bvid={bvid}&page=1"
+                f"&high_quality=1&danmaku=0&autoplay=0"
+            )
+            content_parts.append(
+                f'<div style="margin:12px 0;">'
+                f'<iframe src="{player_url}" '
+                f'width="100%" height="500" scrolling="no" frameborder="0" '
+                f'allowfullscreen="true" '
+                f'style="border:0;max-width:100%;aspect-ratio:16/9;">'
+                f'</iframe></div>'
+            )
+
         # 封面图（可点击跳转）
         if pic_url:
             content_parts.append(
@@ -477,7 +526,24 @@ def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = 
                     f'{clean_desc_html}</div>'
                 )
 
-        # 观看链接（不放 iframe：RSS 阅读器渲染 B站移动端播放器会得到一堆无样式的乱 HTML）
+        # 热门评论（用 cookie 抓取）
+        comments = v.get("comments") or []
+        if comments:
+            cm_parts = [f'<div style="margin:10px 0;padding:10px 12px;background:#fafafa;border-left:3px solid #00a1d6;border-radius:4px;">',
+                        '<div style="font-size:13px;color:#888;margin-bottom:6px;">💬 热门评论</div>']
+            for c in comments:
+                user = escape(str(c.get("user", "网友")))
+                text = escape(str(c.get("text", ""))).replace("\n", "<br>")
+                like_num = c.get("like", 0)
+                like_txt = f' <span style="color:#999;">({like_num} 赞)</span>' if like_num else ""
+                cm_parts.append(
+                    f'<div style="margin:6px 0;font-size:13px;color:#333;line-height:1.5;">'
+                    f'<strong style="color:#555;">{user}</strong>：{text}{like_txt}</div>'
+                )
+            cm_parts.append('</div>')
+            content_parts.append("".join(cm_parts))
+
+        # 观看链接（iframe 被屏蔽时仍可点这里跳转观看）
         content_parts.append(
             f'<p style="margin-top:12px;">'
             f'<a href="{link}" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a>'
@@ -542,7 +608,7 @@ def ts_to_str(ts: int) -> str:
     return datetime.fromtimestamp(ts, tz=CST).strftime("%Y-%m-%d %H:%M:%S")
 
 
-def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict) -> str | None:
+def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict, embed: bool = True) -> str | None:
     """执行获取 + 生成，返回 XML 内容"""
     has_cookie = bool(cookies)
     cookie_status = "有 cookie（可绕过风控）" if has_cookie else "无 cookie（依赖 RSSHub 镜像）"
@@ -576,25 +642,6 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict) -> 
             videos = videos[:count]
             print(f"  获取到 {len(videos)} 条视频")
 
-            # 如果有 cookie，补充视频详情（播放量等）
-            if has_cookie:
-                print(f"  [增强] 用 cookie 补充视频详情...")
-                enriched = 0
-                for v in videos:
-                    if v.get("bvid") and not v.get("view"):
-                        detail = get_video_detail(v["bvid"], cookies)
-                        if detail:
-                            v["view"] = detail.get("view", 0)
-                            v["danmaku"] = detail.get("danmaku", 0)
-                            v["reply"] = detail.get("reply", 0)
-                            v["like"] = detail.get("like", 0)
-                            v["coin"] = detail.get("coin", 0)
-                            v["favorite"] = detail.get("favorite", 0)
-                            v["duration"] = detail.get("duration", 0)
-                            enriched += 1
-                            time.sleep(0.3)  # 避免请求太快
-                if enriched:
-                    print(f"  [增强] 补充了 {enriched} 条视频的详情")
         else:
             print("  [警告] XML 解析无结果，回退到 API 方案")
             xml_text = None
@@ -637,6 +684,33 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict) -> 
                 print(f"    {base}/bilibili/user/video/{uid}")
             return None
 
+    # 统一增强：用 cookie 补充详情 + 热门评论（两条路径都经过这里）
+    if has_cookie:
+        print(f"\n  [增强] 用 cookie 补充视频详情和热门评论...")
+        enriched = 0
+        commented = 0
+        for v in videos:
+            bvid = v.get("bvid", "")
+            if not bvid:
+                continue
+            # 详情：补 aid / 播放量等统计
+            detail = get_video_detail(bvid, cookies)
+            if detail:
+                if detail.get("aid"):
+                    v["aid"] = detail["aid"]
+                for key in ("view", "danmaku", "reply", "like", "coin", "favorite", "duration"):
+                    if detail.get(key):
+                        v[key] = detail[key]
+                enriched += 1
+            time.sleep(0.25)
+            # 热门评论（用 aid）
+            cs = get_video_comments(v.get("aid", ""), cookies, limit=3)
+            if cs:
+                v["comments"] = cs
+                commented += 1
+            time.sleep(0.25)
+        print(f"  [增强] 补充了 {enriched} 条详情、{commented} 条视频的评论")
+
     # 显示最新视频
     print(f"\n  最新视频:")
     for i, v in enumerate(videos[:5]):
@@ -645,7 +719,7 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict) -> 
 
     # Step 3: 生成 RSS XML
     print(f"\n[3/3] 生成 RSS XML (优化呈现)...")
-    xml_content = generate_rss_xml(uid, up_name, videos)
+    xml_content = generate_rss_xml(uid, up_name, videos, embed=embed)
 
     output_path = str(Path(output_path).resolve())
     Path(output_path).write_text(xml_content, encoding="utf-8")
@@ -684,6 +758,10 @@ def main():
                         help="B站 cookie JSON 文件路径 (用 bili_login.py 抓取)")
     parser.add_argument("--serve", type=int, default=0, metavar="PORT",
                         help="生成后启动本地 HTTP 服务器 (指定端口号)")
+    parser.add_argument("--embed", dest="embed", action="store_true", default=True,
+                        help="在条目内嵌 B站官方 PC 播放器，可在阅读器里直接播放 (默认开启)")
+    parser.add_argument("--no-embed", dest="embed", action="store_false",
+                        help="不内嵌播放器，只显示封面+链接（阅读器屏蔽 iframe 时用）")
 
     args = parser.parse_args()
     uid = args.uid
@@ -701,7 +779,7 @@ def main():
     cookies = load_cookies(args.cookie) if args.cookie else {}
 
     # 执行
-    xml_content = run(uid, up_name, output_path, args.count, cookies)
+    xml_content = run(uid, up_name, output_path, args.count, cookies, embed=args.embed)
     if not xml_content:
         sys.exit(1)
 

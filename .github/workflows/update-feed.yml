@@ -49,11 +49,15 @@ jobs:
           root = ET.fromstring(text)
           items = root.findall('.//item')
           print('items:', len(items))
-          print('iframe:', text.count('iframe'))
+          print('official player iframes:', text.count('player.bilibili.com/player.html'))
+          print('mobile player (should be 0):', text.count('html5mobileplayer'))
+          print('credential leak (should be 0):', text.count('SESSDATA') + text.count('bili_jct'))
           if len(items) == 0:
               raise SystemExit('feed 没有条目')
-          if text.count('iframe') != 0:
-              raise SystemExit('feed 含 iframe，中止发布')
+          if text.count('html5mobileplayer') != 0:
+              raise SystemExit('发现移动端播放器，会渲染成乱页面，中止发布')
+          if text.count('SESSDATA') + text.count('bili_jct') != 0:
+              raise SystemExit('feed 含登录凭证，中止发布')
           PY
 
       - name: Commit and push
