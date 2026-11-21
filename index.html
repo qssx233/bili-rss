@@ -97,7 +97,12 @@ body {
   display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.92);
 }
 
-.head { padding:16px 8px 4px; }
+.head {
+  margin:0 6px 2px; padding:16px 18px; border-radius:22px;
+  background:rgba(255,255,255,0.50); border:1px solid rgba(255,255,255,0.62);
+  box-shadow:0 12px 30px -24px rgba(70,45,35,0.45);
+  -webkit-backdrop-filter:blur(26px) saturate(1.15); backdrop-filter:blur(26px) saturate(1.15);
+}
 .head h1 {
   margin:0 0 6px; font-size:23px; font-weight:400; letter-spacing:0.01em;
   color:var(--text); line-height:1.45;
@@ -186,7 +191,7 @@ a.dl:active { opacity:0.8; }
   .me { max-width:100%; margin-left:0; height:32px; padding:0 3px 0 11px; gap:7px; }
   .me .quote { font-size:11px; }
   .me img { width:26px; height:26px; }
-  .head { padding:14px 6px 2px; }
+  .head { padding:13px 14px 3px; margin:0 2px 2px; border-radius:18px; }
   .head h1 { font-size:20px; }
   .card { margin:10px 2px; padding:14px 15px; border-radius:17px; }
   .code { font-size:12.5px; }
@@ -216,12 +221,12 @@ a.dl:active { opacity:0.8; }
 
   <div class="head">
     <h1>qssx's RSS</h1>
-    <p>两个独立的 B站订阅源：UP主 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的视频投稿，以及我的「稍后再看」。都带封面、完整简介，点封面进干净播放页。</p>
+    <p>一间自己的小屋。两处入口：一处通向 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的新投稿，一处存着我还没看完的片刻。封面、简介与评论都留在这里，点开便是画面。</p>
   </div>
 
   <div class="card">
-    <h2>订阅源 · B站投稿</h2>
-    <p class="feed-sub">unixchad（UID 34569411）的新投稿，每天 08:00 自动更新，含 10 条热门评论。</p>
+    <h2>其一 · 投稿</h2>
+    <p class="feed-sub">他每一次更新，这里都会收到。每天清晨八点自动取回最新三十条，另附十条热门评论。</p>
     <div class="url-row">
       <div class="code" data-feed="feed.xml">feed.xml</div>
       <button data-copy>复制地址</button>
@@ -230,8 +235,8 @@ a.dl:active { opacity:0.8; }
   </div>
 
   <div class="card">
-    <h2>订阅源 · 稍后再看</h2>
-    <p class="feed-sub">我的 B站「稍后再看」列表，按加入时间倒序，最多 50 条，随时可能变动。</p>
+    <h2>其二 · 稍后再看</h2>
+    <p class="feed-sub">那些「等会儿再看」的片段，按放进来的次序排好，最多五十条；它随时会变，随缘翻翻就好。</p>
     <div class="url-row">
       <div class="code" data-feed="feed_watchlater.xml">feed_watchlater.xml</div>
       <button data-copy>复制地址</button>
@@ -241,28 +246,28 @@ a.dl:active { opacity:0.8; }
 
   <div class="card">
     <h2>OPML 订阅列表</h2>
-    <p>导入阅读器即可一次订阅上面两个源，支持 Feedly / Inoreader / Follow / AgrReader。</p>
-    <a class="dl" href="subscriptions.opml">下载 subscriptions.opml</a>
+    <p>两条支流，一次收下。导入阅读器即可，Feedly、Inoreader、Follow、AgrReader 都认得它。</p>
+    <a class="dl" href="subscriptions.opml">取走 subscriptions.opml</a>
   </div>
 
   <div class="card">
     <h2>订阅方法</h2>
     <ol class="steps">
-      <li>复制上面的订阅地址</li>
-      <li>粘贴到你的 RSS 阅读器（AgrReader / Feedly / Inoreader / Follow 等）</li>
-      <li>阅读器会自动定期拉取更新</li>
-      <li>AgrReader 用户：打开方式选「内容摘要」，点封面进播放页看视频</li>
+      <li>取走上面任意一枚地址</li>
+      <li>交给你的阅读器（AgrReader / Feedly / Inoreader / Follow 皆可）</li>
+      <li>此后它会替你守着更新，不必常常回来</li>
+      <li>AgrReader 里选「内容摘要」，轻点封面，就能进干净的播放页</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>内容说明</h2>
-    <p>投稿源每条包含：封面大图、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏统计、时长、10 条热门评论。</p>
-    <p>稍后再看源每条包含：封面、UP主 / 分区 / 观看进度、完整简介与统计，没有评论区（省接口调用）。</p>
-    <p>两个源都由 GitHub Actions 每天自动更新，不依赖本机。</p>
+    <p>投稿源：一张封面，一段完整简介，播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏与时长，再添十条热门评论。</p>
+    <p>稍再看源：封面、UP主与分区、看到哪一帧的进度，以及完整简介，唯独没有评论区。</p>
+    <p>两处都由 GitHub Actions 在清晨自动打点，这台电脑关着也不打紧。</p>
   </div>
 
-  <p class="note">本页面仅提供 RSS 订阅地址，视频版权归原作者所有。</p>
+  <p class="note">这里只负责递送地址，视频的一切仍归原作者所有。</p>
 </main>
 
 <div id="toast">已复制订阅地址</div>
