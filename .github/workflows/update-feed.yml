@@ -21,7 +21,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: python -m pip install requests
+        run: python -m pip install requests opencc-python-reimplemented
 
       - name: Write B站 cookie
         env:
@@ -54,6 +54,14 @@ jobs:
             --posts-dir posts \
             --list-output watchlater.html
 
+      - name: Generate blog feed (merge two blogs, trad to simp)
+        run: |
+          python scripts/blog_feed.py \
+            --output-feed feed_blog.xml \
+            --output-page blog.html \
+            --per-blog 10 \
+            --site-url "https://qssx233.github.io/bili-rss/"
+
       - name: Verify feeds
         run: |
           python - <<'PY'
@@ -80,7 +88,7 @@ jobs:
         run: |
           git config user.name "bili-rss-bot"
           git config user.email "qssx@aliyun.com"
-          git add feed.xml feed_watchlater.xml posts uploads.html watchlater.html
+          git add feed.xml feed_watchlater.xml feed_blog.xml blog.html posts uploads.html watchlater.html
           if git diff --cached --quiet; then
             echo "feed 无变化，跳过提交"
             exit 0

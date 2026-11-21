@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客 · qssx's RSS</title>
+<link rel="icon" type="image/svg+xml" href="assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<style>
+@font-face {
+  font-family:'ChillRound';
+  src:local('ChillRoundM'), local('寒蝉半圆体'), local('ChillRoundM Regular'),
+      url('assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+:root {
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
+body {
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+    "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
+}
+.bg {
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  background-image:url('assets/bg.jpg');
+  filter:saturate(1.06) brightness(1.02); opacity:0.94;
+}
+.veil {
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.06));
+}
+.page { position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:22px 16px 48px; }
+.card {
+  background:rgba(255,255,255,0.62); border:1px solid rgba(255,255,255,0.72);
+  border-radius:26px; padding:18px 20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(30px) saturate(1.2); backdrop-filter:blur(30px) saturate(1.2);
+}
+.topbar {
+  display:flex; align-items:center; gap:10px; margin:0 0 14px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}
+.topbar .brand {
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--accent-deep); font-size:12px;
+  padding:4px 13px 4px 5px; border-radius:999px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 4px 14px -10px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
+.me {
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:60%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.me .quote {
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5; flex:1 1 auto; min-width:0;
+}
+.me img {
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}
+.head { padding:6px 6px 18px; }
+.head h1 { margin:0 0 8px; font-size:24px; font-weight:400; letter-spacing:0.01em; line-height:1.4; }
+.head p { margin:0; font-size:13px; color:var(--text-mid); }
+.actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.btn {
+  display:inline-flex; align-items:center; gap:6px; padding:9px 20px; border-radius:999px;
+  font-size:13px; text-decoration:none; color:#fff;
+  background:linear-gradient(135deg,#fc86a7,#e95f8a);
+  box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);
+}
+.btn.ghost {
+  color:var(--accent-deep); background:rgba(255,255,255,0.72);
+  border:1px solid rgba(152,120,103,0.14); box-shadow:none;
+}
+.btn:active { opacity:0.85; }
+.grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(238px, 1fr)); gap:14px;
+  padding:2px 2px 8px;
+}
+.item {
+  display:flex; flex-direction:column; overflow:hidden; text-decoration:none; color:inherit;
+  border-radius:20px; background:rgba(255,255,255,0.56);
+  border:1px solid rgba(255,255,255,0.7);
+  box-shadow:0 10px 26px -20px rgba(70,45,35,0.5);
+  -webkit-backdrop-filter:blur(16px) saturate(1.15); backdrop-filter:blur(16px) saturate(1.15);
+  transition:transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+.item:hover {
+  transform:translateY(-3px); background:rgba(255,255,255,0.74);
+  box-shadow:0 18px 34px -22px rgba(70,45,35,0.55);
+}
+.item:active { opacity:0.9; }
+.thumb { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:rgba(255,255,255,0.4); }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.thumb .dur {
+  position:absolute; right:8px; bottom:8px; padding:2px 7px; border-radius:8px;
+  font-size:11px; color:#fff; background:rgba(30,22,18,0.6);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.body { padding:11px 13px 13px; }
+.body h3 {
+  margin:0 0 6px; font-size:13.5px; font-weight:400; line-height:1.55; color:var(--text);
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.meta { font-size:11.5px; color:var(--text-soft); display:flex; flex-wrap:wrap; gap:6px; }
+.meta span { white-space:nowrap; }
+.note { text-align:center; font-size:11.5px; color:var(--text-soft); margin:22px 0 0; }
+@media (max-width:600px) {
+  .page { padding:12px 10px 32px; }
+  .card { padding:14px; border-radius:20px; }
+  .topbar { flex-wrap:wrap; row-gap:8px; }
+  .topbar .brand { position:relative; z-index:2; }
+  .topbar .me { flex:0 0 100%; max-width:100%; margin-left:0; }
+  .head { padding:2px 4px 14px; }
+  .head h1 { font-size:20px; }
+  .grid { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px; }
+  .item { border-radius:16px; }
+  .body { padding:9px 10px 11px; }
+  .body h3 { font-size:12.5px; }
+}
+
+
+.item .thumb { aspect-ratio:16/10; }
+.item .excerpt {
+  margin:7px 0 0; font-size:11.5px; color:var(--text-soft); line-height:1.7;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.item .src {
+  display:inline-block; padding:1px 7px; border-radius:7px; font-size:10.5px;
+  color:var(--pink-deep); background:hsla(340,80%,93%,0.95);
+  border:1px solid hsla(340,70%,80%,0.55);
+}
+
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div><div class="veil"></div>
+<div class="page">
+  <div class="topbar">
+    <a class="brand" href="index.html" title="返回首页">
+      <img src="assets/bili.svg" alt="RSS">
+      <span>qssx's RSS</span>
+    </a>
+    <div class="me">
+      <span class="quote" id="hk"></span>
+      <img src="assets/portrait.jpg" alt="头像">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h1>博客</h1>
+      <p>只贏、狡猫三窝　·　共 20 篇　·　繁体已自动转为简体，点卡片跳原站阅读</p>
+      <div class="actions">
+        <a class="btn" href="feed_blog.xml">打开 feed</a>
+        <a class="btn ghost" href="index.html">返回首页</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+      <a class="item" href="https://www.onlywin.work/p/622" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!PCBn!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2b968621-8610-4ddf-bb52-8b2c8c6300e5_4032x2268.jpeg" alt="背后的闲话" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>背后的闲话</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-11-11</span></div>
+          <p class="excerpt">我没听到，那就是没有</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/42a" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!M5s-!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff6e9e62a-6cfa-40f8-9d67-2ff5607dfcfd_1477x1108.jpeg" alt="幸福是什么？" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>幸福是什么？</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-11-05</span></div>
+          <p class="excerpt">这一次，大家都在，我也在</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/shirahama-out-of-seasson/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/shirahama-3-scaled.jpg" alt="季节之外的白滨" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>季节之外的白滨</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-10-31</span></div>
+          <p class="excerpt">十月中旬去白滨玩了一下，印象中海边沙滩应该是夏天去，秋天的白滨有点超出常识了。不过我也没去过，欣然前往。 坐车快到一半行程的时候，在黑潮市场停下，观看了金枪鱼的...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/pink-expo-city-fall/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/expo-20206-fall-6-scaled.jpg" alt="粉色的万博之秋" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>粉色的万博之秋</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-10-31</span></div>
+          <p class="excerpt">十月中旬的时候去万博公园转了转，正好碰上粉黛子和扫帚花的季节。虽然波斯菊也在宣传册子上，还没怎么开。 我还是第一次见粉黛子，前两年我妈在国内去了，而且这几年都挺...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/%e6%9b%bc%e8%b0%b7%e5%87%ba%e5%b7%ae/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/10/Thai-sep-2026-6-scaled.jpg" alt="曼谷出差" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>曼谷出差</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>思辨</span><span>2026-10-30</span></div>
+          <p class="excerpt">迟到了一个月的出差记录，实在太忙了，最近才有时间写。九月末的时候我去曼谷出差了，这是我第一次去泰国，正好遇上了洪水。但幸运的是，抵达以后洪水的情况逐渐没有那么糟...</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/f63" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!n_1r!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F99e4c888-2c76-4f5b-9a7f-84703d29d2b0_5712x3213.jpeg" alt="你给我一整天，我回你一份礼" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>你给我一整天，我回你一份礼</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-29</span></div>
+          <p class="excerpt">关于时间、送礼，以及没登场的果昔</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/325" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!-rRf!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F82adc44a-9e9b-4074-ae9d-4ff8c2a97891_2896x1936.jpeg" alt="按摩按到睡着，是浪费还是享受？" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>按摩按到睡着，是浪费还是享受？</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-21</span></div>
+          <p class="excerpt">我花了一千五百元睡觉。</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/rss" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!zr5a!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F97e8baee-d5f3-4f0e-8c40-32cec1c2c21c_4032x2268.jpeg" alt="我有 RSS 订阅了，我很潮吧！" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>我有 RSS 订阅了，我很潮吧！</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-15</span></div>
+          <p class="excerpt">27 年前就有的东西，我现在才开始用</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/fb9" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!FCBP!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F238b4799-850c-403a-bec7-961dc285f4d9_4032x2268.jpeg" alt="抽了好几年才中的国庆观礼" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>抽了好几年才中的国庆观礼</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-11</span></div>
+          <p class="excerpt">没有我想要看到的名场面（？）</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/814" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!PH_e!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd4e52a13-b1de-4fb2-9d0a-a44be9edb519_4032x2268.jpeg" alt="我是喜欢送礼，还是期待别人给我回应？" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>我是喜欢送礼，还是期待别人给我回应？</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-02</span></div>
+          <p class="excerpt">心意递出去的那一刻，就已经完成了</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/cdb" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!MwPQ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F731d46a0-6df1-4d47-8785-2e378d56c135_4032x2268.jpeg" alt="既得利益者" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>既得利益者</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-10-01</span></div>
+          <p class="excerpt">凭什么是她？因为我也曾经是那个「她」</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/tarumi/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/09/kobe-2026.9.20.5-scaled.jpg" alt="山阳垂水" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>山阳垂水</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-09-24</span></div>
+          <p class="excerpt">单纯想分享一下绝美的夕阳和火烧云。 最近正逢日本白银周，五连休。每天都泡在商场里面，一直买到商场关门才回家。主要是买了个床。 出差的时候睡到了人生床垫，没错，就...</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/57f" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!uc9U!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0dca25e3-6335-4b21-ad4b-2dbd02853a97_4032x2268.jpeg" alt="老本不够吃" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>老本不够吃</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-09-23</span></div>
+          <p class="excerpt">（本篇内容可能会让人拳头硬，请先深呼吸，松开拳头后继续看下去。）</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/kumamoto%ef%bc%81/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/09/kumamoto-2-1-scaled.jpg" alt="熊本！" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>熊本！</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-09-21</span></div>
+          <p class="excerpt">姗姗来迟的熊本游记。前段时间回国一趟，结果得了新冠，一直躺在床上，也没什么好记录的。回到日本，身体刚好起来，就有了去熊本出差的放风机会。非常棒的单人旅行。起飞时...</p>
+        </div>
+      </a>
+      <a class="item" href="https://www.onlywin.work/p/0eb" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://substackcdn.com/image/fetch/$s_!liul!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5470c02f-2198-4cca-b4bd-ec864e6e4e5f_4743x3557.heic" alt="快闪北九州" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>快闪北九州</h3>
+          <div class="meta"><span class="src">只贏</span><span>2026-09-18</span></div>
+          <p class="excerpt">肝不烧，怎有资格称作快闪呢（？）</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/fireworks/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/08/fireworks-20260808.jpg" alt="花火大会" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>花火大会</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-08-10</span></div>
+          <p class="excerpt">周末在家的时候念叨着这个夏天还没去看过花火大会。 最近真的很热，一想到要在外面走，还有那么多人，就提不起劲来去看烟花。 周六晚上，去吃了一顿烤肉。...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/troubleshooting_for_tem_at_hydrangea_season/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/06/hydrangea_season-3-scaled.jpg" alt="在紫阳花开的季节修TEM" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>在紫阳花开的季节修TEM</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>日本</span><span>2026-06-25</span></div>
+          <p class="excerpt">上周一番周旋，最后找到了在日立工作过的人来给TEM检查。他打开了TEM的外壳，带着这台TEM厚厚的电路图来了。 这还是我第一次看到TEM的内部，坏了也很值了&amp;#...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/research/tem%e6%95%85%e9%9a%9c/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"></div>
+        <div class="body">
+          <h3>TEM故障</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>科研</span><span>2026-06-18</span></div>
+          <p class="excerpt">最近实验室的TEM光轴偏了，找不到原因。 这两天我几乎没怎么睡着，实在有些担心。一是贵重仪器责任重大，二是坏在我手上，我拿不出经费修，最后多半要博士时期的导师K...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/suzhou-trip/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/04/suzhou-20260425-3.jpg" alt="苏州游" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>苏州游</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>2026-04-30</span></div>
+          <p class="excerpt">非常迟来的苏州游记，一个月前因为要从上海坐飞机，不想很早从镇江坐车过去，也不想住在上海，所以就选择了住在苏州，早上再去上海坐飞机。上次来苏州还是17年，一晃八九...</p>
+        </div>
+      </a>
+      <a class="item" href="https://slykiten.com/life-note/s-home/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://slykiten.com/wp-content/uploads/2026/03/rice-scaled.jpg" alt="S的家" referrerpolicy="no-referrer" loading="lazy"></div>
+        <div class="body">
+          <h3>S的家</h3>
+          <div class="meta"><span class="src">狡猫三窝</span><span>生活杂谈</span><span>思辨</span><span>2026-03-28</span></div>
+          <p class="excerpt">今天去已故的S的家里。他的父母从广岛过来，今天就要回去了，听说我来了，就说要把S的大件家具电器，比如冰箱洗衣机微波炉之类的送给我用。 T开车带着S的父母来接我。...</p>
+        </div>
+      </a>
+  </div>
+
+  <p class="note">文字与图片版权归原作者所有 · 本页只做聚合，不转载全文</p>
+</div>
+<script>
+(function(){
+  var bg=document.getElementById('bg');
+  if(!bg) return;
+  var urls=['https://www.dmoe.cc/random.php?t='+Date.now(),
+            'https://t.alcy.cc/moe?t='+Date.now()];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length) return;
+    var img=new Image(), u=urls[i++];
+    img.onload=function(){ bg.style.backgroundImage="url('"+u+"')"; };
+    img.onerror=tryNext;
+    img.src=u;
+  }
+  tryNext();
+})();
+(function(){
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='\u300c\u4eca\u5929\u4e5f\u8981\u597d\u597d\u5199\u4ee3\u7801\u5440\u300d';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=l')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.hitokoto){
+        el.textContent='\u300c'+d.hitokoto+'\u300d';
+        el.title=d.hitokoto+(d.from?' \u2014\u2014 '+d.from:'');
+      }
+    })
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <title>我的 RSS 订阅</title>
     <dateCreated>Sat, 21 Nov 2026 18:40:00 +0800</dateCreated>
-    <dateModified>Sat, 21 Nov 2026 22:35:00 +0800</dateModified>
+    <dateModified>Sat, 21 Nov 2026 23:20:00 +0800</dateModified>
     <ownerName>杂口</ownerName>
   </head>
   <body>
@@ -14,6 +14,10 @@
       <!-- 在线镜像备份（无富媒体，仅当公网 feed 不可用时导入）：
       <outline text="unixchad（镜像）" title="unixchad（镜像）" type="rss" xmlUrl="https://rss.injahow.cn/bilibili/user/video/34569411" htmlUrl="https://space.bilibili.com/34569411/upload/video"/>
       -->
+    </outline>
+    <!-- 博客（两个外部博客合并，繁体已转简体） -->
+    <outline text="博客" title="博客">
+      <outline text="狡猫三窝 + 只贏（繁转简）" title="狡猫三窝 + 只贏（繁转简）" type="rss" xmlUrl="https://qssx233.github.io/bili-rss/feed_blog.xml" htmlUrl="https://slykiten.com"/>
     </outline>
   </body>
 </opml>

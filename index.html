@@ -46,7 +46,7 @@ body {
   background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.10) 55%, rgba(255,255,255,0.06));
 }
 .frame {
-  position:relative; z-index:1; max-width:760px; margin:28px auto 40px;
+  position:relative; z-index:1; max-width:880px; margin:28px auto 40px;
   padding:14px 14px 10px; border-radius:30px;
   background:linear-gradient(180deg,rgba(255,255,255,0.62),rgba(255,255,255,0.46));
   border:1px solid var(--hair);
@@ -170,6 +170,28 @@ a.dl:active { opacity:0.8; }
   font-size:11px; color:var(--pink-deep);
   background:rgba(255,255,255,0.78); border:1px solid hsla(340,70%,70%,0.4);
 }
+.sources {
+  display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:12px; margin:12px 6px 0;
+}
+.sources > .card { margin:0; display:flex; flex-direction:column; }
+.sources > .card.wide { grid-column:1 / -1; }
+.sources > .card .url-row { margin-top:auto; padding-top:6px; }
+.banner {
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  margin:12px 6px; padding:15px 18px; border-radius:20px;
+  background:var(--glass); border:1px solid rgba(255,255,255,0.74);
+  box-shadow:var(--shadow);
+  -webkit-backdrop-filter:blur(16px) saturate(1.12); backdrop-filter:blur(16px) saturate(1.12);
+}
+.banner p { flex:1 1 280px; margin:0; font-size:13px; color:var(--text-mid); }
+.cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 6px; align-items:start; }
+.cols > .card { margin:0; }
+@media (max-width:720px) {
+  .sources { grid-template-columns:1fr; }
+  .sources > .card.wide { grid-column:auto; }
+  .cols { grid-template-columns:1fr; }
+}
 .note {
   text-align:center; font-size:11.5px; color:var(--text-soft);
   margin:20px 0 12px; letter-spacing:0.02em;
@@ -221,52 +243,66 @@ a.dl:active { opacity:0.8; }
 
   <div class="head">
     <h1>qssx's RSS</h1>
-    <p>写在前面：这个站其实就干两件事，把 <a href="https://space.bilibili.com/34569411/upload/video">unixchad</a> 的投稿搬进 RSS，再把我自己的「稍后再看」也搬进去。做这玩意儿的理由很朴素——B 站首页太吵了，我只想安静地看几个固定的人更新，不想每次都被推荐流拽着走。所以有了下面这两个源，封面、简介、评论区都一起带着走，点开封面就是干净的播放页，不用再回首页一页页翻。</p>
+    <p>这个网站只做一件事，把 B 站上的视频搬进 RSS 阅读器。听起来好像很了不起——其实只是我懒得打开首页而已。</p>
+    <p>首页推荐实在太吵。每划一下，都是算法精心挑选的、我可能感兴趣但完全不想看的东西。于是我把范围缩小到几个人，让他们替我决定今天看什么。至于这样做有没有用，我也说不好，但至少清净。</p>
   </div>
 
-  <div class="card">
-    <h2>投稿源</h2>
-    <p class="feed-sub">unixchad 的投稿单独占一个源，因为他更新不算勤，属于那种平时没什么动静、但出来基本都值得看一眼的类型（个人感受，不杠）。每天早晨八点抓一次，取最近三十条，简介是完整的，不是被折叠成两行半的那种，另外附十条热门评论，先扫一眼评论区再决定要不要点，比看标题靠谱。</p>
-    <div class="url-row">
-      <div class="code" data-feed="feed.xml">feed.xml</div>
-      <button data-copy>复制地址</button>
+  <div class="sources">
+    <div class="card">
+      <h2>投稿源</h2>
+      <p class="feed-sub">unixchad 的投稿单独占一个源。他更新不算勤，属于平时毫无动静、一出新视频就值得看一眼的类型——这话是我说的，不负责。每天早晨八点抓一次，取最近三十条，简介是完整的，不是被折叠成两行的那种，还附十条热门评论：评论区往往比视频本身诚实。</p>
+      <div class="url-row">
+        <div class="code" data-feed="feed.xml">feed.xml</div>
+        <button data-copy>复制</button>
+      </div>
+      <a class="dl" href="uploads.html">查看视频列表 →</a>
     </div>
-    <a class="dl" href="uploads.html">查看视频列表 →</a>
-  </div>
 
-  <div class="card">
-    <h2>稍后再看</h2>
-    <p class="feed-sub">「稍后再看」这四个字大概是 B 站最善意的谎言。我加进去的东西，基本等于扔进黑洞，一年也想不起来点开一次，但它该涨还是涨。所以干脆让它也变成一个源：取最近五十条，按加入时间倒序排好，说不定哪天就真翻出几条当初想看却没看的。</p>
-    <div class="url-row">
-      <div class="code" data-feed="feed_watchlater.xml">feed_watchlater.xml</div>
-      <button data-copy>复制地址</button>
+    <div class="card">
+      <h2>稍后再看</h2>
+      <p class="feed-sub">「稍后再看」是 B 站最大的谎言。我放进去的东西从来没有再打开过，它却还是照旧一天天变多。既然它执意要长大，那就让它也变成一个源——取最近五十条，按加入时间倒序排好。说不定哪天我就真的点开了。……当然，不会的。</p>
+      <div class="url-row">
+        <div class="code" data-feed="feed_watchlater.xml">feed_watchlater.xml</div>
+        <button data-copy>复制</button>
+      </div>
+      <a class="dl" href="watchlater.html">查看视频列表 →</a>
     </div>
-    <a class="dl" href="watchlater.html">查看视频列表 →</a>
+
+    <div class="card wide">
+      <h2>博客</h2>
+      <p class="feed-sub">两个我在读的博客。「狡猫三窝」写日本的生活杂记，「只贏」原本用繁体写，我替它转成了简体，省得你逐字去猜。它们不是视频，没有播放器，点开就是原站的文章——我只放了摘要和一张首图，剩下的交给作者本人。</p>
+      <div class="url-row">
+        <div class="code" data-feed="feed_blog.xml">feed_blog.xml</div>
+        <button data-copy>复制</button>
+      </div>
+      <a class="dl" href="blog.html">查看文章列表 →</a>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>OPML（懒人包）</h2>
-    <p>懒得一条条加的话，这儿还有份 OPML，两个源都打包好了，丢进阅读器一次就能订完，不用来回复制粘贴。Feedly、Inoreader、Follow 和 AgrReader 都认这个格式。</p>
-    <a class="dl" href="subscriptions.opml">下载 subscriptions.opml</a>
+  <div class="banner">
+    <p>懒得一条条加？这里有一份 OPML，三个源都打包好了，丢进阅读器一次订完，不必来回复制粘贴。</p>
+    <a class="dl" href="subscriptions.opml">下载 OPML</a>
   </div>
 
-  <div class="card">
-    <h2>怎么订阅</h2>
-    <ol class="steps">
-      <li>上面随便挑一个地址复制，两个都想要就都复制。</li>
-      <li>粘进你常用的阅读器，AgrReader、Feedly、Inoreader、Follow 都行。</li>
-      <li>剩下的事交给它，更新是自动的，你不用天天回来查。</li>
-      <li>用 AgrReader 的注意一下：「打开方式」得设成「内容摘要」，不然点封面进不了播放页（这个坑我踩过）。</li>
-    </ol>
+  <div class="cols">
+    <div class="card">
+      <h2>怎么用</h2>
+      <ol class="steps">
+        <li>上面随便挑一个地址复制。想要全部，就全部复制。</li>
+        <li>粘进你常用的阅读器，AgrReader、Feedly、Inoreader、Follow 都行。</li>
+        <li>剩下的事交给它。更新是自动的，你不用天天回来确认我还活着。</li>
+        <li>用 AgrReader 的注意：「打开方式」得设成「内容摘要」，否则点封面进不了播放页。这个坑我踩过，不必再踩一次。</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>每条里有什么</h2>
+      <p>投稿源每条都带封面、完整简介、播放 / 弹幕 / 评论 / 点赞 / 投币 / 收藏、时长，还有十条热门评论，正文里嵌着官方播放器。稍再看源轻一些：封面、UP主、分区、看到第几秒的进度和简介，评论区没带——一个待看清单，要那么全干嘛。</p>
+      <p>博客源只有摘要和一张首图，想看全篇得点进原站。两个视频源跑在 GitHub Actions 上，每天早上自动跑一次，我哪怕一直不开电脑，它们也照常工作——这一点比我可靠多了。</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>每条里有什么</h2>
-    <p>投稿源里每条都带封面大图、完整简介，播放、弹幕、评论、点赞、投币、收藏这几项数据加时长，正文里还嵌了官方播放器，另外十条热门评论。稍再看源轻一点：封面、UP主、分区、看到第几秒的进度和简介，评论区没带——一个待看清单，要那么全干嘛。</p>
-    <p>两个源都跑在 GitHub Actions 上，每天早上自动跑一次，电脑关着也不影响。</p>
-  </div>
-
-  <p class="note">视频版权归原作者所有。这站干的事就是帮你把地址整理好，顺便省几次点击而已。</p>
+  <p class="note">视频与文字版权归原作者所有。这个站干的事，只是把地址整理好，顺便省下你几次点击。</p>
 </main>
 
 <div id="toast">已复制订阅地址</div>
