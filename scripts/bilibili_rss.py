@@ -299,6 +299,22 @@ def get_video_detail(bvid: str, cookies: dict) -> dict:
     return {}
 
 
+def _clean_comment_text(text: str) -> str:
+    """清掉 ChillRoundM 字体不支持的字符（emoji 等），避免渲染成空白方块/空隙。
+    保留 CJK、拉丁、数字、常见标点；emoji 直接丢弃（多为装饰，丢掉不影响语义）。"""
+    out = []
+    for ch in text:
+        cp = ord(ch)
+        # 丢弃 emoji 与装饰符号区
+        if (0x1F000 <= cp <= 0x1FAFF or   # emoji
+            0x2600 <= cp <= 0x27BF or     # 杂项符号/装饰
+            0x2B00 <= cp <= 0x2BFF or     # 杂项符号箭头等
+            cp in (0xFE0F, 0x200D)):      # 变体选择符/零宽连接
+            continue
+        out.append(ch)
+    return "".join(out).strip()
+
+
 def get_video_comments(aid, cookies: dict, limit: int = 3) -> list[dict]:
     """获取视频热门评论（需 cookie）。返回 [{user, text, like}, ...]"""
     if not aid:
@@ -317,11 +333,11 @@ def get_video_comments(aid, cookies: dict, limit: int = 3) -> list[dict]:
         replies = (data.get("data") or {}).get("replies") or []
         result = []
         for r in replies[:limit]:
-            text = (r.get("content") or {}).get("message", "").strip()
+            text = _clean_comment_text((r.get("content") or {}).get("message", ""))
             if not text:
                 continue
             result.append({
-                "user": (r.get("member") or {}).get("uname", "网友"),
+                "user": _clean_comment_text((r.get("member") or {}).get("uname", "网友")) or "网友",
                 "text": text,
                 "like": r.get("like", 0),
             })
@@ -434,7 +450,7 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
             f'<a href="{link}" style="display:inline-block;padding:8px 20px;'
             f'background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;'
             f'text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;'
-            f'box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">▶ 播放视频</a></p>'
+            f'box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">播放视频</a></p>'
         )
 
     # 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
@@ -458,24 +474,24 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
         f'{escape(title)}</a></h3>'
     )
 
-    # 统计（紧凑小字）
+    # 统计（纯文字标签，避免 emoji 在 ChillRoundM 字体下显示空白方块）
     stats = []
     if view_count or play_count:
-        stats.append(f'▶ {_format_count(view_count or play_count)}')
+        stats.append(f'播放 {_format_count(view_count or play_count)}')
     if danmaku:
         stats.append(f'弹幕 {_format_count(danmaku)}')
     if reply:
         stats.append(f'评论 {_format_count(reply)}')
     if like:
-        stats.append(f'👍 {_format_count(like)}')
+        stats.append(f'点赞 {_format_count(like)}')
     if coin:
-        stats.append(f'🪙 {_format_count(coin)}')
+        stats.append(f'投币 {_format_count(coin)}')
     if favorite:
-        stats.append(f'⭐ {_format_count(favorite)}')
+        stats.append(f'收藏 {_format_count(favorite)}')
     if duration:
-        stats.append(f'⏱ {_format_duration(duration)}')
+        stats.append(f'时长 {_format_duration(duration)}')
     elif length:
-        stats.append(f'⏱ {length}')
+        stats.append(f'时长 {length}')
     if stats:
         parts.append(
             f'<div style="margin:0 0 12px;padding:8px 12px;'
@@ -505,7 +521,7 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
               'background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);'
               'border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);">',
               '<div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;'
-              'font-weight:500;">💬 热门评论</div>']
+              'font-weight:500;">热门评论</div>']
         for c in comments:
             user = escape(str(c.get("user", "网友")))
             text = escape(str(c.get("text", ""))).replace("\n", "<br>")
@@ -515,7 +531,7 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
             cm.append(
                 f'<div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);'
                 f'font-size:12px;color:hsl(31,45%,24%);line-height:1.6;">'
-                f'<strong style="color:hsl(197,39%,56%);">{user}</strong>：'
+                f'<strong style="color:hsl(4,72%,35%);">{user}</strong>：'
                 f'{text}{like_txt}</div>'
             )
         cm.append('</div>')
@@ -644,7 +660,7 @@ def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) ->
   font-display:swap;
 }}
 :root {{
-  --bg:hsl(35,36%,96%); --surface:hsl(36,38%,98%);
+  --bg:hsl(35,36%,96%); --surface:hsla(36,38%,98%,0.72);
   --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
   --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
   --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
@@ -652,7 +668,8 @@ def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) ->
 * {{ box-sizing:border-box; }}
 html,body {{ margin:0; padding:0; min-height:100%; }}
 body {{
-  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+    "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
   color:var(--text); line-height:1.7; background-color:var(--bg);
   background-image:url('https://www.loliapi.com/acg/');
   background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
