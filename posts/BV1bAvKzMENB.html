@@ -5,19 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>二手Thinkpad T14升级内存和硬盘(Arch Linux) - unixchad</title>
 <style>
-* { box-sizing: border-box; }
-body { margin:0; padding:16px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif; background:#fff; color:#222; max-width:820px; margin:0 auto; }
-a { -webkit-tap-highlight-color:transparent; }
+@font-face {
+  font-family:'ChillRoundM';
+  src:url('../assets/ChillRoundM.woff2') format('woff2');
+  font-display:swap;
+}
+:root {
+  --bg:hsl(35,36%,96%); --surface:hsl(36,38%,98%);
+  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
+  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
+  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; min-height:100%; }
+body {
+  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text); line-height:1.7; background-color:var(--bg);
+  background-image:url('https://www.loliapi.com/acg/');
+  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+}
+.page { max-width:820px; margin:0 auto; padding:24px 18px 48px; }
+.card {
+  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
+  border-radius:20px; padding:22px; box-shadow:var(--shadow);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+}
+.card h3 { color:var(--text); }
+a { color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }
+a:active { opacity:0.7; }
+@media (max-width:600px) {
+  .page { padding:14px 10px 32px; }
+  .card { padding:16px; border-radius:16px; }
+}
 </style>
 </head>
 <body>
-<div style="margin:0 0 10px;line-height:0;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB"><img src="http://i1.hdslb.com/bfs/archive/52442d12f9bcb29453e8fc4a41539fd6bcf890eb.jpg" style="width:100%;border-radius:8px;" alt="二手Thinkpad T14升级内存和硬盘(Arch Linux)" /></a></div>
-<p style="margin:0 0 10px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="display:inline-block;padding:7px 16px;background:#00a1d6;color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>
-<div style="margin:0 0 10px;"><iframe src="https://player.bilibili.com/player.html?bvid=BV1bAvKzMENB&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
-<h3 style="margin:0 0 8px;font-size:16px;line-height:1.4;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="text-decoration:none;color:#222;">二手Thinkpad T14升级内存和硬盘(Arch Linux)</a></h3>
-<div style="margin:0 0 10px;padding:6px 10px;background:#f5f6f7;border-radius:6px;font-size:12px;color:#666;">▶ 2.5万 · 弹幕 16 · 评论 141 · 👍 446 · 🪙 119 · ⭐ 391 · ⏱ 10:55</div>
-<div style="margin:0 0 10px;font-size:13px;color:#444;line-height:1.65;">今天我升级了二手 Thinkpad T14 GEN 1 AMD R7 4750U 的内存和硬盘。我选择了海力士 DDR4 3200MHz 8G 内存和西部数据 SN520 m.2 NVMe 512G 固态硬盘。值得注意的是 T14 GEN1 AMD 是Thinkpad T 系列中最后一代可以在 4G 模块的 WWAN 接口使用 B-key 2242 规格、NVMe协议固态硬盘的。视频的后半部分记录了在 Arch Linux 中对新硬盘的一些分区、格式化、加密以及自动挂载的步骤。<br><br>00:00 禁用电池<br>00:28 拆机<br>00:50 添加内存<br>01:14 添加硬盘<br>02:00 查看内存(free, fastfetch)<br>02:17 查看硬盘(lsblk, smartctl)<br>03:06 分区(fdisk)<br>03:27 LUKS容器(cryptsetup)<br>04:20 文件系统(mkfs)<br>04:51 挂载点(mount)<br>05:25 自动挂载(fstab)<br>06:57 自动解密(crypttab)<br>10:30 结语<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
-<div style="margin:12px 0 0;padding:10px 12px;background:#fafbfc;border-left:3px solid #00a1d6;border-radius:0 6px 6px 0;"><div style="font-size:12px;color:#888;margin-bottom:8px;">💬 热门评论</div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">苦瓜白果莲子心</strong>：BIOS里面禁用电池，然后你觉得不用拆电池来换配件？祝你好运！ <span style="color:#aaa;font-size:11px;">25 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">_dT_Tb_</strong>：我Linux也用了十几年了，到现在还是不常用命令和参数记不住，要么man要么tldr，再麻烦点的多命令复合实现一个操作，先这在那，没专项的gui工具是真不会玩了。 <span style="color:#aaa;font-size:11px;">20 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">横扫内存的指针</strong>：up可以考虑一下出一期视频讲讲linux文件系统选择吗[星星眼] <span style="color:#aaa;font-size:11px;">19 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">我一定要脱胎换骨</strong>：简介做的真好，排版很精美，标点符号也很标准 <span style="color:#aaa;font-size:11px;">13 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">人机注册的用户</strong>：自由软件需要(自由)硬件的支持,如今很多硬件无法支持一些自由软件比如手机，很好奇up理想的自由硬件(包括手机,手表)是什么样的，毕竟像旧版ThinkPad的设计也会越来越少。 <span style="color:#aaa;font-size:11px;">9 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">薛定谔的凌波泪</strong>：T14gen2 intel版路过[doge]1145g7 其实tigerlake的ipc做到了zen3水平 就是核心数少 但是除了编译慢一点其他无感 日用很流畅。相比于amd版本xe核显性能差不多驱动更稳定，c口有雷电四协议，而且内屏可以升级4k，编解码也挺完善的。核显可以1080p下跑mc低配光影能有个60帧。2000买的又花了500升级4khdr屏幕 内存板载16g3200又加了一根16g3200，然后就可以流畅硬解4kav1hdr10，不得不说看电影码字是真的爽，fedora下指纹、摄像头豆完美驱动。唯一的遗憾就是libinput调不了小红点灵敏度 太灵敏了没法用[笑哭] <span style="color:#aaa;font-size:11px;">8 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">igofreely</strong>：为啥我的thinkpad t14 gen1 r7 4570u 4g模块位装不了硬盘，只要硬盘装上去立马不能开机，拆硬盘也不能开机，而且几个原件发热厉害，拆下硬盘，主板上的一个按钮按一下又能开机了。 <span style="color:#aaa;font-size:11px;">6 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">在水风间</strong>：配两张22年的照片，另外说一下iPhone6s屏幕真的很润[doge] <span style="color:#aaa;font-size:11px;">5 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">陈晨1325</strong>：up您好，请问您的t14amd二手购入价格是多少？方便推荐一下购买店铺吗？ <span style="color:#aaa;font-size:11px;">4 赞</span></div></div>
-<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="color:#00a1d6;text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>
+<div class="page"><div class="card">
+<div style="margin:0 0 12px;line-height:0;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB"><img src="http://i1.hdslb.com/bfs/archive/52442d12f9bcb29453e8fc4a41539fd6bcf890eb.jpg" style="width:100%;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="二手Thinkpad T14升级内存和硬盘(Arch Linux)" /></a></div>
+<p style="margin:0 0 12px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="display:inline-block;padding:8px 20px;background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">▶ 播放视频</a></p>
+<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1bAvKzMENB&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
+<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="text-decoration:none;color:hsl(31,45%,24%);">二手Thinkpad T14升级内存和硬盘(Arch Linux)</a></h3>
+<div style="margin:0 0 12px;padding:8px 12px;background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">▶ 2.5万 · 弹幕 16 · 评论 141 · 👍 446 · 🪙 119 · ⭐ 391 · ⏱ 10:55</div>
+<div style="margin:0 0 10px;font-size:13px;color:hsl(31,45%,24%);line-height:1.7;">今天我升级了二手 Thinkpad T14 GEN 1 AMD R7 4750U 的内存和硬盘。我选择了海力士 DDR4 3200MHz 8G 内存和西部数据 SN520 m.2 NVMe 512G 固态硬盘。值得注意的是 T14 GEN1 AMD 是Thinkpad T 系列中最后一代可以在 4G 模块的 WWAN 接口使用 B-key 2242 规格、NVMe协议固态硬盘的。视频的后半部分记录了在 Arch Linux 中对新硬盘的一些分区、格式化、加密以及自动挂载的步骤。<br><br>00:00 禁用电池<br>00:28 拆机<br>00:50 添加内存<br>01:14 添加硬盘<br>02:00 查看内存(free, fastfetch)<br>02:17 查看硬盘(lsblk, smartctl)<br>03:06 分区(fdisk)<br>03:27 LUKS容器(cryptsetup)<br>04:20 文件系统(mkfs)<br>04:51 挂载点(mount)<br>05:25 自动挂载(fstab)<br>06:57 自动解密(crypttab)<br>10:30 结语<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<div style="margin:14px 0 0;padding:12px 14px;background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);"><div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;font-weight:500;">💬 热门评论</div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">苦瓜白果莲子心</strong>：BIOS里面禁用电池，然后你觉得不用拆电池来换配件？祝你好运！ <span style="color:hsl(34,29%,60%);font-size:11px;">25 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">_dT_Tb_</strong>：我Linux也用了十几年了，到现在还是不常用命令和参数记不住，要么man要么tldr，再麻烦点的多命令复合实现一个操作，先这在那，没专项的gui工具是真不会玩了。 <span style="color:hsl(34,29%,60%);font-size:11px;">20 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">横扫内存的指针</strong>：up可以考虑一下出一期视频讲讲linux文件系统选择吗[星星眼] <span style="color:hsl(34,29%,60%);font-size:11px;">19 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">我一定要脱胎换骨</strong>：简介做的真好，排版很精美，标点符号也很标准 <span style="color:hsl(34,29%,60%);font-size:11px;">13 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">人机注册的用户</strong>：自由软件需要(自由)硬件的支持,如今很多硬件无法支持一些自由软件比如手机，很好奇up理想的自由硬件(包括手机,手表)是什么样的，毕竟像旧版ThinkPad的设计也会越来越少。 <span style="color:hsl(34,29%,60%);font-size:11px;">9 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">薛定谔的凌波泪</strong>：T14gen2 intel版路过[doge]1145g7 其实tigerlake的ipc做到了zen3水平 就是核心数少 但是除了编译慢一点其他无感 日用很流畅。相比于amd版本xe核显性能差不多驱动更稳定，c口有雷电四协议，而且内屏可以升级4k，编解码也挺完善的。核显可以1080p下跑mc低配光影能有个60帧。2000买的又花了500升级4khdr屏幕 内存板载16g3200又加了一根16g3200，然后就可以流畅硬解4kav1hdr10，不得不说看电影码字是真的爽，fedora下指纹、摄像头豆完美驱动。唯一的遗憾就是libinput调不了小红点灵敏度 太灵敏了没法用[笑哭] <span style="color:hsl(34,29%,60%);font-size:11px;">8 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">igofreely</strong>：为啥我的thinkpad t14 gen1 r7 4570u 4g模块位装不了硬盘，只要硬盘装上去立马不能开机，拆硬盘也不能开机，而且几个原件发热厉害，拆下硬盘，主板上的一个按钮按一下又能开机了。 <span style="color:hsl(34,29%,60%);font-size:11px;">6 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">在水风间</strong>：配两张22年的照片，另外说一下iPhone6s屏幕真的很润[doge] <span style="color:hsl(34,29%,60%);font-size:11px;">5 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">陈晨1325</strong>：up您好，请问您的t14amd二手购入价格是多少？方便推荐一下购买店铺吗？ <span style="color:hsl(34,29%,60%);font-size:11px;">4 赞</span></div></div>
+<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1bAvKzMENB" style="color:hsl(197,39%,45%);text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>
+</div></div>
+<script>
+(function(){
+  var u='https://www.loliapi.com/acg/?t='+Date.now();
+  var img=new Image();
+  img.onload=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
+  img.onerror=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
+  img.src=u;
+})();
+</script>
 </body>
 </html>

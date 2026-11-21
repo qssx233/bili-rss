@@ -425,14 +425,16 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
     # 封面图放第一位（用户要求）
     if pic_url:
         parts.append(
-            f'<div style="margin:0 0 10px;line-height:0;">'
-            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:8px;" '
-            f'alt="{escape(title)}" /></a></div>'
+            f'<div style="margin:0 0 12px;line-height:0;">'
+            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:12px;'
+            f'box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="{escape(title)}" /></a></div>'
         )
         parts.append(
-            f'<p style="margin:0 0 10px;">'
-            f'<a href="{link}" style="display:inline-block;padding:7px 16px;background:#00a1d6;'
-            f'color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>'
+            f'<p style="margin:0 0 12px;">'
+            f'<a href="{link}" style="display:inline-block;padding:8px 20px;'
+            f'background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;'
+            f'text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;'
+            f'box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">▶ 播放视频</a></p>'
         )
 
     # 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
@@ -442,7 +444,8 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
             f"&high_quality=1&danmaku=0&autoplay=0"
         )
         parts.append(
-            f'<div style="margin:0 0 10px;">'
+            f'<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;'
+            f'box-shadow:0 3px 12px rgba(0,0,0,0.12);">'
             f'<iframe src="{player_url}" width="100%" height="480" scrolling="no" '
             f'frameborder="0" allowfullscreen="true" '
             f'style="border:0;display:block;max-width:100%;"></iframe></div>'
@@ -450,8 +453,9 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
 
     # 标题
     parts.append(
-        f'<h3 style="margin:0 0 8px;font-size:16px;line-height:1.4;">'
-        f'<a href="{link}" style="text-decoration:none;color:#222;">{escape(title)}</a></h3>'
+        f'<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;">'
+        f'<a href="{link}" style="text-decoration:none;color:hsl(31,45%,24%);">'
+        f'{escape(title)}</a></h3>'
     )
 
     # 统计（紧凑小字）
@@ -474,8 +478,10 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
         stats.append(f'⏱ {length}')
     if stats:
         parts.append(
-            f'<div style="margin:0 0 10px;padding:6px 10px;background:#f5f6f7;'
-            f'border-radius:6px;font-size:12px;color:#666;">{" · ".join(stats)}</div>'
+            f'<div style="margin:0 0 12px;padding:8px 12px;'
+            f'background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);'
+            f'border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">'
+            f'{" · ".join(stats)}</div>'
         )
 
     # 简介
@@ -487,25 +493,30 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
         clean_desc = re.sub(r'<[^>]+>', '', clean_desc).strip()
         if clean_desc:
             parts.append(
-                f'<div style="margin:0 0 10px;font-size:13px;color:#444;line-height:1.65;">'
+                f'<div style="margin:0 0 10px;font-size:13px;'
+                f'color:hsl(31,45%,24%);line-height:1.7;">'
                 f'{escape(clean_desc).replace(chr(10), "<br>")}</div>'
             )
 
     # 热门评论（每个独立成行，分隔清晰）
     comments = v.get("comments") or []
     if comments:
-        cm = ['<div style="margin:12px 0 0;padding:10px 12px;background:#fafbfc;'
-              'border-left:3px solid #00a1d6;border-radius:0 6px 6px 0;">',
-              '<div style="font-size:12px;color:#888;margin-bottom:8px;">💬 热门评论</div>']
+        cm = ['<div style="margin:14px 0 0;padding:12px 14px;'
+              'background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);'
+              'border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);">',
+              '<div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;'
+              'font-weight:500;">💬 热门评论</div>']
         for c in comments:
             user = escape(str(c.get("user", "网友")))
             text = escape(str(c.get("text", ""))).replace("\n", "<br>")
             like_num = c.get("like", 0)
-            like_txt = f' <span style="color:#aaa;font-size:11px;">{like_num} 赞</span>' if like_num else ""
+            like_txt = (f' <span style="color:hsl(34,29%,60%);font-size:11px;">'
+                        f'{like_num} 赞</span>') if like_num else ""
             cm.append(
-                f'<div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;'
-                f'color:#333;line-height:1.55;">'
-                f'<strong style="color:#00a1d6;">{user}</strong>：{text}{like_txt}</div>'
+                f'<div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);'
+                f'font-size:12px;color:hsl(31,45%,24%);line-height:1.6;">'
+                f'<strong style="color:hsl(197,39%,56%);">{user}</strong>：'
+                f'{text}{like_txt}</div>'
             )
         cm.append('</div>')
         parts.append("".join(cm))
@@ -513,8 +524,9 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
     # 兜底链接
     parts.append(
         f'<p style="margin:14px 0 0;font-size:12px;">'
-        f'<a href="{bili_link}" style="color:#00a1d6;text-decoration:none;">在 B站观看原视频</a>'
-        f' · <a href="{space_url}" style="color:#999;text-decoration:none;">UP主主页</a></p>'
+        f'<a href="{bili_link}" style="color:hsl(197,39%,45%);text-decoration:none;">'
+        f'在 B站观看原视频</a> · '
+        f'<a href="{space_url}" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>'
     )
     return "\n".join(parts)
 
@@ -626,13 +638,53 @@ def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) ->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{escape(title)} - {escape(up_name)}</title>
 <style>
-* {{ box-sizing: border-box; }}
-body {{ margin:0; padding:16px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif; background:#fff; color:#222; max-width:820px; margin:0 auto; }}
-a {{ -webkit-tap-highlight-color:transparent; }}
+@font-face {{
+  font-family:'ChillRoundM';
+  src:url('../assets/ChillRoundM.woff2') format('woff2');
+  font-display:swap;
+}}
+:root {{
+  --bg:hsl(35,36%,96%); --surface:hsl(36,38%,98%);
+  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
+  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
+  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+}}
+* {{ box-sizing:border-box; }}
+html,body {{ margin:0; padding:0; min-height:100%; }}
+body {{
+  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text); line-height:1.7; background-color:var(--bg);
+  background-image:url('https://www.loliapi.com/acg/');
+  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+}}
+.page {{ max-width:820px; margin:0 auto; padding:24px 18px 48px; }}
+.card {{
+  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
+  border-radius:20px; padding:22px; box-shadow:var(--shadow);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+}}
+.card h3 {{ color:var(--text); }}
+a {{ color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }}
+a:active {{ opacity:0.7; }}
+@media (max-width:600px) {{
+  .page {{ padding:14px 10px 32px; }}
+  .card {{ padding:16px; border-radius:16px; }}
+}}
 </style>
 </head>
 <body>
+<div class="page"><div class="card">
 {body}
+</div></div>
+<script>
+(function(){{
+  var u='https://www.loliapi.com/acg/?t='+Date.now();
+  var img=new Image();
+  img.onload=function(){{ document.body.style.backgroundImage="url('"+u+"')"; }};
+  img.onerror=function(){{ document.body.style.backgroundImage="url('"+u+"')"; }};
+  img.src=u;
+}})();
+</script>
 </body>
 </html>'''
 

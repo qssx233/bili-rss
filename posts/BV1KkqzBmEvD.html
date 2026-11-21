@@ -5,19 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>【WM补完计划04】qutebrowser 浏览器 - unixchad</title>
 <style>
-* { box-sizing: border-box; }
-body { margin:0; padding:16px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif; background:#fff; color:#222; max-width:820px; margin:0 auto; }
-a { -webkit-tap-highlight-color:transparent; }
+@font-face {
+  font-family:'ChillRoundM';
+  src:url('../assets/ChillRoundM.woff2') format('woff2');
+  font-display:swap;
+}
+:root {
+  --bg:hsl(35,36%,96%); --surface:hsl(36,38%,98%);
+  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
+  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
+  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+}
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; min-height:100%; }
+body {
+  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text); line-height:1.7; background-color:var(--bg);
+  background-image:url('https://www.loliapi.com/acg/');
+  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+}
+.page { max-width:820px; margin:0 auto; padding:24px 18px 48px; }
+.card {
+  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
+  border-radius:20px; padding:22px; box-shadow:var(--shadow);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+}
+.card h3 { color:var(--text); }
+a { color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }
+a:active { opacity:0.7; }
+@media (max-width:600px) {
+  .page { padding:14px 10px 32px; }
+  .card { padding:16px; border-radius:16px; }
+}
 </style>
 </head>
 <body>
-<div style="margin:0 0 10px;line-height:0;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD"><img src="http://i0.hdslb.com/bfs/archive/61497e255220ba0c270b386773b3b6740df808aa.jpg" style="width:100%;border-radius:8px;" alt="【WM补完计划04】qutebrowser 浏览器" /></a></div>
-<p style="margin:0 0 10px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="display:inline-block;padding:7px 16px;background:#00a1d6;color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>
-<div style="margin:0 0 10px;"><iframe src="https://player.bilibili.com/player.html?bvid=BV1KkqzBmEvD&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
-<h3 style="margin:0 0 8px;font-size:16px;line-height:1.4;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="text-decoration:none;color:#222;">【WM补完计划04】qutebrowser 浏览器</a></h3>
-<div style="margin:0 0 10px;padding:6px 10px;background:#f5f6f7;border-radius:6px;font-size:12px;color:#666;">▶ 2515 · 评论 22 · 👍 119 · 🪙 54 · ⭐ 39 · ⏱ 9:54</div>
-<div style="margin:0 0 10px;font-size:13px;color:#444;line-height:1.65;">窗口管理器补完计划 Ep. 4/7<br><br>00:50 lf filechooser<br>04:08 tabs<br>06:00 python-adblock<br>06:25 userscripts<br>06:45 URL二维码<br>07:41 离线字典<br>09:21 收藏夹<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
-<div style="margin:12px 0 0;padding:10px 12px;background:#fafbfc;border-left:3px solid #00a1d6;border-radius:0 6px 6px 0;"><div style="font-size:12px;color:#888;margin-bottom:8px;">💬 热门评论</div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">deuteros_GEX</strong>：这波悟道归来<br>UP主更强了 <span style="color:#aaa;font-size:11px;">9 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">西红柿炒鸡蛋拌面条</strong>：qute的选择文件程序自定义和insert mode可定义文本编辑器程序来代替输入很好用, 体现出了一些与其他工具交互的能力, 这方面在现代浏览器越来越臃肿越来越闭塞的大环境下真的很难得<br><br>也有一些小缺点<br>1. 有的网页比如一些ai网站的输入框, 编辑器打开之后不能把内容填回输入框<br>2. hint似乎不能识别一些特殊css按钮, 比如span通过css伪装成的button<br>3. caret mode 光标不太正常, 如果左侧有个标题栏, 那更是乱跳, 我一般都是先搜索单词, 然后开caret mode选更多的内容, 但是即使这样, 像github这样复杂的网页有时候也会突然就跳到页面最下面这种奇怪的行为<br><br>不过瑕不掩瑜, 希望越来越好[支持] <span style="color:#aaa;font-size:11px;">4 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">单宁酸就是鞣酸</strong>：太厉害了 利用脚本实现了常规浏览器的各种功能 <span style="color:#aaa;font-size:11px;">4 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">我难道真的很傻吗dT-Tb</strong>：qutebrowser默认在b站没法用f(hint)点赞[笑哭] <span style="color:#aaa;font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">我难道真的很傻吗dT-Tb</strong>：qutebrowser的v没有哪个火狐插件强。<br>查词脚本我也搞了一个，但发现只能用鼠标选中然后查，用v选中按快捷键没反应[笑哭]，所以我改成了查剪切板里的词然后把剪切板最后的记录删除，这就不用用鼠标选了而且更通用一点。 <span style="color:#aaa;font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">我难道真的很傻吗dT-Tb</strong>：这期的封面设计的很有高级感 <span style="color:#aaa;font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">鲜香菇Fungi</strong>：用qute是有品味的 <span style="color:#aaa;font-size:11px;">1 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">Linux不脱袜子</strong>：受到了启发，两个币奉上 <span style="color:#aaa;font-size:11px;">1 赞</span></div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">TomorinOfficial</strong>：考古，用了一段时间换成Chromium+Vimium了，可能内核太老浏览网页明显比Chromium卡，而且Vimium的jk滚动还比qutebrowser丝滑</div><div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;color:#333;line-height:1.55;"><strong style="color:#00a1d6;">illFiftin</strong>：试试vimb，比qutebrowser轻量很多，但不支持视频播放</div></div>
-<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="color:#00a1d6;text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:#999;text-decoration:none;">UP主主页</a></p>
+<div class="page"><div class="card">
+<div style="margin:0 0 12px;line-height:0;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD"><img src="http://i0.hdslb.com/bfs/archive/61497e255220ba0c270b386773b3b6740df808aa.jpg" style="width:100%;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="【WM补完计划04】qutebrowser 浏览器" /></a></div>
+<p style="margin:0 0 12px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="display:inline-block;padding:8px 20px;background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">▶ 播放视频</a></p>
+<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1KkqzBmEvD&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
+<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="text-decoration:none;color:hsl(31,45%,24%);">【WM补完计划04】qutebrowser 浏览器</a></h3>
+<div style="margin:0 0 12px;padding:8px 12px;background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">▶ 2515 · 评论 22 · 👍 119 · 🪙 54 · ⭐ 39 · ⏱ 9:54</div>
+<div style="margin:0 0 10px;font-size:13px;color:hsl(31,45%,24%);line-height:1.7;">窗口管理器补完计划 Ep. 4/7<br><br>00:50 lf filechooser<br>04:08 tabs<br>06:00 python-adblock<br>06:25 userscripts<br>06:45 URL二维码<br>07:41 离线字典<br>09:21 收藏夹<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<div style="margin:14px 0 0;padding:12px 14px;background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);"><div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;font-weight:500;">💬 热门评论</div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">deuteros_GEX</strong>：这波悟道归来<br>UP主更强了 <span style="color:hsl(34,29%,60%);font-size:11px;">9 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">西红柿炒鸡蛋拌面条</strong>：qute的选择文件程序自定义和insert mode可定义文本编辑器程序来代替输入很好用, 体现出了一些与其他工具交互的能力, 这方面在现代浏览器越来越臃肿越来越闭塞的大环境下真的很难得<br><br>也有一些小缺点<br>1. 有的网页比如一些ai网站的输入框, 编辑器打开之后不能把内容填回输入框<br>2. hint似乎不能识别一些特殊css按钮, 比如span通过css伪装成的button<br>3. caret mode 光标不太正常, 如果左侧有个标题栏, 那更是乱跳, 我一般都是先搜索单词, 然后开caret mode选更多的内容, 但是即使这样, 像github这样复杂的网页有时候也会突然就跳到页面最下面这种奇怪的行为<br><br>不过瑕不掩瑜, 希望越来越好[支持] <span style="color:hsl(34,29%,60%);font-size:11px;">4 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">单宁酸就是鞣酸</strong>：太厉害了 利用脚本实现了常规浏览器的各种功能 <span style="color:hsl(34,29%,60%);font-size:11px;">4 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">我难道真的很傻吗dT-Tb</strong>：qutebrowser默认在b站没法用f(hint)点赞[笑哭] <span style="color:hsl(34,29%,60%);font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">我难道真的很傻吗dT-Tb</strong>：qutebrowser的v没有哪个火狐插件强。<br>查词脚本我也搞了一个，但发现只能用鼠标选中然后查，用v选中按快捷键没反应[笑哭]，所以我改成了查剪切板里的词然后把剪切板最后的记录删除，这就不用用鼠标选了而且更通用一点。 <span style="color:hsl(34,29%,60%);font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">我难道真的很傻吗dT-Tb</strong>：这期的封面设计的很有高级感 <span style="color:hsl(34,29%,60%);font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">鲜香菇Fungi</strong>：用qute是有品味的 <span style="color:hsl(34,29%,60%);font-size:11px;">1 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">Linux不脱袜子</strong>：受到了启发，两个币奉上 <span style="color:hsl(34,29%,60%);font-size:11px;">1 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">TomorinOfficial</strong>：考古，用了一段时间换成Chromium+Vimium了，可能内核太老浏览网页明显比Chromium卡，而且Vimium的jk滚动还比qutebrowser丝滑</div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(197,39%,56%);">illFiftin</strong>：试试vimb，比qutebrowser轻量很多，但不支持视频播放</div></div>
+<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1KkqzBmEvD" style="color:hsl(197,39%,45%);text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>
+</div></div>
+<script>
+(function(){
+  var u='https://www.loliapi.com/acg/?t='+Date.now();
+  var img=new Image();
+  img.onload=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
+  img.onerror=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
+  img.src=u;
+})();
+</script>
 </body>
 </html>
