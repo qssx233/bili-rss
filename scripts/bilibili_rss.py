@@ -395,7 +395,132 @@ def _format_count(n) -> str:
     return str(n)
 
 
-def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = "", embed: bool = True) -> str:
+def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: bool = True) -> str:
+    """构造单条视频的富 HTML 正文（feed 与播放页共用）。
+
+    link: 封面/标题点击目标（feed 里指向播放页，播放页里指向 B站）
+    bili_link: B站原视频链接（「在 B站观看」用）
+    """
+    title = v.get("title", "未知标题")
+    desc_text = v.get("description", "")
+    pic = v.get("pic", "")
+    bvid = v.get("bvid", "")
+    view_count = v.get("view", 0)
+    play_count = v.get("play", 0)
+    danmaku = v.get("danmaku", 0)
+    reply = v.get("reply", 0)
+    like = v.get("like", 0)
+    coin = v.get("coin", 0)
+    favorite = v.get("favorite", 0)
+    duration = v.get("duration", 0)
+    length = v.get("length", "")
+
+    if pic:
+        pic_url = pic if pic.startswith("http") else f"https:{pic}"
+    else:
+        pic_url = ""
+
+    parts = []
+
+    # 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
+    if embed and bvid:
+        player_url = (
+            f"https://player.bilibili.com/player.html?bvid={bvid}&page=1"
+            f"&high_quality=1&danmaku=0&autoplay=0"
+        )
+        parts.append(
+            f'<div style="margin:0 0 10px;">'
+            f'<iframe src="{player_url}" width="100%" height="480" scrolling="no" '
+            f'frameborder="0" allowfullscreen="true" '
+            f'style="border:0;display:block;max-width:100%;"></iframe></div>'
+        )
+
+    # 封面 + 播放按钮（紧凑）
+    if pic_url:
+        parts.append(
+            f'<div style="margin:0 0 10px;line-height:0;">'
+            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:8px;" '
+            f'alt="{escape(title)}" /></a></div>'
+        )
+        parts.append(
+            f'<p style="margin:0 0 10px;">'
+            f'<a href="{link}" style="display:inline-block;padding:7px 16px;background:#00a1d6;'
+            f'color:#fff;text-decoration:none;border-radius:20px;font-size:13px;">▶ 播放视频</a></p>'
+        )
+
+    # 标题
+    parts.append(
+        f'<h3 style="margin:0 0 8px;font-size:16px;line-height:1.4;">'
+        f'<a href="{link}" style="text-decoration:none;color:#222;">{escape(title)}</a></h3>'
+    )
+
+    # 统计（紧凑小字）
+    stats = []
+    if view_count or play_count:
+        stats.append(f'▶ {_format_count(view_count or play_count)}')
+    if danmaku:
+        stats.append(f'弹幕 {_format_count(danmaku)}')
+    if reply:
+        stats.append(f'评论 {_format_count(reply)}')
+    if like:
+        stats.append(f'👍 {_format_count(like)}')
+    if coin:
+        stats.append(f'🪙 {_format_count(coin)}')
+    if favorite:
+        stats.append(f'⭐ {_format_count(favorite)}')
+    if duration:
+        stats.append(f'⏱ {_format_duration(duration)}')
+    elif length:
+        stats.append(f'⏱ {length}')
+    if stats:
+        parts.append(
+            f'<div style="margin:0 0 10px;padding:6px 10px;background:#f5f6f7;'
+            f'border-radius:6px;font-size:12px;color:#666;">{" · ".join(stats)}</div>'
+        )
+
+    # 简介
+    if desc_text:
+        import html as _html
+        desc_text = _html.unescape(desc_text)
+        clean_desc = re.sub(r'<iframe[^>]*>.*?</iframe>', '', desc_text, flags=re.DOTALL)
+        clean_desc = re.sub(r'<br\s*/?>', '\n', clean_desc)
+        clean_desc = re.sub(r'<[^>]+>', '', clean_desc).strip()
+        if clean_desc:
+            parts.append(
+                f'<div style="margin:0 0 10px;font-size:13px;color:#444;line-height:1.65;">'
+                f'{escape(clean_desc).replace(chr(10), "<br>")}</div>'
+            )
+
+    # 热门评论（每个独立成行，分隔清晰）
+    comments = v.get("comments") or []
+    if comments:
+        cm = ['<div style="margin:12px 0 0;padding:10px 12px;background:#fafbfc;'
+              'border-left:3px solid #00a1d6;border-radius:0 6px 6px 0;">',
+              '<div style="font-size:12px;color:#888;margin-bottom:8px;">💬 热门评论</div>']
+        for c in comments:
+            user = escape(str(c.get("user", "网友")))
+            text = escape(str(c.get("text", ""))).replace("\n", "<br>")
+            like_num = c.get("like", 0)
+            like_txt = f' <span style="color:#aaa;font-size:11px;">{like_num} 赞</span>' if like_num else ""
+            cm.append(
+                f'<div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px;'
+                f'color:#333;line-height:1.55;">'
+                f'<strong style="color:#00a1d6;">{user}</strong>：{text}{like_txt}</div>'
+            )
+        cm.append('</div>')
+        parts.append("".join(cm))
+
+    # 兜底链接
+    parts.append(
+        f'<p style="margin:14px 0 0;font-size:12px;">'
+        f'<a href="{bili_link}" style="color:#00a1d6;text-decoration:none;">在 B站观看原视频</a>'
+        f' · <a href="{space_url}" style="color:#999;text-decoration:none;">UP主主页</a></p>'
+    )
+    return "\n".join(parts)
+
+
+def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = "",
+                     embed: bool = True, post_base_url: str = "") -> str:
     """生成优化的 RSS 2.0 XML"""
     now = datetime.now(CST).strftime("%a, %d %b %Y %H:%M:%S +0800")
     space_url = f"https://space.bilibili.com/{uid}"
@@ -423,140 +548,24 @@ def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = 
 
     for v in videos:
         title = v.get("title", "未知标题")
-        link = v.get("link") or v.get("bvid", "")
-        if link and not link.startswith("http"):
-            link = f"https://www.bilibili.com/video/{link}"
-        desc_text = v.get("description", "")
-        pic = v.get("pic", "")
+        bili_link = v.get("link") or v.get("bvid", "")
+        if bili_link and not bili_link.startswith("http"):
+            bili_link = f"https://www.bilibili.com/video/{bili_link}"
+        bvid = v.get("bvid", "")
         pub_ts = v.get("created", 0) or v.get("pub_date_str", "")
         pub_date = ts_to_rfc2822(pub_ts) if isinstance(pub_ts, int) and pub_ts else (pub_ts or now)
-        bvid = v.get("bvid", "")
-        aid = v.get("aid", "")
 
-        # 统计数据（API 路径有，RSSHub 路径没有）
-        view_count = v.get("view", 0)
-        play_count = v.get("play", 0)
-        danmaku = v.get("danmaku", 0)
-        reply = v.get("reply", 0)
-        like = v.get("like", 0)
-        coin = v.get("coin", 0)
-        favorite = v.get("favorite", 0)
-        duration = v.get("duration", 0)
-        length = v.get("length", "")  # RSSHub 格式: "12:34"
+        # feed 条目的 link 指向托管播放页（AgrReader 内嵌网页打开时是干净页面，不是 B站乱页面）
+        link = f"{post_base_url}posts/{bvid}.html" if post_base_url and bvid else bili_link
 
-        # 封面图
-        if pic:
-            pic_url = pic if pic.startswith("http") else f"https:{pic}"
-        else:
-            pic_url = ""
+        pic = v.get("pic", "")
+        pic_url = (pic if pic.startswith("http") else f"https:{pic}") if pic else ""
 
-        # === 构造富 HTML 内容 ===
-        content_parts = []
+        content = build_item_html(v, link, bili_link, space_url, embed=embed)
 
-        # 内嵌 B站官方 PC 播放器（默认开启）
-        # 用 player.bilibili.com 而非 html5mobileplayer.html：前者是干净的独立播放页，
-        # 后者是完整移动端 web app，塞进阅读器会得到一堆 data-v-xxx 乱 HTML。
-        if embed and bvid:
-            player_url = (
-                f"https://player.bilibili.com/player.html?bvid={bvid}&page=1"
-                f"&high_quality=1&danmaku=0&autoplay=0"
-            )
-            content_parts.append(
-                f'<div style="margin:12px 0;">'
-                f'<iframe src="{player_url}" '
-                f'width="100%" height="500" scrolling="no" frameborder="0" '
-                f'allowfullscreen="true" '
-                f'style="border:0;max-width:100%;aspect-ratio:16/9;">'
-                f'</iframe></div>'
-            )
+        # guid 用 B站原链接保持稳定，避免阅读器把旧条目标成新的
+        guid = f"https://www.bilibili.com/video/{bvid}" if bvid else bili_link
 
-        # 封面图（可点击跳转）
-        if pic_url:
-            content_parts.append(
-                f'<div style="margin-bottom:12px;">'
-                f'<a href="{link}"><img src="{pic_url}" '
-                f'style="max-width:100%;border-radius:8px;border:1px solid #eee;" '
-                f'alt="{escape(title)}" /></a></div>'
-            )
-
-        # 标题
-        content_parts.append(f'<h3><a href="{link}" style="text-decoration:none;color:#00a1d6;">{escape(title)}</a></h3>')
-
-        # 统计信息栏
-        stats_parts = []
-        if view_count or play_count:
-            stats_parts.append(f'▶ {_format_count(view_count or play_count)}')
-        if danmaku:
-            stats_parts.append(f'💬 {_format_count(danmaku)}')
-        if reply:
-            stats_parts.append(f'↩ {_format_count(reply)}')
-        if like:
-            stats_parts.append(f'👍 {_format_count(like)}')
-        if coin:
-            stats_parts.append(f'🪙 {_format_count(coin)}')
-        if favorite:
-            stats_parts.append(f'⭐ {_format_count(favorite)}')
-        if duration:
-            stats_parts.append(f'⏱ {_format_duration(duration)}')
-        elif length:
-            stats_parts.append(f'⏱ {length}')
-
-        if stats_parts:
-            content_parts.append(
-                f'<div style="margin:8px 0;padding:8px 12px;background:#f4f5f7;'
-                f'border-radius:6px;font-size:13px;color:#505050;">'
-                f'{" · ".join(stats_parts)}</div>'
-            )
-
-        # 视频描述
-        if desc_text:
-            import html as _html
-            # 先反转义（RSSHub 的 desc 常带 &amp; 等实体，避免二次转义成 &amp;amp;）
-            desc_text = _html.unescape(desc_text)
-            # 去掉可能残留的 HTML 标签（RSSHub 的 desc 可能带 iframe 等）
-            clean_desc = re.sub(r'<iframe[^>]*>.*?</iframe>', '', desc_text, flags=re.DOTALL)
-            clean_desc = re.sub(r'<br\s*/?>', '\n', clean_desc)
-            clean_desc = re.sub(r'<[^>]+>', '', clean_desc)
-            clean_desc = clean_desc.strip()
-            if clean_desc:
-                # 转换换行为 <br>
-                clean_desc_html = escape(clean_desc).replace('\n', '<br>')
-                content_parts.append(
-                    f'<div style="margin:8px 0;color:#333;line-height:1.6;">'
-                    f'{clean_desc_html}</div>'
-                )
-
-        # 热门评论（用 cookie 抓取）
-        comments = v.get("comments") or []
-        if comments:
-            cm_parts = [f'<div style="margin:10px 0;padding:10px 12px;background:#fafafa;border-left:3px solid #00a1d6;border-radius:4px;">',
-                        '<div style="font-size:13px;color:#888;margin-bottom:6px;">💬 热门评论</div>']
-            for c in comments:
-                user = escape(str(c.get("user", "网友")))
-                text = escape(str(c.get("text", ""))).replace("\n", "<br>")
-                like_num = c.get("like", 0)
-                like_txt = f' <span style="color:#999;">({like_num} 赞)</span>' if like_num else ""
-                cm_parts.append(
-                    f'<div style="margin:6px 0;font-size:13px;color:#333;line-height:1.5;">'
-                    f'<strong style="color:#555;">{user}</strong>：{text}{like_txt}</div>'
-                )
-            cm_parts.append('</div>')
-            content_parts.append("".join(cm_parts))
-
-        # 观看链接（iframe 被屏蔽时仍可点这里跳转观看）
-        content_parts.append(
-            f'<p style="margin-top:12px;">'
-            f'<a href="{link}" style="color:#00a1d6;text-decoration:none;">▶ 在 B站观看</a>'
-            f' · <a href="{space_url}" style="color:#999;text-decoration:none;">UP主主页</a>'
-            f'</p>'
-        )
-
-        content = "\n".join(content_parts)
-
-        # guid
-        guid = f"https://www.bilibili.com/video/{bvid}" if bvid else link
-
-        # media:content（支持媒体 RSS）
         media_tags = ""
         if pic_url:
             media_tags = f'\n      <media:thumbnail url="{pic_url}" />'
@@ -569,10 +578,8 @@ def generate_rss_xml(uid: int, up_name: str, videos: list[dict], up_sign: str = 
             f'      <pubDate>{pub_date}</pubDate>',
             f'      <description><![CDATA[{content}]]></description>',
         ])
-
         if media_tags:
             xml_parts.append(media_tags)
-
         xml_parts.append('    </item>')
 
     xml_parts.extend(['  </channel>', '</rss>'])
@@ -608,8 +615,32 @@ def ts_to_str(ts: int) -> str:
     return datetime.fromtimestamp(ts, tz=CST).strftime("%Y-%m-%d %H:%M:%S")
 
 
-def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict, embed: bool = True) -> str | None:
+def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) -> str:
+    """生成单条视频的独立播放页 HTML（干净、可在 AgrReader 内嵌网页里播放）"""
+    title = v.get("title", "未知标题")
+    body = build_item_html(v, bili_link, bili_link, space_url, embed=True)
+    return f'''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{escape(title)} - {escape(up_name)}</title>
+<style>
+* {{ box-sizing: border-box; }}
+body {{ margin:0; padding:16px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif; background:#fff; color:#222; max-width:820px; margin:0 auto; }}
+a {{ -webkit-tap-highlight-color:transparent; }}
+</style>
+</head>
+<body>
+{body}
+</body>
+</html>'''
+
+
+def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict,
+        embed: bool = True, post_base_url: str = "", posts_dir: str = "") -> str | None:
     """执行获取 + 生成，返回 XML 内容"""
+    space_url = f"https://space.bilibili.com/{uid}"
     has_cookie = bool(cookies)
     cookie_status = "有 cookie（可绕过风控）" if has_cookie else "无 cookie（依赖 RSSHub 镜像）"
     print(f"{'='*60}")
@@ -704,7 +735,7 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict, emb
                 enriched += 1
             time.sleep(0.25)
             # 热门评论（用 aid）
-            cs = get_video_comments(v.get("aid", ""), cookies, limit=3)
+            cs = get_video_comments(v.get("aid", ""), cookies, limit=10)
             if cs:
                 v["comments"] = cs
                 commented += 1
@@ -717,12 +748,29 @@ def run(uid: int, up_name: str, output_path: str, count: int, cookies: dict, emb
         ts = v.get("created", 0)
         print(f"    {i+1}. [{ts_to_str(ts)}] {v.get('title', '?')}")
 
-    # Step 3: 生成 RSS XML
-    print(f"\n[3/3] 生成 RSS XML (优化呈现)...")
-    xml_content = generate_rss_xml(uid, up_name, videos, embed=embed)
+    # Step 3: 生成 RSS XML + 播放页
+    print(f"\n[3/3] 生成 RSS XML 和播放页...")
+    xml_content = generate_rss_xml(uid, up_name, videos, embed=embed,
+                                   post_base_url=post_base_url)
 
     output_path = str(Path(output_path).resolve())
     Path(output_path).write_text(xml_content, encoding="utf-8")
+
+    # 生成每条视频的独立播放页
+    if posts_dir and post_base_url:
+        posts_path = Path(posts_dir)
+        posts_path.mkdir(parents=True, exist_ok=True)
+        made = 0
+        for v in videos:
+            bvid = v.get("bvid", "")
+            if not bvid:
+                continue
+            bili_link = v.get("link") or f"https://www.bilibili.com/video/{bvid}"
+            page = generate_post_page(v, up_name, space_url, bili_link)
+            (posts_path / f"{bvid}.html").write_text(page, encoding="utf-8")
+            made += 1
+        print(f"   播放页: {made} 个 → {posts_path}")
+
     print(f"\n✅ RSS feed 已生成: {output_path}")
     print(f"   UP主: {up_name}  |  共 {len(videos)} 条视频")
 
@@ -762,6 +810,10 @@ def main():
                         help="在条目内嵌 B站官方 PC 播放器，可在阅读器里直接播放 (默认开启)")
     parser.add_argument("--no-embed", dest="embed", action="store_false",
                         help="不内嵌播放器，只显示封面+链接（阅读器屏蔽 iframe 时用）")
+    parser.add_argument("--base-url", type=str, default="",
+                        help="站点根地址（如 https://qssx233.github.io/bili-rss/），用于生成播放页链接")
+    parser.add_argument("--posts-dir", type=str, default="",
+                        help="播放页输出目录（如 L:/desktopfiles/RSS/github-pages/posts）")
 
     args = parser.parse_args()
     uid = args.uid
@@ -779,7 +831,8 @@ def main():
     cookies = load_cookies(args.cookie) if args.cookie else {}
 
     # 执行
-    xml_content = run(uid, up_name, output_path, args.count, cookies, embed=args.embed)
+    xml_content = run(uid, up_name, output_path, args.count, cookies, embed=args.embed,
+                      post_base_url=args.base_url, posts_dir=args.posts_dir)
     if not xml_content:
         sys.exit(1)
 
