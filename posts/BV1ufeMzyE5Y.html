@@ -4,60 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>【unixchat mini 05】开源软件不等于自由软件 - unixchad</title>
+<link rel="icon" type="image/svg+xml" href="../assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<meta name="referrer" content="no-referrer">
 <style>
 @font-face {
-  font-family:'ChillRoundM';
-  src:url('../assets/ChillRoundM.woff2') format('woff2');
-  font-display:swap;
+  font-family:'ChillRound';
+  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
 }
 :root {
-  --bg:hsl(35,36%,96%); --surface:hsla(36,38%,98%,0.72);
-  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
-  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
-  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
 }
 * { box-sizing:border-box; }
-html,body { margin:0; padding:0; min-height:100%; }
+html,body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
 body {
-  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
     "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  color:var(--text); line-height:1.7; background-color:var(--bg);
-  background-image:url('https://www.loliapi.com/acg/');
-  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
 }
-.page { max-width:820px; margin:0 auto; padding:24px 18px 48px; }
+.bg {
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  filter:blur(28px) saturate(1.16) brightness(1.04); opacity:0.52;
+}
+.veil {
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(170deg, rgba(255,255,255,0.66), rgba(255,255,255,0.80) 45%,
+    hsla(35,40%,98%,0.88));
+}
+.page { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:22px 16px 44px; }
 .card {
-  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
-  border-radius:20px; padding:22px; box-shadow:var(--shadow);
-  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+  background:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.88);
+  border-radius:26px; padding:20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(22px) saturate(1.12); backdrop-filter:blur(22px) saturate(1.12);
+  animation:rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }
-.card h3 { color:var(--text); }
-a { color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }
+@keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .card { animation:none; } }
+.topbar {
+  display:flex; align-items:center; gap:10px; margin:0 0 16px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}
+.topbar .brand {
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--text-soft);
+}
+.topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
+.me {
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:72%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.me .quote {
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5;
+  flex:1 1 auto; min-width:0;
+}
+.me img {
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}
+a { color:var(--pink-deep); text-decoration:none; -webkit-tap-highlight-color:transparent; }
 a:active { opacity:0.7; }
+h3 { font-weight:400; }
+img { max-width:100%; height:auto; }
 @media (max-width:600px) {
-  .page { padding:14px 10px 32px; }
-  .card { padding:16px; border-radius:16px; }
+  .topbar { flex-wrap:wrap; row-gap:8px; }
+  .me { max-width:100%; margin-left:0; }
+  .bg { filter:blur(22px) saturate(1.1); opacity:0.46; }
+  .page { padding:12px 10px 30px; }
+  .card { padding:14px; border-radius:20px; }
 }
 </style>
 </head>
 <body>
+<div class="bg" id="bg"></div><div class="veil"></div>
 <div class="page"><div class="card">
-<div style="margin:0 0 12px;line-height:0;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y"><img src="http://i0.hdslb.com/bfs/archive/2d840128b0ea867da17b039586ea90b96d87a99f.jpg" style="width:100%;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="【unixchat mini 05】开源软件不等于自由软件" /></a></div>
-<p style="margin:0 0 12px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="display:inline-block;padding:8px 20px;background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">播放视频</a></p>
-<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1ufeMzyE5Y&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
-<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="text-decoration:none;color:hsl(31,45%,24%);">【unixchat mini 05】开源软件不等于自由软件</a></h3>
-<div style="margin:0 0 12px;padding:8px 12px;background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">播放 4376 · 弹幕 1 · 评论 83 · 点赞 252 · 投币 109 · 收藏 94 · 时长 13:38</div>
-<div style="margin:0 0 10px;font-size:13px;color:hsl(31,45%,24%);line-height:1.7;">本期播客节目中我即兴谈论了专有软件 (Proprietary Software) 的潜在威胁，以及 Richard Stallman (rms) 是如何发起了自由软件运动和 GNU 项目、说服了 Linus Torvalds 通过 GNU 通用公共许可证在 1991 年释放了他的 Linux 内核，以及 Eric Raymond (esr) 的开放源代码运动是如何让大众遗忘了自由软件运动的。<br><br>“自由就是有权决定计算机可以做什么，而获得这种自由的唯一方法就是了解计算机正在做什么，自由就是计算机没有秘密可言。”<br>    -- William Shotts, The Linux Command Line<br><br>00:00 专有软件<br>01:07 自由软件<br>01:57 流氓软件、间谍软件<br>03:26 为什么软件能做坏事？<br>03:54 为什么自由软件更好？<br>04:43 开源软件<br>05:05 GNU/Linux<br>06:16 大教堂与集市<br>08:08 “部分开源”<br>09:12 反对隐私者<br>11:31 自由自在<br>13:14 结语<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
-<div style="margin:14px 0 0;padding:12px 14px;background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);"><div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;font-weight:500;">热门评论</div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">hznanami</strong>：电脑还好，手机更是重灾区。现实很多自带的闭源系统和国内的应用你不得不被动地使用，但为了自由和隐私，不得不特意刷上开源的类原生系统，伪造系统的设备ID、IMEI、MEID，把闭源应用丢进“沙箱”，禁用收集服务等等。而且现在很多国内手机都带锁且不给解，还为此想过下一台手机要不海淘一部pixel或者去香港买一部算了。为了这些而折腾一番，但现实很多人压根不会这么做，甚至说你这么做是很愚蠢的 <span style="color:hsl(34,29%,60%);font-size:11px;">49 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">qkun-zh</strong>：我觉得涉足自由软件运动一定要自问:<br>自由不完全是否算完全不自由，或者自己有无能量像rms一样在一段时间里仅用龙芯电脑 <span style="color:hsl(34,29%,60%);font-size:11px;">30 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">萨莫伊洛夫</strong>：希望有一天，能真正用上100%自由、尊重用户的设备和操作系统 <span style="color:hsl(34,29%,60%);font-size:11px;">28 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">nxxg1024</strong>：对于risc-v，我持相反态度，由于流片成本过高，这种开源架构基本与普罗大众无缘，个人所能用到的基本上大多是大公司的产品而少有个人的开源产品，或许什么时候个人的流片成本能够下降才能够使risc-v的开源有意义吧。 <span style="color:hsl(34,29%,60%);font-size:11px;">27 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">thomasdeutsch</strong>：现在游戏领域几乎是自由/开源软件最难覆盖的领域，首先成品游戏包含了大量的音乐美术等非程序内容更难自由化，其次游戏行业没有产生类似红帽卖服务这种成功的开源商业模式仍然高度依赖销售游戏本身或资产，甚至游戏的底层件很多往往仍然不是自由或开源的，不过近年来游戏行业的自由化取得了一定进展，一方面在IP端随着开发者普遍意识到二创对IP本身商业价值的巨大作用纷纷开放做二创游戏的授权出现了很多二创游戏，另一方面随着自由/开源软件影响力越来越大近年来许多大作也大量使用，现在大型游戏的开源法律声明长度也是越来越长<br>另外作为最受欢迎的游戏类型竞技游戏一方面天然有公开源代码以保证公平的需求（这方面最近国内要求公开王者elo机制原理的案件算是一个尝试），另一方面反作弊仍然高度依赖于机制本身的机密性（许多竞技游戏至今无法在linux上运行一个原因就是linux上难以对抗内核外挂）<br>PS：我经常把zun和linus相提并论：东方和linux是同一时代诞生的，都采取了当时并非行业主流的通过开放使用核心资产促使生态参与者成为主要推动力的做法取得了巨大成功，最后倒逼商业巨头也普遍采用这种运作模式（考虑到日本的版权法实践和舆论普遍支持原始创作者对IP近乎无限的控制权zun的创想需要有更大的勇气） <span style="color:hsl(34,29%,60%);font-size:11px;">26 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">CharleneHoo</strong>：可以请Up就这个话题展开，再谈一谈f**k nvidia，和闭源驱动的事儿吗？每次听Up的播客都受益匪浅！ <span style="color:hsl(34,29%,60%);font-size:11px;">19 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">开始摆烂鸟</strong>：确实，开源软件作者无偿付出那么多时间精力，实际上相当于是在替其他所有人交“自由税”，如果没有可用的开源替代，商业公司会更加肆无忌惮的。然而现在有一些人不领这个情[笑哭]。<br>现在的无偿开发者还是太少了，社会发展水平不足以支撑起那么多的人无回报的追求自己的兴趣。所以从另外的角度看，商业软件目前还是很有必要的，甚至可以给开源社区带来一些好处，至少它维持了基数庞大的程序员群体，也提供了高性能的计算平台。<br>现在我们仍然处于漫漫长夜中，或许有一天终可以从必然王国走向自由王国，但愿这一天来的更快一点。 <span style="color:hsl(34,29%,60%);font-size:11px;">14 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">illFiftin</strong>：我刚想了解自由软件，unixchad就做了[星星眼] <span style="color:hsl(34,29%,60%);font-size:11px;">10 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">Memble</strong>：我是把"自由软件"哲学同马克思主义政治经济学放到一起来看待的。 <span style="color:hsl(34,29%,60%);font-size:11px;">7 赞</span></div></div>
-<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="color:hsl(197,39%,45%);text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>
+<div class="topbar">
+  <a class="brand" href="../index.html" title="返回订阅首页">
+    <img src="../assets/bili.svg" referrerpolicy="no-referrer" alt="bilibili">
+    <span>unixchad · bilibili</span>
+  </a>
+  <div class="me">
+    <span class="quote" id="hk"></span>
+    <img src="../assets/portrait.jpg" referrerpolicy="no-referrer" alt="头像">
+  </div>
+</div>
+<div style="margin:0 0 14px;line-height:0;font-size:0;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y"><img src="http://i0.hdslb.com/bfs/archive/2d840128b0ea867da17b039586ea90b96d87a99f.jpg" referrerpolicy="no-referrer" alt="【unixchat mini 05】开源软件不等于自由软件" style="display:block;width:100%;border-radius:18px;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);" /></a></div>
+<div style="margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="display:inline-block;padding:9px 22px;background:linear-gradient(135deg,#fc86a7,#e95f8a);color:#ffffff;text-decoration:none;border-radius:999px;font-size:13px;box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);">播放视频</a><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="display:inline-block;padding:9px 20px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);color:hsl(28,18%,44%);text-decoration:none;border-radius:999px;font-size:13px;">在 B站打开</a></div>
+<div style="position:relative;width:100%;padding-top:56.25%;margin:0 0 16px;border-radius:18px;overflow:hidden;background:#0d0d0f;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1ufeMzyE5Y&page=1&high_quality=1&danmaku=0&autoplay=0" scrolling="no" frameborder="0" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+<h3 style="margin:0 0 12px;font-size:18px;line-height:1.55;font-weight:400;letter-spacing:0.01em;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="text-decoration:none;color:hsl(28,32%,25%);">【unixchat mini 05】开源软件不等于自由软件</a></h3>
+<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;"><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">播放 4376</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">弹幕 1</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">评论 83</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">点赞 252</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">投币 109</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">收藏 94</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">时长 13:38</span></div>
+<div style="margin:0 0 4px;font-size:13.5px;color:hsl(28,25%,30%);line-height:1.9;">本期播客节目中我即兴谈论了专有软件 (Proprietary Software) 的潜在威胁，以及 Richard Stallman (rms) 是如何发起了自由软件运动和 GNU 项目、说服了 Linus Torvalds 通过 GNU 通用公共许可证在 1991 年释放了他的 Linux 内核，以及 Eric Raymond (esr) 的开放源代码运动是如何让大众遗忘了自由软件运动的。<br><br>“自由就是有权决定计算机可以做什么，而获得这种自由的唯一方法就是了解计算机正在做什么，自由就是计算机没有秘密可言。”<br>    -- William Shotts, The Linux Command Line<br><br>00:00 专有软件<br>01:07 自由软件<br>01:57 流氓软件、间谍软件<br>03:26 为什么软件能做坏事？<br>03:54 为什么自由软件更好？<br>04:43 开源软件<br>05:05 GNU/Linux<br>06:16 大教堂与集市<br>08:08 “部分开源”<br>09:12 反对隐私者<br>11:31 自由自在<br>13:14 结语<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<div style="margin:18px 0 0;"><div style="margin:0 0 10px;font-size:11.5px;letter-spacing:0.1em;color:hsl(28,13%,62%);">热门评论</div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">hznanami</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">电脑还好，手机更是重灾区。现实很多自带的闭源系统和国内的应用你不得不被动地使用，但为了自由和隐私，不得不特意刷上开源的类原生系统，伪造系统的设备ID、IMEI、MEID，把闭源应用丢进“沙箱”，禁用收集服务等等。而且现在很多国内手机都带锁且不给解，还为此想过下一台手机要不海淘一部pixel或者去香港买一部算了。为了这些而折腾一番，但现实很多人压根不会这么做，甚至说你这么做是很愚蠢的</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">49 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">qkun-zh</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">我觉得涉足自由软件运动一定要自问:<br>自由不完全是否算完全不自由，或者自己有无能量像rms一样在一段时间里仅用龙芯电脑</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">30 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">萨莫伊洛夫</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">希望有一天，能真正用上100%自由、尊重用户的设备和操作系统</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">28 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">nxxg1024</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">对于risc-v，我持相反态度，由于流片成本过高，这种开源架构基本与普罗大众无缘，个人所能用到的基本上大多是大公司的产品而少有个人的开源产品，或许什么时候个人的流片成本能够下降才能够使risc-v的开源有意义吧。</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">27 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">thomasdeutsch</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">现在游戏领域几乎是自由/开源软件最难覆盖的领域，首先成品游戏包含了大量的音乐美术等非程序内容更难自由化，其次游戏行业没有产生类似红帽卖服务这种成功的开源商业模式仍然高度依赖销售游戏本身或资产，甚至游戏的底层件很多往往仍然不是自由或开源的，不过近年来游戏行业的自由化取得了一定进展，一方面在IP端随着开发者普遍意识到二创对IP本身商业价值的巨大作用纷纷开放做二创游戏的授权出现了很多二创游戏，另一方面随着自由/开源软件影响力越来越大近年来许多大作也大量使用，现在大型游戏的开源法律声明长度也是越来越长<br>另外作为最受欢迎的游戏类型竞技游戏一方面天然有公开源代码以保证公平的需求（这方面最近国内要求公开王者elo机制原理的案件算是一个尝试），另一方面反作弊仍然高度依赖于机制本身的机密性（许多竞技游戏至今无法在linux上运行一个原因就是linux上难以对抗内核外挂）<br>PS：我经常把zun和linus相提并论：东方和linux是同一时代诞生的，都采取了当时并非行业主流的通过开放使用核心资产促使生态参与者成为主要推动力的做法取得了巨大成功，最后倒逼商业巨头也普遍采用这种运作模式（考虑到日本的版权法实践和舆论普遍支持原始创作者对IP近乎无限的控制权zun的创想需要有更大的勇气）</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">26 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">CharleneHoo</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">可以请Up就这个话题展开，再谈一谈f**k nvidia，和闭源驱动的事儿吗？每次听Up的播客都受益匪浅！</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">19 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">开始摆烂鸟</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">确实，开源软件作者无偿付出那么多时间精力，实际上相当于是在替其他所有人交“自由税”，如果没有可用的开源替代，商业公司会更加肆无忌惮的。然而现在有一些人不领这个情[笑哭]。<br>现在的无偿开发者还是太少了，社会发展水平不足以支撑起那么多的人无回报的追求自己的兴趣。所以从另外的角度看，商业软件目前还是很有必要的，甚至可以给开源社区带来一些好处，至少它维持了基数庞大的程序员群体，也提供了高性能的计算平台。<br>现在我们仍然处于漫漫长夜中，或许有一天终可以从必然王国走向自由王国，但愿这一天来的更快一点。</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">14 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">illFiftin</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">我刚想了解自由软件，unixchad就做了[星星眼]</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">10 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">Memble</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">我是把"自由软件"哲学同马克思主义政治经济学放到一起来看待的。</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">7 赞</div></div></div>
+<div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;"><a href="https://www.bilibili.com/video/BV1ufeMzyE5Y" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a><a href="https://space.bilibili.com/34569411" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(28,13%,62%);text-decoration:none;">UP主主页</a></div>
 </div></div>
 <script>
 (function(){
   var u='https://www.loliapi.com/acg/?t='+Date.now();
   var img=new Image();
-  img.onload=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
-  img.onerror=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
-  img.src=u;
+  function apply(){ document.getElementById('bg').style.backgroundImage="url('"+u+"')"; }
+  img.onload=apply; img.onerror=apply; img.src=u;
+})();
+(function(){
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='「今天也要好好写代码呀」';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=k&c=l')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.hitokoto){
+        el.textContent='「'+d.hitokoto+'」';
+        el.title=d.hitokoto+(d.from?' —— '+d.from:'');
+      }
+    })
+    .catch(function(){});
 })();
 </script>
 </body>

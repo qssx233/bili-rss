@@ -416,6 +416,10 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
 
     link: 封面/标题点击目标（feed 里指向播放页，播放页里指向 B站）
     bili_link: B站原视频链接（「在 B站观看」用）
+
+    样式全部内联：RSS 阅读器会剥离 <style>，只有内联样式才能保证观感一致。
+    设计语言：暖白打底 + 半透明毛玻璃圆角块 + 单一字重（寒蝉全圆体），
+    层级靠字号/颜色而不是伪粗体，避免阅读器渲染出两种字体。
     """
     title = v.get("title", "未知标题")
     desc_text = v.get("description", "")
@@ -436,45 +440,70 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
     else:
         pic_url = ""
 
+    # —— 设计变量（内联，避免阅读器丢样式） ——
+    TEXT = "hsl(28,32%,25%)"
+    MID = "hsl(28,18%,44%)"
+    SOFT = "hsl(28,13%,62%)"
+    NICK = "hsl(4,62%,42%)"
+    GLASS = "rgba(255,255,255,0.56)"
+    HAIR = "rgba(152,120,103,0.15)"
+    SHADOW = "0 6px 18px -12px rgba(70,45,35,0.35)"
+
     parts = []
 
-    # 封面图放第一位（用户要求）
+    # 1. 封面大图（第一位，点它进播放页）
     if pic_url:
         parts.append(
-            f'<div style="margin:0 0 12px;line-height:0;">'
-            f'<a href="{link}"><img src="{pic_url}" style="width:100%;border-radius:12px;'
-            f'box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="{escape(title)}" /></a></div>'
-        )
-        parts.append(
-            f'<p style="margin:0 0 12px;">'
-            f'<a href="{link}" style="display:inline-block;padding:8px 20px;'
-            f'background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;'
-            f'text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;'
-            f'box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">播放视频</a></p>'
+            f'<div style="margin:0 0 14px;line-height:0;font-size:0;">'
+            f'<a href="{link}"><img src="{pic_url}" alt="{escape(title)}" referrerpolicy="no-referrer" '
+            f'style="display:block;width:100%;border-radius:18px;'
+            f'box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);" /></a></div>'
         )
 
-    # 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
+    # 2. 操作按钮（粉色主按钮 + 玻璃副按钮）
+    buttons = []
+    if pic_url:
+        buttons.append(
+            f'<a href="{link}" style="display:inline-block;padding:9px 22px;'
+            f'background:linear-gradient(135deg,#fc86a7,#e95f8a);color:#ffffff;'
+            f'text-decoration:none;border-radius:999px;font-size:13px;'
+            f'box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);">播放视频</a>'
+        )
+    buttons.append(
+        f'<a href="{bili_link}" style="display:inline-block;padding:9px 20px;'
+        f'background:{GLASS};border:1px solid {HAIR};color:{MID};'
+        f'text-decoration:none;border-radius:999px;font-size:13px;">在 B站打开</a>'
+    )
+    parts.append(
+        '<div style="margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px;">'
+        + "".join(buttons) + '</div>'
+    )
+
+    # 3. 官方 PC 播放器（真实网页里可播；部分阅读器会过滤 iframe）
     if embed and bvid:
         player_url = (
             f"https://player.bilibili.com/player.html?bvid={bvid}&page=1"
             f"&high_quality=1&danmaku=0&autoplay=0"
         )
         parts.append(
-            f'<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;'
-            f'box-shadow:0 3px 12px rgba(0,0,0,0.12);">'
-            f'<iframe src="{player_url}" width="100%" height="480" scrolling="no" '
-            f'frameborder="0" allowfullscreen="true" '
-            f'style="border:0;display:block;max-width:100%;"></iframe></div>'
+            f'<div style="position:relative;width:100%;padding-top:56.25%;margin:0 0 16px;'
+            f'border-radius:18px;overflow:hidden;background:#0d0d0f;'
+            f'box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);">'
+            f'<iframe src="{player_url}" scrolling="no" frameborder="0" '
+            f'allowfullscreen="true" '
+            f'style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;">'
+            f'</iframe></div>'
         )
 
-    # 标题
+    # 4. 标题
     parts.append(
-        f'<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;">'
-        f'<a href="{link}" style="text-decoration:none;color:hsl(31,45%,24%);">'
+        f'<h3 style="margin:0 0 12px;font-size:18px;line-height:1.55;font-weight:400;'
+        f'letter-spacing:0.01em;">'
+        f'<a href="{link}" style="text-decoration:none;color:{TEXT};">'
         f'{escape(title)}</a></h3>'
     )
 
-    # 统计（纯文字标签，避免 emoji 在 ChillRoundM 字体下显示空白方块）
+    # 5. 统计（纯文字胶囊，避免 emoji 在字体下显示空白方块）
     stats = []
     if view_count or play_count:
         stats.append(f'播放 {_format_count(view_count or play_count)}')
@@ -493,14 +522,17 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
     elif length:
         stats.append(f'时长 {length}')
     if stats:
+        chips = "".join(
+            f'<span style="display:inline-block;padding:4px 11px;border-radius:999px;'
+            f'background:{GLASS};border:1px solid {HAIR};font-size:11.5px;'
+            f'color:{MID};letter-spacing:0.01em;">{s}</span>'
+            for s in stats
+        )
         parts.append(
-            f'<div style="margin:0 0 12px;padding:8px 12px;'
-            f'background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);'
-            f'border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">'
-            f'{" · ".join(stats)}</div>'
+            f'<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;">{chips}</div>'
         )
 
-    # 简介
+    # 6. 完整简介
     if desc_text:
         import html as _html
         desc_text = _html.unescape(desc_text)
@@ -509,40 +541,46 @@ def build_item_html(v: dict, link: str, bili_link: str, space_url: str, embed: b
         clean_desc = re.sub(r'<[^>]+>', '', clean_desc).strip()
         if clean_desc:
             parts.append(
-                f'<div style="margin:0 0 10px;font-size:13px;'
-                f'color:hsl(31,45%,24%);line-height:1.7;">'
+                f'<div style="margin:0 0 4px;font-size:13.5px;color:hsl(28,25%,30%);'
+                f'line-height:1.9;">'
                 f'{escape(clean_desc).replace(chr(10), "<br>")}</div>'
             )
 
-    # 热门评论（每个独立成行，分隔清晰）
+    # 7. 热门评论（每条一个圆角毛玻璃小块）
     comments = v.get("comments") or []
     if comments:
-        cm = ['<div style="margin:14px 0 0;padding:12px 14px;'
-              'background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);'
-              'border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);">',
-              '<div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;'
-              'font-weight:500;">热门评论</div>']
+        cm = ['<div style="margin:18px 0 0;">',
+              f'<div style="margin:0 0 10px;font-size:11.5px;letter-spacing:0.1em;'
+              f'color:{SOFT};">热门评论</div>']
         for c in comments:
             user = escape(str(c.get("user", "网友")))
             text = escape(str(c.get("text", ""))).replace("\n", "<br>")
             like_num = c.get("like", 0)
-            like_txt = (f' <span style="color:hsl(34,29%,60%);font-size:11px;">'
-                        f'{like_num} 赞</span>') if like_num else ""
+            like_html = (
+                f'<div style="margin:6px 0 0;text-align:right;font-size:11px;'
+                f'color:{SOFT};">{like_num} 赞</div>'
+            ) if like_num else ""
             cm.append(
-                f'<div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);'
-                f'font-size:12px;color:hsl(31,45%,24%);line-height:1.6;">'
-                f'<strong style="color:hsl(4,72%,35%);">{user}</strong>：'
-                f'{text}{like_txt}</div>'
+                f'<div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;'
+                f'background:{GLASS};border:1px solid {HAIR};'
+                f'-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);'
+                f'box-shadow:{SHADOW};">'
+                f'<div style="margin:0 0 4px;font-size:12px;color:{NICK};">{user}</div>'
+                f'<div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">'
+                f'{text}</div>{like_html}</div>'
             )
         cm.append('</div>')
         parts.append("".join(cm))
 
-    # 兜底链接
+    # 8. 兜底链接
     parts.append(
-        f'<p style="margin:14px 0 0;font-size:12px;">'
-        f'<a href="{bili_link}" style="color:hsl(197,39%,45%);text-decoration:none;">'
-        f'在 B站观看原视频</a> · '
-        f'<a href="{space_url}" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>'
+        f'<div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;">'
+        f'<a href="{bili_link}" style="padding:6px 14px;border-radius:999px;'
+        f'background:rgba(255,255,255,0.5);border:1px solid {HAIR};'
+        f'color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a>'
+        f'<a href="{space_url}" style="padding:6px 14px;border-radius:999px;'
+        f'background:rgba(255,255,255,0.5);border:1px solid {HAIR};'
+        f'color:{SOFT};text-decoration:none;">UP主主页</a></div>'
     )
     return "\n".join(parts)
 
@@ -644,7 +682,11 @@ def ts_to_str(ts: int) -> str:
 
 
 def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) -> str:
-    """生成单条视频的独立播放页 HTML（干净、可在 AgrReader 内嵌网页里播放）"""
+    """生成单条视频的独立播放页 HTML（干净、可在 AgrReader 内嵌网页里播放）
+
+    设计语言与首页一致：暖白底 + 半透明毛玻璃圆角 + 单一字重寒蝉全圆体，
+    背景图（loliapi 随机图）做高斯模糊后再压一层白纱，保证"通透"且不抢正文。
+    """
     title = v.get("title", "未知标题")
     body = build_item_html(v, bili_link, bili_link, space_url, embed=True)
     return f'''<!DOCTYPE html>
@@ -653,53 +695,124 @@ def generate_post_page(v: dict, up_name: str, space_url: str, bili_link: str) ->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{escape(title)} - {escape(up_name)}</title>
+<link rel="icon" type="image/svg+xml" href="../assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<meta name="referrer" content="no-referrer">
 <style>
 @font-face {{
-  font-family:'ChillRoundM';
-  src:url('../assets/ChillRoundM.woff2') format('woff2');
-  font-display:swap;
+  font-family:'ChillRound';
+  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
 }}
 :root {{
-  --bg:hsl(35,36%,96%); --surface:hsla(36,38%,98%,0.72);
-  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
-  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
-  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
 }}
 * {{ box-sizing:border-box; }}
-html,body {{ margin:0; padding:0; min-height:100%; }}
+html,body {{ margin:0; padding:0; min-height:100%; overflow-x:hidden; }}
 body {{
-  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
     "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  color:var(--text); line-height:1.7; background-color:var(--bg);
-  background-image:url('https://www.loliapi.com/acg/');
-  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
 }}
-.page {{ max-width:820px; margin:0 auto; padding:24px 18px 48px; }}
+.bg {{
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  filter:blur(28px) saturate(1.16) brightness(1.04); opacity:0.52;
+}}
+.veil {{
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(170deg, rgba(255,255,255,0.66), rgba(255,255,255,0.80) 45%,
+    hsla(35,40%,98%,0.88));
+}}
+.page {{ position:relative; z-index:1; max-width:860px; margin:0 auto; padding:22px 16px 44px; }}
 .card {{
-  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
-  border-radius:20px; padding:22px; box-shadow:var(--shadow);
-  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+  background:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.88);
+  border-radius:26px; padding:20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(22px) saturate(1.12); backdrop-filter:blur(22px) saturate(1.12);
+  animation:rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }}
-.card h3 {{ color:var(--text); }}
-a {{ color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }}
+@keyframes rise {{ from {{ opacity:0; transform:translateY(12px); }} to {{ opacity:1; transform:none; }} }}
+@media (prefers-reduced-motion:reduce) {{ .card {{ animation:none; }} }}
+.topbar {{
+  display:flex; align-items:center; gap:10px; margin:0 0 16px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}}
+.topbar .brand {{
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--text-soft);
+}}
+.topbar .brand img {{ width:24px; height:24px; border-radius:8px; display:block; }}
+.me {{
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:72%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}}
+.me .quote {{
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5;
+  flex:1 1 auto; min-width:0;
+}}
+.me img {{
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}}
+a {{ color:var(--pink-deep); text-decoration:none; -webkit-tap-highlight-color:transparent; }}
 a:active {{ opacity:0.7; }}
+h3 {{ font-weight:400; }}
+img {{ max-width:100%; height:auto; }}
 @media (max-width:600px) {{
-  .page {{ padding:14px 10px 32px; }}
-  .card {{ padding:16px; border-radius:16px; }}
+  .topbar {{ flex-wrap:wrap; row-gap:8px; }}
+  .me {{ max-width:100%; margin-left:0; }}
+  .bg {{ filter:blur(22px) saturate(1.1); opacity:0.46; }}
+  .page {{ padding:12px 10px 30px; }}
+  .card {{ padding:14px; border-radius:20px; }}
 }}
 </style>
 </head>
 <body>
+<div class="bg" id="bg"></div><div class="veil"></div>
 <div class="page"><div class="card">
+<div class="topbar">
+  <a class="brand" href="../index.html" title="返回订阅首页">
+    <img src="../assets/bili.svg" alt="bilibili">
+    <span>{escape(up_name)} · bilibili</span>
+  </a>
+  <div class="me">
+    <span class="quote" id="hk"></span>
+    <img src="../assets/portrait.jpg" alt="头像">
+  </div>
+</div>
 {body}
 </div></div>
 <script>
 (function(){{
   var u='https://www.loliapi.com/acg/?t='+Date.now();
   var img=new Image();
-  img.onload=function(){{ document.body.style.backgroundImage="url('"+u+"')"; }};
-  img.onerror=function(){{ document.body.style.backgroundImage="url('"+u+"')"; }};
-  img.src=u;
+  function apply(){{ document.getElementById('bg').style.backgroundImage="url('"+u+"')"; }}
+  img.onload=apply; img.onerror=apply; img.src=u;
+}})();
+(function(){{
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='\u300c\u4eca\u5929\u4e5f\u8981\u597d\u597d\u5199\u4ee3\u7801\u5440\u300d';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=k&c=l')
+    .then(function(r){{ return r.json(); }})
+    .then(function(d){{
+      if(d && d.hitokoto){{
+        el.textContent='\u300c'+d.hitokoto+'\u300d';
+        el.title=d.hitokoto+(d.from?' \u2014\u2014 '+d.from:'');
+      }}
+    }})
+    .catch(function(){{}});
 }})();
 </script>
 </body>

@@ -4,60 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>莓果坚果麦片 - unixchad</title>
+<link rel="icon" type="image/svg+xml" href="../assets/bili.svg">
+<meta name="theme-color" content="#faf5f0">
+<meta name="referrer" content="no-referrer">
 <style>
 @font-face {
-  font-family:'ChillRoundM';
-  src:url('../assets/ChillRoundM.woff2') format('woff2');
-  font-display:swap;
+  font-family:'ChillRound';
+  src:url('../assets/ChillRoundF.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
 }
 :root {
-  --bg:hsl(35,36%,96%); --surface:hsla(36,38%,98%,0.72);
-  --text:hsl(31,45%,24%); --text-mid:hsl(35,28%,40%); --text-soft:hsl(34,29%,60%);
-  --accent:hsl(31,23%,50%); --red:hsl(4,59%,64%); --blue:hsl(197,39%,56%); --yellow:hsl(43,71%,67%);
-  --line:hsl(37,38%,83%); --shadow:0 4px 20px rgba(60,45,30,0.13);
+  --text:hsl(28,32%,25%); --text-mid:hsl(28,18%,44%); --text-soft:hsl(28,13%,62%);
+  --accent-deep:hsl(31,30%,40%); --pink-deep:hsl(340,62%,52%);
 }
 * { box-sizing:border-box; }
-html,body { margin:0; padding:0; min-height:100%; }
+html,body { margin:0; padding:0; min-height:100%; overflow-x:hidden; }
 body {
-  font-family:'ChillRoundM',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+  font-family:'ChillRound',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
     "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  color:var(--text); line-height:1.7; background-color:var(--bg);
-  background-image:url('https://www.loliapi.com/acg/');
-  background-size:cover; background-position:center; background-attachment:fixed; background-repeat:no-repeat;
+  font-synthesis:none; -webkit-font-smoothing:antialiased;
+  color:var(--text); line-height:1.8; background-color:hsl(35,36%,97%);
+  background-image:
+    radial-gradient(900px 420px at 10% -10%, hsla(342,85%,90%,0.5), transparent 62%),
+    radial-gradient(760px 400px at 92% 2%, hsla(197,70%,91%,0.45), transparent 60%),
+    radial-gradient(700px 520px at 50% 104%, hsla(40,80%,91%,0.42), transparent 65%);
+  background-attachment:fixed;
 }
-.page { max-width:820px; margin:0 auto; padding:24px 18px 48px; }
+.bg {
+  position:fixed; inset:-46px; z-index:0; background-size:cover; background-position:center;
+  filter:blur(28px) saturate(1.16) brightness(1.04); opacity:0.52;
+}
+.veil {
+  position:fixed; inset:0; z-index:0;
+  background:linear-gradient(170deg, rgba(255,255,255,0.66), rgba(255,255,255,0.80) 45%,
+    hsla(35,40%,98%,0.88));
+}
+.page { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:22px 16px 44px; }
 .card {
-  background:var(--surface); border:1px solid rgba(255,255,255,0.7);
-  border-radius:20px; padding:22px; box-shadow:var(--shadow);
-  -webkit-backdrop-filter:blur(14px) saturate(1.2); backdrop-filter:blur(14px) saturate(1.2);
+  background:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.88);
+  border-radius:26px; padding:20px;
+  box-shadow:0 26px 62px -36px rgba(70,45,35,0.42), 0 2px 6px rgba(70,45,35,0.04);
+  -webkit-backdrop-filter:blur(22px) saturate(1.12); backdrop-filter:blur(22px) saturate(1.12);
+  animation:rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }
-.card h3 { color:var(--text); }
-a { color:var(--accent); text-decoration:none; -webkit-tap-highlight-color:transparent; }
+@keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .card { animation:none; } }
+.topbar {
+  display:flex; align-items:center; gap:10px; margin:0 0 16px;
+  font-size:12px; color:var(--text-soft); letter-spacing:0.02em;
+}
+.topbar .brand {
+  display:inline-flex; align-items:center; gap:9px; flex:0 0 auto;
+  text-decoration:none; color:var(--text-soft);
+}
+.topbar .brand img { width:24px; height:24px; border-radius:8px; display:block; }
+.me {
+  margin-left:auto; display:flex; align-items:center; gap:9px; overflow:hidden;
+  min-width:0; max-width:72%; padding:4px 5px 4px 13px; border-radius:999px;
+  background:rgba(255,255,255,0.66); border:1px solid rgba(152,120,103,0.13);
+  box-shadow:0 6px 16px -12px rgba(70,45,35,0.4);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+}
+.me .quote {
+  font-size:11.5px; color:var(--text-mid); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; line-height:1.5;
+  flex:1 1 auto; min-width:0;
+}
+.me img {
+  width:30px; height:30px; border-radius:999px; object-fit:cover;
+  display:block; flex:0 0 auto; border:1px solid rgba(255,255,255,0.9);
+}
+a { color:var(--pink-deep); text-decoration:none; -webkit-tap-highlight-color:transparent; }
 a:active { opacity:0.7; }
+h3 { font-weight:400; }
+img { max-width:100%; height:auto; }
 @media (max-width:600px) {
-  .page { padding:14px 10px 32px; }
-  .card { padding:16px; border-radius:16px; }
+  .topbar { flex-wrap:wrap; row-gap:8px; }
+  .me { max-width:100%; margin-left:0; }
+  .bg { filter:blur(22px) saturate(1.1); opacity:0.46; }
+  .page { padding:12px 10px 30px; }
+  .card { padding:14px; border-radius:20px; }
 }
 </style>
 </head>
 <body>
+<div class="bg" id="bg"></div><div class="veil"></div>
 <div class="page"><div class="card">
-<div style="margin:0 0 12px;line-height:0;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH"><img src="http://i0.hdslb.com/bfs/archive/657cd0ace23f4932c4c38023032ddd9b0c29a340.jpg" style="width:100%;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,0.12);" alt="莓果坚果麦片" /></a></div>
-<p style="margin:0 0 12px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="display:inline-block;padding:8px 20px;background:linear-gradient(135deg,hsl(31,30%,52%),hsl(31,35%,42%));color:#fff;text-decoration:none;border-radius:22px;font-size:13px;font-weight:500;box-shadow:0 2px 8px hsla(31,30%,40%,0.28);">播放视频</a></p>
-<div style="margin:0 0 12px;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1YHUTBwEBH&page=1&high_quality=1&danmaku=0&autoplay=0" width="100%" height="480" scrolling="no" frameborder="0" allowfullscreen="true" style="border:0;display:block;max-width:100%;"></iframe></div>
-<h3 style="margin:0 0 10px;font-size:17px;line-height:1.45;font-weight:600;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="text-decoration:none;color:hsl(31,45%,24%);">莓果坚果麦片</a></h3>
-<div style="margin:0 0 12px;padding:8px 12px;background:hsla(35,36%,92%,0.85);border:1px solid hsla(37,38%,70%,0.4);border-radius:8px;font-size:12px;color:hsl(35,28%,40%);">播放 1963 · 弹幕 2 · 评论 51 · 点赞 151 · 投币 44 · 收藏 18 · 时长 0:20</div>
-<div style="margin:0 0 10px;font-size:13px;color:hsl(31,45%,24%);line-height:1.7;">Berry Nut Oats<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
-<div style="margin:14px 0 0;padding:12px 14px;background:hsla(36,38%,98%,0.9);border-left:3px solid hsl(31,23%,50%);border-radius:0 10px 10px 0;box-shadow:0 2px 8px hsla(31,30%,30%,0.05);"><div style="font-size:12px;color:hsl(34,29%,60%);margin-bottom:8px;font-weight:500;">热门评论</div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">ChHsich</strong>：时隔两个半月，unixchad 为我们带来了新的 Foss Breakfast。尽管采用了全新的技术栈，但是传统的系统架构和软件的设计思想并没有改变，体现了开源社区的传承与创新精神 <span style="color:hsl(34,29%,60%);font-size:11px;">100 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">开始摆烂鸟</strong>：太好了，保持了手动构建的传统[doge_金箍] <span style="color:hsl(34,29%,60%);font-size:11px;">50 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">uHioVK</strong>：homebrew <span style="color:hsl(34,29%,60%);font-size:11px;">15 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">乐维-活在儿时的画里</strong>：自由开源晚餐 <span style="color:hsl(34,29%,60%);font-size:11px;">10 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">-江欣婷-</strong>：感谢up主百忙之中抽空敷衍我们[doge] <span style="color:hsl(34,29%,60%);font-size:11px;">7 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">kitarily</strong>：预测下个视频是林中散步聊哲学 <span style="color:hsl(34,29%,60%);font-size:11px;">6 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">欧内的汉手</strong>：UP主你终于更新了[大哭][大哭][大哭] <span style="color:hsl(34,29%,60%);font-size:11px;">5 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">snorlaxhola</strong>：沒有開源具體用了什麼東西 (: <span style="color:hsl(34,29%,60%);font-size:11px;">4 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">桂奈喵喵</strong>：欢迎回来 <span style="color:hsl(34,29%,60%);font-size:11px;">3 赞</span></div><div style="padding:6px 0;border-bottom:1px solid hsla(37,38%,83%,0.7);font-size:12px;color:hsl(31,45%,24%);line-height:1.6;"><strong style="color:hsl(4,72%,35%);">Notrie_事亮亮</strong>：gnu/oatmealchad <span style="color:hsl(34,29%,60%);font-size:11px;">3 赞</span></div></div>
-<p style="margin:14px 0 0;font-size:12px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="color:hsl(197,39%,45%);text-decoration:none;">在 B站观看原视频</a> · <a href="https://space.bilibili.com/34569411" style="color:hsl(34,29%,60%);text-decoration:none;">UP主主页</a></p>
+<div class="topbar">
+  <a class="brand" href="../index.html" title="返回订阅首页">
+    <img src="../assets/bili.svg" referrerpolicy="no-referrer" alt="bilibili">
+    <span>unixchad · bilibili</span>
+  </a>
+  <div class="me">
+    <span class="quote" id="hk"></span>
+    <img src="../assets/portrait.jpg" referrerpolicy="no-referrer" alt="头像">
+  </div>
+</div>
+<div style="margin:0 0 14px;line-height:0;font-size:0;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH"><img src="http://i0.hdslb.com/bfs/archive/657cd0ace23f4932c4c38023032ddd9b0c29a340.jpg" referrerpolicy="no-referrer" alt="莓果坚果麦片" style="display:block;width:100%;border-radius:18px;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);" /></a></div>
+<div style="margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="display:inline-block;padding:9px 22px;background:linear-gradient(135deg,#fc86a7,#e95f8a);color:#ffffff;text-decoration:none;border-radius:999px;font-size:13px;box-shadow:0 8px 18px -10px rgba(233,95,138,0.9);">播放视频</a><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="display:inline-block;padding:9px 20px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);color:hsl(28,18%,44%);text-decoration:none;border-radius:999px;font-size:13px;">在 B站打开</a></div>
+<div style="position:relative;width:100%;padding-top:56.25%;margin:0 0 16px;border-radius:18px;overflow:hidden;background:#0d0d0f;box-shadow:0 14px 32px -20px rgba(70,45,35,0.5);"><iframe src="https://player.bilibili.com/player.html?bvid=BV1YHUTBwEBH&page=1&high_quality=1&danmaku=0&autoplay=0" scrolling="no" frameborder="0" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+<h3 style="margin:0 0 12px;font-size:18px;line-height:1.55;font-weight:400;letter-spacing:0.01em;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="text-decoration:none;color:hsl(28,32%,25%);">莓果坚果麦片</a></h3>
+<div style="margin:0 0 14px;display:flex;flex-wrap:wrap;gap:6px;"><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">播放 1963</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">弹幕 2</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">评论 51</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">点赞 151</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">投币 44</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">收藏 18</span><span style="display:inline-block;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);font-size:11.5px;color:hsl(28,18%,44%);letter-spacing:0.01em;">时长 0:20</span></div>
+<div style="margin:0 0 4px;font-size:13.5px;color:hsl(28,25%,30%);line-height:1.9;">Berry Nut Oats<br><br>配置文件：<br>codeberg.org/unixchad/dotfiles<br>github.com/gnuunixchad/dotfiles<br><br>本视频使用自由软件(Free Software)制作：<br>录制: wf-recorder + slurp<br>录音: pw-record + noise-suppression-for-voice<br>剪辑: kdenlive + ffmpeg<br>截图: grim + slurp<br>封面: gimp + imagemagick</div>
+<div style="margin:18px 0 0;"><div style="margin:0 0 10px;font-size:11.5px;letter-spacing:0.1em;color:hsl(28,13%,62%);">热门评论</div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">ChHsich</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">时隔两个半月，unixchad 为我们带来了新的 Foss Breakfast。尽管采用了全新的技术栈，但是传统的系统架构和软件的设计思想并没有改变，体现了开源社区的传承与创新精神</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">100 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">开始摆烂鸟</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">太好了，保持了手动构建的传统[doge_金箍]</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">50 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">uHioVK</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">homebrew</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">15 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">乐维-活在儿时的画里</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">自由开源晚餐</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">10 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">-江欣婷-</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">感谢up主百忙之中抽空敷衍我们[doge]</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">7 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">kitarily</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">预测下个视频是林中散步聊哲学</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">6 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">欧内的汉手</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">UP主你终于更新了[大哭][大哭][大哭]</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">5 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">snorlaxhola</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">沒有開源具體用了什麼東西 (:</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">4 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">桂奈喵喵</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">欢迎回来</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">3 赞</div></div><div style="margin:0 0 9px;padding:12px 15px;border-radius:18px;background:rgba(255,255,255,0.56);border:1px solid rgba(152,120,103,0.15);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -12px rgba(70,45,35,0.35);"><div style="margin:0 0 4px;font-size:12px;color:hsl(4,62%,42%);">Notrie_事亮亮</div><div style="font-size:12.5px;color:hsl(28,25%,30%);line-height:1.72;">gnu/oatmealchad</div><div style="margin:6px 0 0;text-align:right;font-size:11px;color:hsl(28,13%,62%);">3 赞</div></div></div>
+<div style="margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;"><a href="https://www.bilibili.com/video/BV1YHUTBwEBH" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(340,62%,52%);text-decoration:none;">在 B站观看原视频</a><a href="https://space.bilibili.com/34569411" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(152,120,103,0.15);color:hsl(28,13%,62%);text-decoration:none;">UP主主页</a></div>
 </div></div>
 <script>
 (function(){
   var u='https://www.loliapi.com/acg/?t='+Date.now();
   var img=new Image();
-  img.onload=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
-  img.onerror=function(){ document.body.style.backgroundImage="url('"+u+"')"; };
-  img.src=u;
+  function apply(){ document.getElementById('bg').style.backgroundImage="url('"+u+"')"; }
+  img.onload=apply; img.onerror=apply; img.src=u;
+})();
+(function(){
+  var el=document.getElementById('hk');
+  if(!el) return;
+  el.textContent='「今天也要好好写代码呀」';
+  fetch('https://v1.hitokoto.cn/?encode=json&c=e&c=k&c=l')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.hitokoto){
+        el.textContent='「'+d.hitokoto+'」';
+        el.title=d.hitokoto+(d.from?' —— '+d.from:'');
+      }
+    })
+    .catch(function(){});
 })();
 </script>
 </body>
