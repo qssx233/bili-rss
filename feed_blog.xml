@@ -5,8 +5,22 @@
     <link>https://qssx233.github.io/bili-rss/blog.html</link>
     <description>So!azy、只贏、狡猫三窝　·　繁体已自动转为简体　·　只放摘要，点进去看原文</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 26 Nov 2026 14:48:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 14:40:47 +0800</lastBuildDate>
     <generator>qssx-rss blog merger</generator>
+    <item>
+      <title>[So!azy] 生活中那些 backup 给我的安全感</title>
+      <link>https://blog.solazy.me/20261127/</link>
+      <guid isPermaLink="true">https://blog.solazy.me/20261127/</guid>
+      <pubDate>Fri, 27 Nov 2026 03:00:00 +0000</pubDate>
+      <description><![CDATA[<p><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/david-pupaza-henwumetzzo-unsplash.webp" alt="" referrerpolicy="no-referrer" style="max-width:100%;border-radius:10px"></p><p>今天突然发现，我的生活中充满了自己安排好的 Plan B 和 backup，有时安全感满满的一天</p><p><a href="https://blog.solazy.me/20261127/">阅读原文 →</a></p>]]></description>
+    </item>
+    <item>
+      <title>[So!azy] 你忘了的话，别人还记着</title>
+      <link>https://blog.solazy.me/20261126/</link>
+      <guid isPermaLink="true">https://blog.solazy.me/20261126/</guid>
+      <pubDate>Thu, 26 Nov 2026 15:00:00 +0000</pubDate>
+      <description><![CDATA[<p><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/anne-nygard-6cs-ncv17s8-unsplash.webp" alt="" referrerpolicy="no-referrer" style="max-width:100%;border-radius:10px"></p><p>前阵子听播客意识到的一件事儿，这两天又在自己身上重现了，索性记录下来</p><p><a href="https://blog.solazy.me/20261126/">阅读原文 →</a></p>]]></description>
+    </item>
     <item>
       <title>[只贏] 广岛！Hiroshima！</title>
       <link>https://www.onlywin.work/p/hiroshima</link>
@@ -69,20 +83,6 @@
       <guid isPermaLink="true">https://blog.solazy.me/20261118/</guid>
       <pubDate>Wed, 18 Nov 2026 03:00:00 +0000</pubDate>
       <description><![CDATA[<p><img src="https://photo.lily.lat/file/AgACAgQAAyEGAASLgSpZAAIXYWr79oC-K2gRFPGC9bU2ufAxlOAgAAL8EmsbOqrhU4XhYBLqldvNAQADAgADeAADPQQ.png" alt="" referrerpolicy="no-referrer" style="max-width:100%;border-radius:10px"></p><p>观朋友圈有感</p><p><a href="https://blog.solazy.me/20261118/">阅读原文 →</a></p>]]></description>
-    </item>
-    <item>
-      <title>[So!azy] 学会像呼吸一样拒绝别人</title>
-      <link>https://blog.solazy.me/20261117/</link>
-      <guid isPermaLink="true">https://blog.solazy.me/20261117/</guid>
-      <pubDate>Tue, 17 Nov 2026 05:00:00 +0000</pubDate>
-      <description><![CDATA[<p><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/sol/steve-a-johnson-kr8tc8rugdk-unsplash.webp" alt="" referrerpolicy="no-referrer" style="max-width:100%;border-radius:10px"></p><p>昨晚一件小事儿引发的思考</p><p><a href="https://blog.solazy.me/20261117/">阅读原文 →</a></p>]]></description>
-    </item>
-    <item>
-      <title>[So!azy] Bear Blog 的新 API  / A new Bear Blog API</title>
-      <link>https://blog.solazy.me/bearblog-api-open-source-skill/</link>
-      <guid isPermaLink="true">https://blog.solazy.me/bearblog-api-open-source-skill/</guid>
-      <pubDate>Mon, 16 Nov 2026 11:36:00 +0000</pubDate>
-      <description><![CDATA[<p>今天（2026 年 11 月 16 日），Bear Blog 推出了 官方 API 。文章、页面和博客设置，现在都可以通过 API 管理了。 我把这组接口封装成了 🍯 Bear Blog Skill ，并开源在 GitHub 。装进 Codex、Claude Code 等支持 Agent Skills 的工具后，就能用自然语言安排博客操作，例如： $bear</p><p><a href="https://blog.solazy.me/bearblog-api-open-source-skill/">阅读原文 →</a></p>]]></description>
     </item>
     <item>
       <title>[只贏] 背后的闲话</title>
